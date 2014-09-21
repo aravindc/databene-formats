@@ -1,0 +1,15 @@
+release notes databene webdecs 1.0.0
+------------------------------------
+
+Enhancements
+------------
+- Created OffsetDataIterator
+
+
+Changes
+-------
+
+
+
+Bug Fixes
+---------
