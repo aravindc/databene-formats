@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g 2011-02-06 17:18:16
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 org/databene/regex/antlr/Regex.g 2011-02-06 17:18:16
 
 	package org.databene.formats.regex.antlr;
 
@@ -80,7 +80,7 @@ public class RegexParser extends Parser {
     }
 
     public String[] getTokenNames() { return RegexParser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g"; }
+    public String getGrammarFileName() { return "org/databene/regex/antlr/Regex.g"; }
 
 
     protected void mismatch(IntStream input, int ttype, BitSet follow)
@@ -102,7 +102,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "expression"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:99:1: expression : ( '^' )? choice ( '$' )? ;
+    // org/databene/regex/antlr/Regex.g:99:1: expression : ( '^' )? choice ( '$' )? ;
     public final RegexParser.expression_return expression() throws RecognitionException {
         RegexParser.expression_return retval = new RegexParser.expression_return();
         retval.start = input.LT(1);
@@ -119,12 +119,12 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 1) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:104:2: ( ( '^' )? choice ( '$' )? )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:104:4: ( '^' )? choice ( '$' )?
+            // org/databene/regex/antlr/Regex.g:104:2: ( ( '^' )? choice ( '$' )? )
+            // org/databene/regex/antlr/Regex.g:104:4: ( '^' )? choice ( '$' )?
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:104:7: ( '^' )?
+            // org/databene/regex/antlr/Regex.g:104:7: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -133,7 +133,7 @@ public class RegexParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: '^'
+                    // org/databene/regex/antlr/Regex.g:0:0: '^'
                     {
                     char_literal1=(Token)match(input,31,FOLLOW_31_in_expression78); if (state.failed) return retval;
 
@@ -148,7 +148,7 @@ public class RegexParser extends Parser {
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, choice2.getTree());
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:104:20: ( '$' )?
+            // org/databene/regex/antlr/Regex.g:104:20: ( '$' )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -157,7 +157,7 @@ public class RegexParser extends Parser {
             }
             switch (alt2) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: '$'
+                    // org/databene/regex/antlr/Regex.g:0:0: '$'
                     {
                     char_literal3=(Token)match(input,32,FOLLOW_32_in_expression84); if (state.failed) return retval;
 
@@ -194,7 +194,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "choice"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:106:1: choice : ( sequence ( '|' sequence )+ -> ^( CHOICE ( sequence )+ ) | sequence );
+    // org/databene/regex/antlr/Regex.g:106:1: choice : ( sequence ( '|' sequence )+ -> ^( CHOICE ( sequence )+ ) | sequence );
     public final RegexParser.choice_return choice() throws RecognitionException {
         RegexParser.choice_return retval = new RegexParser.choice_return();
         retval.start = input.LT(1);
@@ -214,7 +214,7 @@ public class RegexParser extends Parser {
         RewriteRuleSubtreeStream stream_sequence=new RewriteRuleSubtreeStream(adaptor,"rule sequence");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 2) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:2: ( sequence ( '|' sequence )+ -> ^( CHOICE ( sequence )+ ) | sequence )
+            // org/databene/regex/antlr/Regex.g:107:2: ( sequence ( '|' sequence )+ -> ^( CHOICE ( sequence )+ ) | sequence )
             int alt4=2;
             switch ( input.LA(1) ) {
             case ALPHANUM:
@@ -328,7 +328,7 @@ public class RegexParser extends Parser {
 
             switch (alt4) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:4: sequence ( '|' sequence )+
+                    // org/databene/regex/antlr/Regex.g:107:4: sequence ( '|' sequence )+
                     {
                     pushFollow(FOLLOW_sequence_in_choice95);
                     sequence4=sequence();
@@ -336,7 +336,7 @@ public class RegexParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_sequence.add(sequence4.getTree());
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:13: ( '|' sequence )+
+                    // org/databene/regex/antlr/Regex.g:107:13: ( '|' sequence )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -350,7 +350,7 @@ public class RegexParser extends Parser {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:14: '|' sequence
+                    	    // org/databene/regex/antlr/Regex.g:107:14: '|' sequence
                     	    {
                     	    char_literal5=(Token)match(input,33,FOLLOW_33_in_choice98); if (state.failed) return retval; 
                     	    if ( state.backtracking==0 ) stream_33.add(char_literal5);
@@ -391,7 +391,7 @@ public class RegexParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 107:29: -> ^( CHOICE ( sequence )+ )
                     {
-                        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:32: ^( CHOICE ( sequence )+ )
+                        // org/databene/regex/antlr/Regex.g:107:32: ^( CHOICE ( sequence )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CHOICE, "CHOICE"), root_1);
@@ -414,7 +414,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:108:4: sequence
+                    // org/databene/regex/antlr/Regex.g:108:4: sequence
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -454,7 +454,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "sequence"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:1: sequence : ( factor ( factor )+ -> ^( SEQUENCE ( factor )+ ) | factor );
+    // org/databene/regex/antlr/Regex.g:111:1: sequence : ( factor ( factor )+ -> ^( SEQUENCE ( factor )+ ) | factor );
     public final RegexParser.sequence_return sequence() throws RecognitionException {
         RegexParser.sequence_return retval = new RegexParser.sequence_return();
         retval.start = input.LT(1);
@@ -471,7 +471,7 @@ public class RegexParser extends Parser {
         RewriteRuleSubtreeStream stream_factor=new RewriteRuleSubtreeStream(adaptor,"rule factor");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 3) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:9: ( factor ( factor )+ -> ^( SEQUENCE ( factor )+ ) | factor )
+            // org/databene/regex/antlr/Regex.g:111:9: ( factor ( factor )+ -> ^( SEQUENCE ( factor )+ ) | factor )
             int alt6=2;
             switch ( input.LA(1) ) {
             case ALPHANUM:
@@ -585,7 +585,7 @@ public class RegexParser extends Parser {
 
             switch (alt6) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:11: factor ( factor )+
+                    // org/databene/regex/antlr/Regex.g:111:11: factor ( factor )+
                     {
                     pushFollow(FOLLOW_factor_in_sequence125);
                     factor8=factor();
@@ -593,7 +593,7 @@ public class RegexParser extends Parser {
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_factor.add(factor8.getTree());
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:18: ( factor )+
+                    // org/databene/regex/antlr/Regex.g:111:18: ( factor )+
                     int cnt5=0;
                     loop5:
                     do {
@@ -607,7 +607,7 @@ public class RegexParser extends Parser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: factor
+                    	    // org/databene/regex/antlr/Regex.g:0:0: factor
                     	    {
                     	    pushFollow(FOLLOW_factor_in_sequence127);
                     	    factor9=factor();
@@ -645,7 +645,7 @@ public class RegexParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 111:26: -> ^( SEQUENCE ( factor )+ )
                     {
-                        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:29: ^( SEQUENCE ( factor )+ )
+                        // org/databene/regex/antlr/Regex.g:111:29: ^( SEQUENCE ( factor )+ )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SEQUENCE, "SEQUENCE"), root_1);
@@ -668,7 +668,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:112:4: factor
+                    // org/databene/regex/antlr/Regex.g:112:4: factor
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -708,7 +708,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "factor"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:114:1: factor : ( atom quantifier -> ^( FACTOR atom quantifier ) | atom );
+    // org/databene/regex/antlr/Regex.g:114:1: factor : ( atom quantifier -> ^( FACTOR atom quantifier ) | atom );
     public final RegexParser.factor_return factor() throws RecognitionException {
         RegexParser.factor_return retval = new RegexParser.factor_return();
         retval.start = input.LT(1);
@@ -726,7 +726,7 @@ public class RegexParser extends Parser {
         RewriteRuleSubtreeStream stream_atom=new RewriteRuleSubtreeStream(adaptor,"rule atom");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 4) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:114:8: ( atom quantifier -> ^( FACTOR atom quantifier ) | atom )
+            // org/databene/regex/antlr/Regex.g:114:8: ( atom quantifier -> ^( FACTOR atom quantifier ) | atom )
             int alt7=2;
             switch ( input.LA(1) ) {
             case ALPHANUM:
@@ -840,7 +840,7 @@ public class RegexParser extends Parser {
 
             switch (alt7) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:114:10: atom quantifier
+                    // org/databene/regex/antlr/Regex.g:114:10: atom quantifier
                     {
                     pushFollow(FOLLOW_atom_in_factor150);
                     atom11=atom();
@@ -870,7 +870,7 @@ public class RegexParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 114:26: -> ^( FACTOR atom quantifier )
                     {
-                        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:114:29: ^( FACTOR atom quantifier )
+                        // org/databene/regex/antlr/Regex.g:114:29: ^( FACTOR atom quantifier )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FACTOR, "FACTOR"), root_1);
@@ -887,7 +887,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:115:4: atom
+                    // org/databene/regex/antlr/Regex.g:115:4: atom
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -927,7 +927,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "atom"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:117:1: atom : ( singlechar | group );
+    // org/databene/regex/antlr/Regex.g:117:1: atom : ( singlechar | group );
     public final RegexParser.atom_return atom() throws RecognitionException {
         RegexParser.atom_return retval = new RegexParser.atom_return();
         retval.start = input.LT(1);
@@ -942,7 +942,7 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 5) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:117:6: ( singlechar | group )
+            // org/databene/regex/antlr/Regex.g:117:6: ( singlechar | group )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -961,7 +961,7 @@ public class RegexParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:117:8: singlechar
+                    // org/databene/regex/antlr/Regex.g:117:8: singlechar
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -975,7 +975,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:118:4: group
+                    // org/databene/regex/antlr/Regex.g:118:4: group
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1015,7 +1015,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "singlechar"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:121:1: singlechar : ( classchar | '-' | charclass | PREDEFINEDCLASS );
+    // org/databene/regex/antlr/Regex.g:121:1: singlechar : ( classchar | '-' | charclass | PREDEFINEDCLASS );
     public final RegexParser.singlechar_return singlechar() throws RecognitionException {
         RegexParser.singlechar_return retval = new RegexParser.singlechar_return();
         retval.start = input.LT(1);
@@ -1034,7 +1034,7 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 6) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:122:2: ( classchar | '-' | charclass | PREDEFINEDCLASS )
+            // org/databene/regex/antlr/Regex.g:122:2: ( classchar | '-' | charclass | PREDEFINEDCLASS )
             int alt9=4;
             switch ( input.LA(1) ) {
             case ALPHANUM:
@@ -1073,7 +1073,7 @@ public class RegexParser extends Parser {
 
             switch (alt9) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:122:4: classchar
+                    // org/databene/regex/antlr/Regex.g:122:4: classchar
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1087,7 +1087,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:123:4: '-'
+                    // org/databene/regex/antlr/Regex.g:123:4: '-'
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1100,7 +1100,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:124:4: charclass
+                    // org/databene/regex/antlr/Regex.g:124:4: charclass
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1114,7 +1114,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:125:4: PREDEFINEDCLASS
+                    // org/databene/regex/antlr/Regex.g:125:4: PREDEFINEDCLASS
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1153,7 +1153,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "classchar"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:128:1: classchar : ( ALPHANUM | SPECIALCHARACTER | ESCAPEDCHARACTER | NONTYPEABLECHARACTER | OCTALCHAR | HEXCHAR | CODEDCHAR );
+    // org/databene/regex/antlr/Regex.g:128:1: classchar : ( ALPHANUM | SPECIALCHARACTER | ESCAPEDCHARACTER | NONTYPEABLECHARACTER | OCTALCHAR | HEXCHAR | CODEDCHAR );
     public final RegexParser.classchar_return classchar() throws RecognitionException {
         RegexParser.classchar_return retval = new RegexParser.classchar_return();
         retval.start = input.LT(1);
@@ -1166,8 +1166,8 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:129:2: ( ALPHANUM | SPECIALCHARACTER | ESCAPEDCHARACTER | NONTYPEABLECHARACTER | OCTALCHAR | HEXCHAR | CODEDCHAR )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:
+            // org/databene/regex/antlr/Regex.g:129:2: ( ALPHANUM | SPECIALCHARACTER | ESCAPEDCHARACTER | NONTYPEABLECHARACTER | OCTALCHAR | HEXCHAR | CODEDCHAR )
+            // org/databene/regex/antlr/Regex.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -1211,7 +1211,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "charclass"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:138:1: charclass : '[' ( includedelements )? ( '^' excludedelements )? ']' -> ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? ) ;
+    // org/databene/regex/antlr/Regex.g:138:1: charclass : '[' ( includedelements )? ( '^' excludedelements )? ']' -> ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? ) ;
     public final RegexParser.charclass_return charclass() throws RecognitionException {
         RegexParser.charclass_return retval = new RegexParser.charclass_return();
         retval.start = input.LT(1);
@@ -1236,13 +1236,13 @@ public class RegexParser extends Parser {
         RewriteRuleSubtreeStream stream_includedelements=new RewriteRuleSubtreeStream(adaptor,"rule includedelements");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 8) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:2: ( '[' ( includedelements )? ( '^' excludedelements )? ']' -> ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? ) )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:4: '[' ( includedelements )? ( '^' excludedelements )? ']'
+            // org/databene/regex/antlr/Regex.g:139:2: ( '[' ( includedelements )? ( '^' excludedelements )? ']' -> ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? ) )
+            // org/databene/regex/antlr/Regex.g:139:4: '[' ( includedelements )? ( '^' excludedelements )? ']'
             {
             char_literal21=(Token)match(input,LBRACKET,FOLLOW_LBRACKET_in_charclass276); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_LBRACKET.add(char_literal21);
 
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:8: ( includedelements )?
+            // org/databene/regex/antlr/Regex.g:139:8: ( includedelements )?
             int alt10=2;
             switch ( input.LA(1) ) {
                 case PREDEFINEDCLASS:
@@ -1279,7 +1279,7 @@ public class RegexParser extends Parser {
 
             switch (alt10) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: includedelements
+                    // org/databene/regex/antlr/Regex.g:0:0: includedelements
                     {
                     pushFollow(FOLLOW_includedelements_in_charclass278);
                     includedelements22=includedelements();
@@ -1293,7 +1293,7 @@ public class RegexParser extends Parser {
 
             }
 
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:26: ( '^' excludedelements )?
+            // org/databene/regex/antlr/Regex.g:139:26: ( '^' excludedelements )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1302,7 +1302,7 @@ public class RegexParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:27: '^' excludedelements
+                    // org/databene/regex/antlr/Regex.g:139:27: '^' excludedelements
                     {
                     char_literal23=(Token)match(input,31,FOLLOW_31_in_charclass282); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_31.add(char_literal23);
@@ -1338,17 +1338,17 @@ public class RegexParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 139:54: -> ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? )
             {
-                // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:57: ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? )
+                // org/databene/regex/antlr/Regex.g:139:57: ^( CLASS ^( INCL ( includedelements )? ) ( ^( EXCL excludedelements ) )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CLASS, "CLASS"), root_1);
 
-                // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:65: ^( INCL ( includedelements )? )
+                // org/databene/regex/antlr/Regex.g:139:65: ^( INCL ( includedelements )? )
                 {
                 Object root_2 = (Object)adaptor.nil();
                 root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(INCL, "INCL"), root_2);
 
-                // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:72: ( includedelements )?
+                // org/databene/regex/antlr/Regex.g:139:72: ( includedelements )?
                 if ( stream_includedelements.hasNext() ) {
                     adaptor.addChild(root_2, stream_includedelements.nextTree());
 
@@ -1357,9 +1357,9 @@ public class RegexParser extends Parser {
 
                 adaptor.addChild(root_1, root_2);
                 }
-                // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:91: ( ^( EXCL excludedelements ) )?
+                // org/databene/regex/antlr/Regex.g:139:91: ( ^( EXCL excludedelements ) )?
                 if ( stream_excludedelements.hasNext() ) {
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:91: ^( EXCL excludedelements )
+                    // org/databene/regex/antlr/Regex.g:139:91: ^( EXCL excludedelements )
                     {
                     Object root_2 = (Object)adaptor.nil();
                     root_2 = (Object)adaptor.becomeRoot((Object)adaptor.create(EXCL, "EXCL"), root_2);
@@ -1405,7 +1405,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "includedelements"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:142:1: includedelements : ( classelement )* ;
+    // org/databene/regex/antlr/Regex.g:142:1: includedelements : ( classelement )* ;
     public final RegexParser.includedelements_return includedelements() throws RecognitionException {
         RegexParser.includedelements_return retval = new RegexParser.includedelements_return();
         retval.start = input.LT(1);
@@ -1418,12 +1418,12 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 9) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:143:2: ( ( classelement )* )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:143:4: ( classelement )*
+            // org/databene/regex/antlr/Regex.g:143:2: ( ( classelement )* )
+            // org/databene/regex/antlr/Regex.g:143:4: ( classelement )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:143:4: ( classelement )*
+            // org/databene/regex/antlr/Regex.g:143:4: ( classelement )*
             loop12:
             do {
                 int alt12=2;
@@ -1436,7 +1436,7 @@ public class RegexParser extends Parser {
 
                 switch (alt12) {
             	case 1 :
-            	    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: classelement
+            	    // org/databene/regex/antlr/Regex.g:0:0: classelement
             	    {
             	    pushFollow(FOLLOW_classelement_in_includedelements319);
             	    classelement26=classelement();
@@ -1481,7 +1481,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "excludedelements"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:146:1: excludedelements : ( classelement )+ ;
+    // org/databene/regex/antlr/Regex.g:146:1: excludedelements : ( classelement )+ ;
     public final RegexParser.excludedelements_return excludedelements() throws RecognitionException {
         RegexParser.excludedelements_return retval = new RegexParser.excludedelements_return();
         retval.start = input.LT(1);
@@ -1494,12 +1494,12 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 10) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:147:2: ( ( classelement )+ )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:147:4: ( classelement )+
+            // org/databene/regex/antlr/Regex.g:147:2: ( ( classelement )+ )
+            // org/databene/regex/antlr/Regex.g:147:4: ( classelement )+
             {
             root_0 = (Object)adaptor.nil();
 
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:147:4: ( classelement )+
+            // org/databene/regex/antlr/Regex.g:147:4: ( classelement )+
             int cnt13=0;
             loop13:
             do {
@@ -1513,7 +1513,7 @@ public class RegexParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: classelement
+            	    // org/databene/regex/antlr/Regex.g:0:0: classelement
             	    {
             	    pushFollow(FOLLOW_classelement_in_excludedelements332);
             	    classelement27=classelement();
@@ -1563,7 +1563,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "classelement"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:150:1: classelement : ( classchar | charrange | PREDEFINEDCLASS );
+    // org/databene/regex/antlr/Regex.g:150:1: classelement : ( classchar | charrange | PREDEFINEDCLASS );
     public final RegexParser.classelement_return classelement() throws RecognitionException {
         RegexParser.classelement_return retval = new RegexParser.classelement_return();
         retval.start = input.LT(1);
@@ -1580,7 +1580,7 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 11) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:151:2: ( classchar | charrange | PREDEFINEDCLASS )
+            // org/databene/regex/antlr/Regex.g:151:2: ( classchar | charrange | PREDEFINEDCLASS )
             int alt14=3;
             int LA14_0 = input.LA(1);
 
@@ -1613,7 +1613,7 @@ public class RegexParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:151:4: classchar
+                    // org/databene/regex/antlr/Regex.g:151:4: classchar
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1627,7 +1627,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:152:4: charrange
+                    // org/databene/regex/antlr/Regex.g:152:4: charrange
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1641,7 +1641,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:153:4: PREDEFINEDCLASS
+                    // org/databene/regex/antlr/Regex.g:153:4: PREDEFINEDCLASS
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1680,7 +1680,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "charrange"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:156:1: charrange : classchar '-' classchar -> ^( RANGE ( classchar )+ ) ;
+    // org/databene/regex/antlr/Regex.g:156:1: charrange : classchar '-' classchar -> ^( RANGE ( classchar )+ ) ;
     public final RegexParser.charrange_return charrange() throws RecognitionException {
         RegexParser.charrange_return retval = new RegexParser.charrange_return();
         retval.start = input.LT(1);
@@ -1698,8 +1698,8 @@ public class RegexParser extends Parser {
         RewriteRuleSubtreeStream stream_classchar=new RewriteRuleSubtreeStream(adaptor,"rule classchar");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:156:10: ( classchar '-' classchar -> ^( RANGE ( classchar )+ ) )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:156:12: classchar '-' classchar
+            // org/databene/regex/antlr/Regex.g:156:10: ( classchar '-' classchar -> ^( RANGE ( classchar )+ ) )
+            // org/databene/regex/antlr/Regex.g:156:12: classchar '-' classchar
             {
             pushFollow(FOLLOW_classchar_in_charrange364);
             classchar31=classchar();
@@ -1732,7 +1732,7 @@ public class RegexParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 156:36: -> ^( RANGE ( classchar )+ )
             {
-                // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:156:39: ^( RANGE ( classchar )+ )
+                // org/databene/regex/antlr/Regex.g:156:39: ^( RANGE ( classchar )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(RANGE, "RANGE"), root_1);
@@ -1779,7 +1779,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "group"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:158:1: group : '(' expression ')' -> ^( GROUP expression ) ;
+    // org/databene/regex/antlr/Regex.g:158:1: group : '(' expression ')' -> ^( GROUP expression ) ;
     public final RegexParser.group_return group() throws RecognitionException {
         RegexParser.group_return retval = new RegexParser.group_return();
         retval.start = input.LT(1);
@@ -1798,8 +1798,8 @@ public class RegexParser extends Parser {
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:158:7: ( '(' expression ')' -> ^( GROUP expression ) )
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:158:9: '(' expression ')'
+            // org/databene/regex/antlr/Regex.g:158:7: ( '(' expression ')' -> ^( GROUP expression ) )
+            // org/databene/regex/antlr/Regex.g:158:9: '(' expression ')'
             {
             char_literal34=(Token)match(input,35,FOLLOW_35_in_group385); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_35.add(char_literal34);
@@ -1829,7 +1829,7 @@ public class RegexParser extends Parser {
             root_0 = (Object)adaptor.nil();
             // 158:28: -> ^( GROUP expression )
             {
-                // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:158:31: ^( GROUP expression )
+                // org/databene/regex/antlr/Regex.g:158:31: ^( GROUP expression )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(GROUP, "GROUP"), root_1);
@@ -1869,7 +1869,7 @@ public class RegexParser extends Parser {
     };
 
     // $ANTLR start "quantifier"
-    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:160:1: quantifier : ( SIMPLEQUANTIFIER | '{' min= INT ',' max= INT '}' -> ^( QUANT $min $max) | '{' INT ',' '}' -> ^( QUANT INT ) | '{' INT '}' -> ^( QUANT INT INT ) );
+    // org/databene/regex/antlr/Regex.g:160:1: quantifier : ( SIMPLEQUANTIFIER | '{' min= INT ',' max= INT '}' -> ^( QUANT $min $max) | '{' INT ',' '}' -> ^( QUANT INT ) | '{' INT '}' -> ^( QUANT INT INT ) );
     public final RegexParser.quantifier_return quantifier() throws RecognitionException {
         RegexParser.quantifier_return retval = new RegexParser.quantifier_return();
         retval.start = input.LT(1);
@@ -1910,7 +1910,7 @@ public class RegexParser extends Parser {
 
         try {
             if ( state.backtracking>0 && alreadyParsedRule(input, 14) ) { return retval; }
-            // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:161:2: ( SIMPLEQUANTIFIER | '{' min= INT ',' max= INT '}' -> ^( QUANT $min $max) | '{' INT ',' '}' -> ^( QUANT INT ) | '{' INT '}' -> ^( QUANT INT INT ) )
+            // org/databene/regex/antlr/Regex.g:161:2: ( SIMPLEQUANTIFIER | '{' min= INT ',' max= INT '}' -> ^( QUANT $min $max) | '{' INT ',' '}' -> ^( QUANT INT ) | '{' INT '}' -> ^( QUANT INT INT ) )
             int alt15=4;
             int LA15_0 = input.LA(1);
 
@@ -1968,7 +1968,7 @@ public class RegexParser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:161:4: SIMPLEQUANTIFIER
+                    // org/databene/regex/antlr/Regex.g:161:4: SIMPLEQUANTIFIER
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -1981,7 +1981,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:162:4: '{' min= INT ',' max= INT '}'
+                    // org/databene/regex/antlr/Regex.g:162:4: '{' min= INT ',' max= INT '}'
                     {
                     char_literal38=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_quantifier411); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(char_literal38);
@@ -2016,7 +2016,7 @@ public class RegexParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 162:32: -> ^( QUANT $min $max)
                     {
-                        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:162:35: ^( QUANT $min $max)
+                        // org/databene/regex/antlr/Regex.g:162:35: ^( QUANT $min $max)
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(QUANT, "QUANT"), root_1);
@@ -2033,7 +2033,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:163:4: '{' INT ',' '}'
+                    // org/databene/regex/antlr/Regex.g:163:4: '{' INT ',' '}'
                     {
                     char_literal41=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_quantifier440); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(char_literal41);
@@ -2063,7 +2063,7 @@ public class RegexParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 163:20: -> ^( QUANT INT )
                     {
-                        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:163:23: ^( QUANT INT )
+                        // org/databene/regex/antlr/Regex.g:163:23: ^( QUANT INT )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(QUANT, "QUANT"), root_1);
@@ -2079,7 +2079,7 @@ public class RegexParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:164:4: '{' INT '}'
+                    // org/databene/regex/antlr/Regex.g:164:4: '{' INT '}'
                     {
                     char_literal45=(Token)match(input,LBRACE,FOLLOW_LBRACE_in_quantifier459); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_LBRACE.add(char_literal45);
@@ -2106,7 +2106,7 @@ public class RegexParser extends Parser {
                     root_0 = (Object)adaptor.nil();
                     // 164:16: -> ^( QUANT INT INT )
                     {
-                        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:164:19: ^( QUANT INT INT )
+                        // org/databene/regex/antlr/Regex.g:164:19: ^( QUANT INT INT )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(QUANT, "QUANT"), root_1);
@@ -2145,15 +2145,15 @@ public class RegexParser extends Parser {
 
     // $ANTLR start synpred4_Regex
     public final void synpred4_Regex_fragment() throws RecognitionException {   
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:4: ( sequence ( '|' sequence )+ )
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:4: sequence ( '|' sequence )+
+        // org/databene/regex/antlr/Regex.g:107:4: ( sequence ( '|' sequence )+ )
+        // org/databene/regex/antlr/Regex.g:107:4: sequence ( '|' sequence )+
         {
         pushFollow(FOLLOW_sequence_in_synpred4_Regex95);
         sequence();
 
         state._fsp--;
         if (state.failed) return ;
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:13: ( '|' sequence )+
+        // org/databene/regex/antlr/Regex.g:107:13: ( '|' sequence )+
         int cnt16=0;
         loop16:
         do {
@@ -2167,7 +2167,7 @@ public class RegexParser extends Parser {
 
             switch (alt16) {
         	case 1 :
-        	    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:107:14: '|' sequence
+        	    // org/databene/regex/antlr/Regex.g:107:14: '|' sequence
         	    {
         	    match(input,33,FOLLOW_33_in_synpred4_Regex98); if (state.failed) return ;
         	    pushFollow(FOLLOW_sequence_in_synpred4_Regex100);
@@ -2196,15 +2196,15 @@ public class RegexParser extends Parser {
 
     // $ANTLR start synpred6_Regex
     public final void synpred6_Regex_fragment() throws RecognitionException {   
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:11: ( factor ( factor )+ )
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:11: factor ( factor )+
+        // org/databene/regex/antlr/Regex.g:111:11: ( factor ( factor )+ )
+        // org/databene/regex/antlr/Regex.g:111:11: factor ( factor )+
         {
         pushFollow(FOLLOW_factor_in_synpred6_Regex125);
         factor();
 
         state._fsp--;
         if (state.failed) return ;
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:111:18: ( factor )+
+        // org/databene/regex/antlr/Regex.g:111:18: ( factor )+
         int cnt17=0;
         loop17:
         do {
@@ -2218,7 +2218,7 @@ public class RegexParser extends Parser {
 
             switch (alt17) {
         	case 1 :
-        	    // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:0:0: factor
+        	    // org/databene/regex/antlr/Regex.g:0:0: factor
         	    {
         	    pushFollow(FOLLOW_factor_in_synpred6_Regex127);
         	    factor();
@@ -2246,8 +2246,8 @@ public class RegexParser extends Parser {
 
     // $ANTLR start synpred7_Regex
     public final void synpred7_Regex_fragment() throws RecognitionException {   
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:114:10: ( atom quantifier )
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:114:10: atom quantifier
+        // org/databene/regex/antlr/Regex.g:114:10: ( atom quantifier )
+        // org/databene/regex/antlr/Regex.g:114:10: atom quantifier
         {
         pushFollow(FOLLOW_atom_in_synpred7_Regex150);
         atom();
@@ -2266,8 +2266,8 @@ public class RegexParser extends Parser {
 
     // $ANTLR start synpred18_Regex
     public final void synpred18_Regex_fragment() throws RecognitionException {   
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:8: ( includedelements )
-        // /Users/volker/Documents/databene/webdecs/src/main/resources/org/databene/regex/antlr/Regex.g:139:8: includedelements
+        // org/databene/regex/antlr/Regex.g:139:8: ( includedelements )
+        // org/databene/regex/antlr/Regex.g:139:8: includedelements
         {
         pushFollow(FOLLOW_includedelements_in_synpred18_Regex278);
         includedelements();

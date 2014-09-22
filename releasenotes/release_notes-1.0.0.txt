@@ -1,4 +1,4 @@
-release notes databene webdecs 1.0.0
+release notes Databene Formats 1.0.0
 ------------------------------------
 
 Enhancements

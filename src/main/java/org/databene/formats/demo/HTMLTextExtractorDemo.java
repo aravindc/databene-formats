@@ -45,7 +45,7 @@ import java.text.ParseException;
  * @author Volker Bergmann
  */
 public class HTMLTextExtractorDemo {
-    private static final String XSLT_FILENAME = "org/databene/webdecs/demo/HTMLTextExtractorDemo.xsl";
+    private static final String XSLT_FILENAME = "org/databene/formats/demo/HTMLTextExtractorDemo.xsl";
 
     public static void main(String[] args) throws IOException, ParseException, TransformerException, ConversionException {
         // Fetch the web page as string

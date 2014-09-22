@@ -65,8 +65,7 @@ public class VersionInfoTest {
 	}
 	
 	private static VersionInfo getVersion() {
-		VersionInfo version = VersionInfo.getInfo("webdecs");
-		return version;
+		return VersionInfo.getInfo("formats");
 	}
 
 }
