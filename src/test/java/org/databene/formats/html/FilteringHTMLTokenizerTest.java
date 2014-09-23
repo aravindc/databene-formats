@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2007-2009 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2007-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -26,12 +26,13 @@
 
 package org.databene.formats.html;
 
+import static org.junit.Assert.*;
+
 import org.databene.formats.html.parser.DefaultHTMLTokenizer;
 import org.databene.formats.html.parser.FilteringHTMLTokenizer;
 import org.databene.formats.html.parser.HTMLTokenizer;
 import org.databene.formats.html.util.HTMLTokenFilter;
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 import java.io.StringReader;
 import java.io.IOException;

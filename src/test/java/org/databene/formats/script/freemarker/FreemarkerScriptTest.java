@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2007-2013 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2007-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -26,6 +26,8 @@
 
 package org.databene.formats.script.freemarker;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.StringWriter;
 import java.io.IOException;
 
@@ -37,7 +39,6 @@ import org.databene.formats.script.freemarker.FreeMarkerScript;
 import org.junit.Test;
 
 import freemarker.template.Configuration;
-import static junit.framework.Assert.*;
 
 /**
  * Tests the {@link FreeMarkerScript}.<br/><br/>

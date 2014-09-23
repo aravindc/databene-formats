@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2007-2009 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2007-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -26,10 +26,11 @@
 
 package org.databene.formats.csv;
 
+import static org.junit.Assert.*;
+
 import org.databene.formats.DataContainer;
 import org.databene.formats.csv.CSVLineIterator;
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 import java.io.IOException;
 import java.util.Arrays;

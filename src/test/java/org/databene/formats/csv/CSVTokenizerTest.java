@@ -29,12 +29,12 @@ package org.databene.formats.csv;
 import org.databene.formats.csv.CSVTokenType;
 import org.databene.formats.csv.CSVTokenizer;
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 import java.io.StringReader;
 import java.io.IOException;
 
 import static org.databene.formats.csv.CSVTokenType.*;
+import static org.junit.Assert.*;
 
 /**
  * Tests the {@link CSVTokenizer}.<br/><br/>

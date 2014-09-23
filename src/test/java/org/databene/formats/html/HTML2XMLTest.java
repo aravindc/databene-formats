@@ -26,8 +26,9 @@
 
 package org.databene.formats.html;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 import java.io.*;
 import java.text.ParseException;

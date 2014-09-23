@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2008-2009 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2008-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -26,6 +26,8 @@
 
 package org.databene.formats.fixedwidth;
 
+import static org.junit.Assert.*;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
@@ -36,7 +38,6 @@ import org.databene.commons.TimeUtil;
 import org.databene.commons.format.Alignment;
 
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 /**
  * Tests the {@link FixedWidthColumnDescriptor}.<br/><br/>

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2007-2011 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2007-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -26,8 +26,9 @@
 
 package org.databene.formats.regex;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 import org.databene.commons.CharSet;
 import org.databene.commons.CollectionUtil;

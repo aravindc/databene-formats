@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2010-2011 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2010-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -21,7 +21,7 @@
 
 package org.databene.formats.fixedwidth;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.util.Arrays;
@@ -47,7 +47,6 @@ public class FixedWidthLineParserTest {
 
     @Test
     public void testProcessingEmptyLines() throws Exception {
-    	
         check("Alice 023", "Alice", "23");
         check("Bob   034", "Bob", "34");
         check("Charly045","Charly", "45");

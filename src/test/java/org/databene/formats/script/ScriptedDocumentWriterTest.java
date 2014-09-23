@@ -26,8 +26,9 @@
 
 package org.databene.formats.script;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
-import static junit.framework.Assert.*;
 import org.databene.commons.SystemInfo;
 import org.databene.formats.script.ConstantScript;
 import org.databene.formats.script.ScriptedDocumentWriter;

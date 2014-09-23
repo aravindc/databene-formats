@@ -26,8 +26,9 @@
 
 package org.databene.formats.fixedwidth;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 import java.io.StringWriter;
 import java.io.IOException;

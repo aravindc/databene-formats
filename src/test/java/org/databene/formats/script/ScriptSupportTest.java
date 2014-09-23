@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2008-2009 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2008-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -26,11 +26,12 @@
 
 package org.databene.formats.script;
 
+import static org.junit.Assert.*;
+
 import org.databene.commons.Context;
 import org.databene.commons.context.DefaultContext;
 import org.databene.formats.script.ScriptUtil;
 import org.junit.Test;
-import static junit.framework.Assert.*;
 
 /**
  * Test the ScriptSupport class.<br/><br/>
