@@ -28,7 +28,7 @@ package org.databene.formats.xsd;
  * @author Volker Bergmann
  */
 
-public class Attribute extends NamedSchemaElement { // TODO add (simple) schema type
+public class Attribute extends NamedSchemaElement {
 	
 	public Attribute(String name) {
 		super(name);

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright 2007 by Volker Bergmann. All rights reserved.
+ * (c) Copyright 2007-2014 by Volker Bergmann. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, is permitted under the terms of the
@@ -37,8 +37,7 @@ import java.io.Writer;
  * Created: 03.02.2007 11:50:27
  * @author Volker Bergmann
  */
-public interface Script { // TODO extends Expression ?
+public interface Script {
     void execute(Context context, Writer out) throws ScriptException, IOException;
     Object evaluate(Context context) throws ScriptException;
-    // TODO add isConstant() ?
 }

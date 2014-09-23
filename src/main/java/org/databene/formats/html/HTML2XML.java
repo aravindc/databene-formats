@@ -93,7 +93,7 @@ public class HTML2XML {
     // private helpers -------------------------------------------------------------------------------------------------
 
     private static void convert(ConversionContext context) throws IOException, ParseException {
-    	// TODO v0.6.x use XML serializer
+    	// TODO use XML serializer
         int token;
         while ((token = context.tokenizer.nextToken()) != HTMLTokenizer.END) {
             switch (token) {
@@ -101,7 +101,7 @@ public class HTML2XML {
                 case HTMLTokenizer.CLOSED_TAG:
                 	ensureXmlHeader(context);
                 	// ignore scripts
-                    if ("script".equalsIgnoreCase(context.tokenizer.name())) // TODO v0.6.x test script handling
+                    if ("script".equalsIgnoreCase(context.tokenizer.name())) // TODO test script handling
                         continue;
                     String lcTagName = context.tokenizer.name().toLowerCase();
 					if (!"html".equals(lcTagName) && !context.rootCreated)
