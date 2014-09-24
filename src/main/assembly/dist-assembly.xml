@@ -11,8 +11,7 @@
             <directory>/</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
-                <include>license.txt</include>
-                <include>gpl.txt</include>
+                <include>LICENSE.TXT</include>
             </includes>
         </fileSet>
         <fileSet>
@@ -66,7 +65,6 @@
 			</includes>
 			<excludes>
 				<exclude>*-sources.jar</exclude>
-            	<exclude>__MACOSX</exclude>
             </excludes>
 	    </fileSet>
     </fileSets>
