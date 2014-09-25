@@ -12,14 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.databene.formats.dot;
 
 import java.util.Collection;
 
 /**
  * Represents a Dot graph.
- * @see http://www.graphviz.org/content/dot-language
  * Created: 24.05.2014 18:11:17
+ * @see <a href="http://www.graphviz.org/content/dot-language">DOT language spec on graphviz.org</a>
  * @since 0.8.2
  * @author Volker Bergmann
  */
@@ -36,17 +37,17 @@ public interface DotGraphModel {
 	RankDir getRankDir();
 	
 	/** @return the shape of all graph nodes.
-	 *  @see    http://www.graphviz.org/doc/info/shapes.html */
+	 *  @see <a href="http://www.graphviz.org/doc/info/shapes.html">Node shapes on graphviz.org</a> */
 	NodeShape getNodeShape();
 	
 	Integer getNodeFontSize();
 	
 	/** @return the arrow shape of all edge heads of the graph
-	 *  @see    http://www.graphviz.org/content/arrow-shapes */
+	 *  @see <a href="http://www.graphviz.org/content/arrow-shapes">Arrow shapes on graphviz.org</a> */
 	ArrowShape getEdgeArrowHead();
 	
 	/** @return the arrow shape of all edge tails of the graph
-	 *  @see    http://www.graphviz.org/content/arrow-shapes */
+	 *  @see <a href="http://www.graphviz.org/content/arrow-shapes">Arrow shapes on graphviz.org</a> */
 	ArrowShape getEdgeArrowTail();
 	
 	String getNodeFillColor();
