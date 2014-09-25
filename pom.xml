@@ -4,21 +4,20 @@
 
 	<groupId>org.databene</groupId>
 	<artifactId>databene-formats</artifactId>
-	<version>1.0.0-EA2</version>
-
-	<properties>
-		<commons_version>1.0.0-EA1</commons_version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
+
 	<name>Databene Formats</name>
-	<url>http://databene.org/databene-formats</url>
-	<inceptionYear>2006</inceptionYear>
-	<description>Databene Formats is an open source software library for supporting 
+	<description>'Databene Formats' is an open source software library for supporting 
     	data file and other formats like CSV, fixed width files, XLS, Properties and Regex. 
     	It is designed for multithreaded use and high performance.</description>
+	<url>http://databene.org/databene-formats</url>
+	<inceptionYear>2006</inceptionYear>
+
+	<properties>
+		<commons_version>1.0.0</commons_version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<licenses>
 		<license>
@@ -50,6 +49,7 @@
 
 	<dependencies>
 
+		<!-- compile dependencies -->
 		<dependency>
 			<groupId>org.databene</groupId>
 			<artifactId>databene-commons</artifactId>
@@ -87,6 +87,7 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -111,14 +112,6 @@
 	</dependencies>
 
 	<build>
-
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
-				<version>1.0-alpha-6</version>
-			</extension>
-		</extensions>
 
 		<resources>
 			<resource>
@@ -331,10 +324,13 @@
 	</profiles>
 
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>databene.repo</id>
-			<name>Databene Internal Repository</name>
-			<url>ftp://databene.org</url>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
 
