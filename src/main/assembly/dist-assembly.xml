@@ -15,8 +15,8 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory></directory>
-            <outputDirectory>/</outputDirectory>
+            <directory>releasenotes</directory>
+            <outputDirectory>releasenotes</outputDirectory>
             <includes>
                 <include>releasenotes*.txt</include>
             </includes>
@@ -44,6 +44,7 @@
             	<exclude>__MACOSX</exclude>
             </excludes>
         </fileSet>
+        <!-- test -->
         <fileSet>
             <directory>src/test/java</directory>
             <outputDirectory>test</outputDirectory>
