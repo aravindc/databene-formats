@@ -8,7 +8,7 @@
     <fileSets>
         <!-- license files and release notes -->
         <fileSet>
-            <directory>/</directory>
+            <directory></directory>
             <outputDirectory>/</outputDirectory>
             <includes>
                 <include>LICENSE.TXT</include>
@@ -29,6 +29,7 @@
             	<exclude>__MACOSX</exclude>
             </excludes>
         </fileSet>
+        <!-- main -->
         <fileSet>
             <directory>src/main/java</directory>
             <outputDirectory>src</outputDirectory>
