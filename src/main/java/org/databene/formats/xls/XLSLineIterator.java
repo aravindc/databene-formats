@@ -74,6 +74,7 @@ public class XLSLineIterator implements DataIterator<Object[]> {
 	
     public XLSLineIterator(Sheet sheet, boolean headersIncluded, boolean formatted, Converter<String, ?> stringPreprocessor) {
     	this.emptyMarker = "'";
+    	this.nullMarker = null;
 		this.formatted = formatted;
 		if (stringPreprocessor == null)
 			stringPreprocessor = new NoOpConverter<String>();

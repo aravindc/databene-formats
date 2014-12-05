@@ -33,7 +33,8 @@ public class XLSLineIteratorTest extends DataIteratorTestCase {
 
 	private static final String PERSON_FILENAME = "org/databene/formats/xls/person_lines.xls";
 	private static final String VALUES_FILENAME = "org/databene/formats/xls/types_and_values.xls";
-	private static final String EMPTY_FILENAME = "org/databene/formats/xls/empty.xls";
+	private static final String ALTERNATIVE_EMPTY_FILENAME = "org/databene/formats/xls/alternative_empty.xls";
+	private static final String NULL_AND_EMPTY_FILENAME = "org/databene/formats/xls/null_and_empty.xls";
 
     @Test
 	public void testDefaultSheetWithFormula() throws Exception {
@@ -122,11 +123,26 @@ public class XLSLineIteratorTest extends DataIteratorTestCase {
     @Test
 	public void testAlternativeEmptyMarker() throws Exception {
 		// test default sheet
-		XLSLineIterator iterator = new XLSLineIterator(EMPTY_FILENAME);
+		XLSLineIterator iterator = new XLSLineIterator(ALTERNATIVE_EMPTY_FILENAME);
 		iterator.setEmptyMarker("\"\"");
 		try {
 			assertArrayEquals(new Object[] { "text", "empty" }, iterator.next(new DataContainer<Object[]>()).getData());
 			assertArrayEquals(new Object[] { "X", "" }, iterator.next(new DataContainer<Object[]>()).getData());
+			expectUnavailable(iterator);
+		} finally {
+			iterator.close();
+		}
+	}
+	
+    @Test
+	public void testNullAndEmpty() throws Exception {
+		// test default sheet
+		XLSLineIterator iterator = new XLSLineIterator(NULL_AND_EMPTY_FILENAME);
+		DataContainer<Object[]> wrapper = new DataContainer<Object[]>();
+		try {
+			assertArrayEquals(new Object[] { "text", "dummy" }, iterator.next(wrapper).getData());
+			assertArrayEquals(new Object[] {  null , "x"     }, iterator.next(wrapper).getData());
+			assertArrayEquals(new Object[] {  ""   , "y"     }, iterator.next(wrapper).getData());
 			expectUnavailable(iterator);
 		} finally {
 			iterator.close();

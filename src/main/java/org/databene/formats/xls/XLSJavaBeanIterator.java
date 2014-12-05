@@ -51,30 +51,40 @@ public class XLSJavaBeanIterator extends ConvertingDataIterator<Object[], Object
 	private boolean formatted;
 	
 	public XLSJavaBeanIterator(String uri, String sheetName, boolean formatted, Class<?> beanClass) throws IOException, InvalidFormatException {
-		this(uri, sheetName, formatted, new ConstantClassProvider<Object[]>(beanClass));
+		this(uri, sheetName, formatted, null, "", new ConstantClassProvider<Object>(beanClass));
 	}
 
-	public XLSJavaBeanIterator(String uri, String sheetName, boolean formatted, ClassProvider<Object[]> beanClassProvider) 
+	public XLSJavaBeanIterator(String uri, String sheetName, boolean formatted, String nullMarker, String emptyMarker, ClassProvider<Object> beanClassProvider) 
 			throws IOException, InvalidFormatException {
 		super(null, null);
 		this.uri = uri;
 		this.formatted = formatted;
 		Converter<String, ?> scriptConverter = new ScriptConverterForStrings(new DefaultContext());
 		XLSLineIterator iterator = new XLSLineIterator(uri, sheetName, true, formatted, scriptConverter);
+		iterator.setNullMarker(nullMarker);
+		iterator.setEmptyMarker(emptyMarker);
 		String[] headers = iterator.getHeaders();
 		Assert.notEmpty(headers, "Empty XLS sheet '" + sheetName + "' in document " + uri);
+		for (int i = 0; i < headers.length; i++) {
+			String header = headers[i];
+			if (header != null) {
+				header = header.trim();
+				headers[i] = header;
+			}
+			Assert.notEmpty(header, "Empty header in column #" + i + " of sheet '" + sheetName + "' of file '" + uri + "'");
+		}
 		this.source = iterator;
 		this.converter = new PropertyArray2JavaBeanConverter(beanClassProvider, headers, new RefResolver());
 	}
 	
 	public static List<Object> parseAll(String uri, String sheetName, boolean formatted, Class<?> beanClass) 
 			throws InvalidFormatException, IOException {
-		return parseAll(uri, sheetName, formatted, new ConstantClassProvider<Object[]>(beanClass));
+		return parseAll(uri, sheetName, formatted, new ConstantClassProvider<Object>(beanClass));
 	}
 
-	public static List<Object> parseAll(String uri, String sheetName, boolean formatted, ClassProvider<Object[]> beanClassProvider) 
+	public static List<Object> parseAll(String uri, String sheetName, boolean formatted, ClassProvider<Object> beanClassProvider) 
 			throws InvalidFormatException, IOException {
-		XLSJavaBeanIterator iterator = new XLSJavaBeanIterator(uri, sheetName, formatted, beanClassProvider);
+		XLSJavaBeanIterator iterator = new XLSJavaBeanIterator(uri, sheetName, formatted, null, "", beanClassProvider);
 		List<Object> result = new ArrayList<Object>();
 		DataContainer<Object> container = new DataContainer<Object>();
 		while (iterator.next(container) != null)
