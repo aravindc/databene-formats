@@ -14,6 +14,7 @@
  */
 package org.databene.formats;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class PersonWithAddress {
 
 	String name;
 	int age;
+	Date date;
 	Address address;
 	List<Address> addresses;
 
@@ -44,6 +46,14 @@ public class PersonWithAddress {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public Address getAddress() {

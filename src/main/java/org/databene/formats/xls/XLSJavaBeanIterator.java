@@ -25,10 +25,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.databene.commons.ArrayUtil;
 import org.databene.commons.Assert;
 import org.databene.commons.BeanUtil;
 import org.databene.commons.ConfigurationError;
 import org.databene.commons.Converter;
+import org.databene.commons.StringUtil;
 import org.databene.commons.context.DefaultContext;
 import org.databene.commons.converter.PropertyArray2JavaBeanConverter;
 import org.databene.commons.converter.util.ClassProvider;
@@ -63,20 +65,11 @@ public class XLSJavaBeanIterator extends ConvertingDataIterator<Object[], Object
 		XLSLineIterator iterator = new XLSLineIterator(uri, sheetName, true, formatted, scriptConverter);
 		iterator.setNullMarker(nullMarker);
 		iterator.setEmptyMarker(emptyMarker);
-		String[] headers = iterator.getHeaders();
-		Assert.notEmpty(headers, "Empty XLS sheet '" + sheetName + "' in document " + uri);
-		for (int i = 0; i < headers.length; i++) {
-			String header = headers[i];
-			if (header != null) {
-				header = header.trim();
-				headers[i] = header;
-			}
-			Assert.notEmpty(header, "Empty header in column #" + i + " of sheet '" + sheetName + "' of file '" + uri + "'");
-		}
+		String[] headers = parseHeaders(uri, sheetName, iterator);
 		this.source = iterator;
 		this.converter = new PropertyArray2JavaBeanConverter(beanClassProvider, headers, new RefResolver());
 	}
-	
+
 	public static List<Object> parseAll(String uri, String sheetName, boolean formatted, Class<?> beanClass) 
 			throws InvalidFormatException, IOException {
 		return parseAll(uri, sheetName, formatted, new ConstantClassProvider<Object>(beanClass));
@@ -122,6 +115,29 @@ public class XLSJavaBeanIterator extends ConvertingDataIterator<Object[], Object
         }
 	}
 
+
+	// private helpers -------------------------------------------------------------------------------------------------
+
+	private static String[] parseHeaders(String uri, String sheetName, XLSLineIterator iterator) {
+		// get headers
+		String[] headers = iterator.getHeaders();
+		Assert.notEmpty(headers, "Empty XLS sheet '" + sheetName + "' in document " + uri);
+		// normalize headers
+		for (int i = 0; i < headers.length; i++)
+			headers[i] = StringUtil.trimmedEmptyToNull(headers[i]);
+		// determine trailing empty headers
+		int headerCount = headers.length;
+		while (headers[headerCount - 1] == null && headerCount > 0)
+			headerCount--;
+		// verify the regular headers
+		if (headerCount == 0)
+			throw new IllegalArgumentException("No headers in XLS sheet '" + sheetName + "' of document " + uri);
+		for (int i = 0; i < headerCount; i++)
+			Assert.notNull(headers[i], "Empty header in column #" + i + " of sheet '" + sheetName + "' of file '" + uri + "'");
+		// remove trailing empty headers
+		return ArrayUtil.copyOfRange(headers, 0, headerCount);
+	}
+	
 	class RefResolver implements ReferenceResolver {
 		@Override
 		public Object resolveReferences(Object value, Object target, String localFeatureName) {
