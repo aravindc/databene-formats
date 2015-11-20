@@ -73,9 +73,14 @@ public class HTML2XML {
     
 	public static Document parseHtmlAsXml(String url, boolean namespaceAware) 
 			throws IOException, ParseException, UnsupportedEncodingException {
-		String html = IOUtil.getContentOfURI(url);
+		return parseHtmlTextAsXml(IOUtil.getContentOfURI(url), namespaceAware);
+	}
+
+	public static Document parseHtmlTextAsXml(String html, boolean namespaceAware) throws ParseException, IOException,
+			UnsupportedEncodingException {
 		String xml = convert(html);
-		return XMLUtil.parse(new ByteArrayInputStream(xml.getBytes(Encodings.UTF_8)), namespaceAware, null, null, null, null);
+		ByteArrayInputStream in = new ByteArrayInputStream(xml.getBytes(Encodings.UTF_8));
+		return XMLUtil.parse(in, namespaceAware, null, null, null, null);
 	}
 
     // private helpers -------------------------------------------------------------------------------------------------
@@ -142,7 +147,12 @@ public class HTML2XML {
                 	String comment = context.tokenizer.text();
                 	int s = comment.indexOf("<!--") + "<!--".length();
                 	int e = comment.lastIndexOf("-->");
-                	comment = "<!--" + comment.substring(s, e).replace("--", "- ") + "-->";
+            		comment = comment.substring(s, e);
+                	while (comment.contains("--"))
+                		comment = comment.replace("--", " -");
+                	if (comment.endsWith("-"))
+                		comment = comment.substring(0, comment.length() - 1) + " ";
+                	comment = "<!--" + comment + "-->";
                     writeXml(context.writer, comment);
                     break;
                 case HTMLTokenizer.DOCUMENT_TYPE:
