@@ -34,13 +34,16 @@ public class AbbreviatedNumberFormat extends NumberFormat {
 	private Object [][] availableScales = new Object[][] {
         {"Mrd", new Double(1E9)},
         {"Mrd.", new Double(1E9)},
+        {"B", new Double(1E9)},
 
         {"Mio", new Double(1E6)},
         {"Mio.", new Double(1E6)},
+        {"M", new Double(1E6)},
 
         {"Tsd", new Double(1E3)},
         {"Tsd.", new Double(1E3)},
         {"T", new Double(1E3)},
+        {"K", new Double(1E3)}
     };
 
     private String defaultScaleId;
