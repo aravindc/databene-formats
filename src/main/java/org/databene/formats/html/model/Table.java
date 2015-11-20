@@ -27,6 +27,10 @@ public class Table extends HtmlElement<Table> {
 		super("table", false);
 	}
 	
+	public Table withCellspacing(String value) {
+		return withAttribute("cellspacing", value);
+	}
+
 	public TableHead newTableHead() {
 		TableHead head = new TableHead();
 		addComponent(head);
