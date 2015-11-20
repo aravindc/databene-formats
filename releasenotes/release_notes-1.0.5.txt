@@ -5,7 +5,12 @@ Enhancements
 ------------
 - Defined tree comparison mechanism
 - Implemented XML tree comparison 
-
+- CSVLineIterator: Added method columnIndexOfHeader(String)
+- XLSLineIterator: Improved exception handling and changed exception types
+- AbbreviatedNumberFormat: Supporting English quantifiers: K (thousand), M (million), B (billion)
+- Supporting cellspacing attribute in HTML class Table
+- Supporting generic title attribute in HtmlElement class
+- New method HTML2XML.parseHtmlTextAsXml()
 
 Changes
 -------
@@ -14,4 +19,4 @@ Changes
 
 Bug Fixes
 ---------
-- 
+- Bugfix in DefaultHTMLTokenizer
