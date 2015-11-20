@@ -24,6 +24,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.databene.commons.Converter;
 import org.databene.commons.IOUtil;
+import org.databene.commons.ObjectNotFoundException;
+import org.databene.commons.ParseException;
+import org.databene.commons.StringUtil;
 import org.databene.commons.converter.ArrayTypeConverter;
 import org.databene.commons.converter.NoOpConverter;
 import org.databene.formats.DataContainer;
@@ -49,26 +52,26 @@ public class XLSLineIterator implements DataIterator<Object[]> {
 	
 	// constructors ----------------------------------------------------------------------------------------------------
 	
-	public XLSLineIterator(String uri) throws IOException, InvalidFormatException {
+	public XLSLineIterator(String uri) throws IOException, ParseException {
 		this(uri, 0);
 	}
 	
-	public XLSLineIterator(String uri, int sheetIndex) throws IOException, InvalidFormatException {
+	public XLSLineIterator(String uri, int sheetIndex) throws IOException, ParseException {
 		this(uri, sheetIndex, false, false, null);
 	}
 	
     public XLSLineIterator(String uri, int sheetIndex, boolean headersIncluded, boolean formatted, Converter<String, ?> stringPreprocessor) 
-    		throws IOException, InvalidFormatException {
+    		throws IOException, ParseException {
 		this(sheet(uri, sheetIndex), headersIncluded, formatted, stringPreprocessor);
 	}
 	
 	public XLSLineIterator(String uri, String sheetName, boolean headersIncluded, boolean formatted) 
-			throws IOException, InvalidFormatException {
+			throws IOException, ParseException {
 		this(uri, sheetName, headersIncluded, formatted, null);
 	}
 	
 	public XLSLineIterator(String uri, String sheetName, boolean headersIncluded, boolean formatted, Converter<String, ?> stringPreprocessor) 
-			throws IOException, InvalidFormatException {
+			throws IOException, ParseException {
 		this(sheet(uri, sheetName), headersIncluded, formatted, stringPreprocessor);
 	}
 	
@@ -147,6 +150,15 @@ public class XLSLineIterator implements DataIterator<Object[]> {
 		return wrapper.setData(result);
 	}
 
+	public Object cellValueForHeader(String header, Object[] cells) {
+		String trimmedHeader = StringUtil.trim(header);
+		for (int i = 0; i < headers.length; i++)
+			if (headers[i].equals(trimmedHeader))
+				return cells[i];
+		throw new ObjectNotFoundException("Undefined header: '" + trimmedHeader + "'");
+	}
+    
+
 	@Override
 	public synchronized void close() {
 		rowIterator = null;
@@ -154,23 +166,32 @@ public class XLSLineIterator implements DataIterator<Object[]> {
 
 	// helper methods --------------------------------------------------------------------------------------------------
 	
-    private static Sheet sheet(String uri, String sheetName) throws IOException, InvalidFormatException {
-		Workbook workbook = WorkbookFactory.create(IOUtil.getInputStreamForURI(uri));
-		Sheet sheet = sheetName != null ? workbook.getSheet(sheetName) : workbook.getSheetAt(0);
-		if (sheet == null)
-			throw new IllegalArgumentException("Sheet '" + sheetName + "' not found in file " + uri);
-		return sheet;
+    private static Sheet sheet(String uri, String sheetName) throws IOException, ParseException {
+		try {
+			Workbook workbook = WorkbookFactory.create(IOUtil.getInputStreamForURI(uri));
+			Sheet sheet = sheetName != null ? workbook.getSheet(sheetName) : workbook.getSheetAt(0);
+			if (sheet == null)
+				throw new IllegalArgumentException("Sheet '" + sheetName + "' not found in file " + uri);
+			return sheet;
+		} catch (InvalidFormatException e) {
+			throw new ParseException("Error parsing sheet '" + sheetName + "' of " + uri, null);
+		}
     }
 
-    private static Sheet sheet(String uri, int sheetIndex) throws IOException, InvalidFormatException {
-		Workbook workbook = WorkbookFactory.create(IOUtil.getInputStreamForURI(uri));
-		return workbook.getSheetAt(sheetIndex);
+    private static Sheet sheet(String uri, int sheetIndex) throws IOException {
+		Workbook workbook;
+		try {
+			workbook = WorkbookFactory.create(IOUtil.getInputStreamForURI(uri));
+			return workbook.getSheetAt(sheetIndex);
+		} catch (InvalidFormatException e) {
+			throw new ParseException("Error parsing sheet " + sheetIndex + " of " + uri, e, null, -1, -1);
+		}
     }
 
     private void parseHeaders() {
     	DataContainer<Object[]> wrapper = new DataContainer<Object[]>();
 		if (next(wrapper) != null) {
-			this.headers = ArrayTypeConverter.convert(wrapper.getData(), String.class);
+			this.headers = StringUtil.trimAll(ArrayTypeConverter.convert(wrapper.getData(), String.class));
 		} else {
 			this.headers = null;
 			close();
@@ -181,5 +202,5 @@ public class XLSLineIterator implements DataIterator<Object[]> {
     public String toString() {
     	return getClass().getSimpleName() + "[" + rowIterator + "]";
     }
-    
+
 }
