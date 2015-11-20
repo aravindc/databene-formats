@@ -154,6 +154,10 @@ public class CSVLineIterator implements DataIterator<String[]> {
 		return (index != null && index < data.length ? data[index] : null);
 	}
     
+	public int columnIndexOfHeader(String header) {
+		return this.headerIndexes.get(header);
+	}
+
     /** Closes the source */
     @Override
 	public synchronized void close() {
