@@ -382,7 +382,8 @@ public class DefaultHTMLTokenizer implements HTMLTokenizer {
                     c = reader.read();
                     textBuffer[tmpCursor++] = (char)c;
                     if ((caseSensitive ? c : Character.toUpperCase(c)) != endChars[i]) {
-                        cursor += i + 1;
+                    	cursor++;
+                        reader.unread(textBuffer, cursor, i);
                         break;
                     }
                 }
