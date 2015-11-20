@@ -50,6 +50,10 @@ public class HtmlElement<E extends HtmlElement<?>> extends HtmlComponent {
 		return this.withAttribute("style", style);
 	}
 	
+	public E withTitle(String title) {
+		return withAttribute("title", title);
+	}
+	
 	public E withAlign(String align) {
 		return withAttribute("align", align);
 	}
