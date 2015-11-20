@@ -35,14 +35,15 @@ public class AbstractXMLElementParserTest {
 		MyXMLElementParser parser = new MyXMLElementParser();
 		StringBuilder message = parser.renderUnsupportedAttributesMessage("att1");
 		String expectedMessage = "attribute 'att1' is not supported. The attributes supported by <elem> are: " +
-				"req2, req1, opt2, opt1";
+				"req1, req2, opt1, opt2";
 		assertEquals(expectedMessage, message.toString());
 	}
 	
 	static class MyXMLElementParser extends AbstractXMLElementParser<Object> {
 
 		public MyXMLElementParser() {
-			super("elem", CollectionUtil.toSet("req1", "req2"), CollectionUtil.toSet("opt1", "opt2"));
+			super("elem", CollectionUtil.<String, String>toSortedSet("req1", "req2"), 
+					CollectionUtil.<String, String>toSortedSet("opt1", "opt2"));
 		}
 
 		@Override

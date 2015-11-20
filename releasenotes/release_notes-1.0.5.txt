@@ -1,0 +1,17 @@
+release notes Databene Formats 1.0.5
+------------------------------------
+
+Enhancements
+------------
+- Defined tree comparison mechanism
+- Implemented XML tree comparison 
+
+
+Changes
+-------
+
+
+
+Bug Fixes
+---------
+- 

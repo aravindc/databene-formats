@@ -63,6 +63,13 @@ public class DefaultHTMLTokenizerTest {
             "<!--ab-c<s>d--ef</s>ghi-->",
             new HT(HTMLTokenizer.COMMENT, "<!--ab-c<s>d--ef</s>ghi-->"));
 
+    private static final TestSetup COMMENTS = new TestSetup(
+            "<!----##--->X<!-------##---->",
+            new HT(HTMLTokenizer.COMMENT, "<!----##--->"),
+            new HT(HTMLTokenizer.TEXT, "X"),
+            new HT(HTMLTokenizer.COMMENT, "<!-------##---->")
+            );
+
     private static final TestSetup PROCESSING_INSTRUCTION = new TestSetup(
             "<?xml version = \"1.0\" ?>",
             new HT(HTMLTokenizer.PROCESSING_INSTRUCTION, "xml", "version", "1.0"));
@@ -126,6 +133,7 @@ public class DefaultHTMLTokenizerTest {
         END_TAG,
         CLOSED_TAG,
         COMMENT,
+        COMMENTS,
         PROCESSING_INSTRUCTION,
 
         TAG_LIKE_TEXT,
@@ -150,6 +158,7 @@ public class DefaultHTMLTokenizerTest {
         for (TestSetup test : TESTS)
             checkTokens(test);
     }
+    
 /*
     public void testCommentText() throws IOException, ParseException {
         Reader source = new StringReader(COMMENT_HTML);
