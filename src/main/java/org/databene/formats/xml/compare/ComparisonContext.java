@@ -23,7 +23,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.databene.commons.NullSafeComparator;
 import org.databene.commons.ProgrammerError;
 import org.databene.commons.xml.XPathUtil;
-import org.databene.formats.compare.DiffType;
+import org.databene.formats.compare.DiffDetailType;
 import org.databene.formats.compare.LocalDiffType;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -32,15 +32,15 @@ import org.w3c.dom.NodeList;
  * Holds the information which diff types are accepted at which XPaths 
  * and maps them to the related nodes of XML documents.<br/><br/>
  * Created: 09.07.2014 10:27:00
- * @since 2.0.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public class NodeSettings {
+public class ComparisonContext {
 	
 	private List<PathSetting> pathSettings;
 	
-	public NodeSettings() {
+	public ComparisonContext() {
 		try {
 			init(null, null, null);
 		} catch (XPathExpressionException e) {
@@ -48,7 +48,7 @@ public class NodeSettings {
 		}
 	}
 
-	public NodeSettings(Set<LocalDiffType> toleratedDiffs, Document expectedDocument, Document actualDocument) 
+	public ComparisonContext(Set<LocalDiffType> toleratedDiffs, Document expectedDocument, Document actualDocument) 
 			throws XPathExpressionException {
 		init(toleratedDiffs, expectedDocument, actualDocument);
 	}
@@ -73,7 +73,7 @@ public class NodeSettings {
 		return false;
 	}
 
-	public boolean isTolerated(DiffType type, Object expected, Object actual) {
+	public boolean isTolerated(DiffDetailType type, Object expected, Object actual) {
 		for (PathSetting pathSetting : pathSettings) {
 			Object diffType = pathSetting.getDiffType();
 			if ((pathSetting.isAffectedNode(expected) || pathSetting.isAffectedNode(actual)) && 
@@ -83,9 +83,9 @@ public class NodeSettings {
 		return false;
 	}
 
-	public boolean isTolerated(DiffType diffType, String xPath) {
+	public boolean isTolerated(DiffDetailType diffType, String locator) {
 		for (PathSetting pathSetting : pathSettings) {
-			if (NullSafeComparator.equals(xPath, pathSetting.getxPath()) 
+			if (NullSafeComparator.equals(locator, pathSetting.getLocator()) 
 					&& (pathSetting.getDiffType() == null || pathSetting.getDiffType() == diffType))
 				return true;
 		}
@@ -96,18 +96,18 @@ public class NodeSettings {
 	// helper class ----------------------------------------------------------------------------------------------------
 
 	static class PathSetting {
-		private final String xPath;
-		private final DiffType diffType;
+		private final String locator;
+		private final DiffDetailType diffType;
 		private final List<Object> affectedNodes;
 		
-		private PathSetting(String xPath, DiffType type) {
-			this.xPath = xPath;
+		private PathSetting(String locator, DiffDetailType type) {
+			this.locator = locator;
 			this.diffType = type;
 			this.affectedNodes = new ArrayList<Object>();
 		}
 		
-		public String getxPath() {
-			return xPath;
+		public String getLocator() {
+			return locator;
 		}
 		
 		public Object getDiffType() {
@@ -115,7 +115,7 @@ public class NodeSettings {
 		}
 
 		public boolean isAffectedNode(Object node) {
-			if (xPath == null)
+			if (locator == null)
 				return true;
 			for (Object affectedNode : affectedNodes)
 				if (node == affectedNode)
@@ -124,8 +124,8 @@ public class NodeSettings {
 		}
 
 		public void collectAffectedNodes(Document document) throws XPathExpressionException {
-			if (this.xPath != null && document != null) {
-				NodeList foundNodes = XPathUtil.queryNodes(document, xPath);
+			if (this.locator != null && document != null) {
+				NodeList foundNodes = XPathUtil.queryNodes(document, locator);
 				for (int i = 0; i < foundNodes.getLength(); i++)
 					affectedNodes.add(foundNodes.item(i));
 			}

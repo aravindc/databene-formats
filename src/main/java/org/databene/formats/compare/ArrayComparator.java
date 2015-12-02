@@ -20,44 +20,45 @@ import org.databene.commons.ProgrammerError;
 /**
  * Compares arrays of objects using a {@link ComparisonModel}.<br/><br/>
  * Created: 20.11.2013 17:40:38
- * @since 1.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public class ArrayComparator<E> {
+public class ArrayComparator {
 	
 	private static final int IDENTICAL = 0;
 	private static final int CHANGED   = 1;
 	private static final int REMOVED   = 2;
 	private static final int ADDED     = 3;
 	
-	public static <T> ArrayComparisonResult<T> compare(T[] array1, T[] array2, ComparisonModel<T> model, String parentLocator) {
-		return new ArrayComparator<T>(array1, array2, model, parentLocator).compare();
+	public static ArrayComparisonResult compare(Object[] array1, Object[] array2, ComparisonModel model, String parentLocator, DiffFactory diffFactory) {
+		return new ArrayComparator(array1, array2, model, parentLocator, diffFactory).compare();
 	}
 	
 	private String parentLocator;
-	private E[] array1;
-	private E[] array2;
-	private ComparisonModel<E> model;
+	private Object[] array1;
+	private Object[] array2;
+	private ComparisonModel model;
 	private Match[] matches1;
 	private Match[] matches2;
-	
+	private DiffFactory diffFactory;
 		
-	private ArrayComparator(E[] array1, E[] array2, ComparisonModel<E> model, String parentLocator) {
+	private ArrayComparator(Object[] array1, Object[] array2, ComparisonModel model, String parentLocator, DiffFactory diffFactory) {
 		this.array1 = array1;
 		this.array2 = array2;
 		this.model = model;
 		this.parentLocator = parentLocator;
 		this.matches1 = new Match[array1.length];
 		this.matches2 = new Match[array2.length];
+		this.diffFactory = diffFactory;
 	}
 	
-	private ArrayComparisonResult<E> compare() {
+	private ArrayComparisonResult compare() {
 		String objectType = "list element";
 		
 		// 1. step: match identical elements
 		for (int i1 = 0; i1 < array1.length; i1++) {
-			E e1 = array1[i1];
+			Object e1 = array1[i1];
 			if (i1 < array2.length && model.equal(e1, array2[i1])) {
 				// identical element found at the same index
 				matches1[i1] = matches2[i1] = new Match(i1, i1, IDENTICAL);
@@ -73,7 +74,7 @@ public class ArrayComparator<E> {
 		// 2. step: Match similar elements and consider remainders in first array to be missing
 		for (int i1 = 0; i1 < array1.length; i1++) {
 			if (matches1[i1] == null) {
-				E e1 = array1[i1];
+				Object e1 = array1[i1];
 				int i2 = indexOfSimilar(e1, array2, matches2);
 				if (i2 >= 0) {
 					// store as changed
@@ -94,18 +95,18 @@ public class ArrayComparator<E> {
 		}
 		
 		// 4. step: assemble comparison result
-		ArrayComparisonResult<E> result = new ArrayComparisonResult<E>();
+		ArrayComparisonResult result = new ArrayComparisonResult();
 		int i1 = 0;
 		int i2 = 0;
 		while (i1 < array1.length || i2 < array2.length) {
 			Match match1 = (i1 < matches1.length ? matches1[i1] : null);
 			Match match2 = (i2 < matches2.length ? matches2[i2] : null);
 			if (match1 != null && match1.type == REMOVED) {
-				result.add(DiffFactory.missing(array1[match1.i1], objectType, locator(array1, match1.i1)));
+				result.add(diffFactory.missing(array1[match1.i1], objectType, locator(array1, match1.i1)));
 				match1.consume();
 				i1 = nextUnconsumed(matches1, i1); 
 			} else if (match2 != null && match2.type == ADDED) {
-				result.add(DiffFactory.unexpected(array2[match2.i2], objectType, locator(array2, match2.i2)));
+				result.add(diffFactory.unexpected(array2[match2.i2], objectType, locator(array2, match2.i2)));
 				match2.consume();
 				i2 = nextUnconsumed(matches2, i2);
 			} else {
@@ -113,11 +114,11 @@ public class ArrayComparator<E> {
 				Assert.notNull(match2, "match2");
 				switch (match1.type) {
 					case CHANGED: 	if (match1.i1 != i1 || match1.i2 != i2)
-										result.add(DiffFactory.moved(array1[match1.i1], objectType, locator(array1, match1.i1), locator(array1, match1.i2)));
-									result.add(DiffFactory.different(array1[match1.i1], array2[match1.i2], objectType, locator(array1, match1.i1))); 
+										result.add(diffFactory.moved(array1[match1.i1], objectType, locator(array1, match1.i1), locator(array1, match1.i2)));
+									result.add(diffFactory.different(array1[match1.i1], array2[match1.i2], objectType, locator(array1, match1.i1))); 
 									break;
 					case IDENTICAL:	if ((match1.i1 != match1.i2) && (match1.i1 != i1 || match1.i2 != i2))
-										result.add(DiffFactory.moved(array1[match1.i1], objectType, locator(array1, match1.i1), locator(array1, match1.i2)));
+										result.add(diffFactory.moved(array1[match1.i1], objectType, locator(array1, match1.i1), locator(array1, match1.i2)));
 									break;
 					default: 		throw new ProgrammerError();
 				}
@@ -138,21 +139,21 @@ public class ArrayComparator<E> {
 		return index;
 	}
 
-	private int indexOf(E element, E[] array, Match[] matches) {
+	private int indexOf(Object element, Object[] array, Match[] matches) {
 		for (int i = 0; i < array.length; i++)
 			if (matches[i] == null && model.equal(element, array[i]))
 				return i;
 		return -1;
 	}
 	
-	private int indexOfSimilar(E element, E[] candidates, Match[] matches) {
+	private int indexOfSimilar(Object element, Object[] candidates, Match[] matches) {
 		for (int i = 0; i < candidates.length; i++)
 			if (matches[i] == null && model.correspond(element, candidates[i]))
 				return i;
 		return -1;
 	}
 	
-	private String locator(E[] array, int index) {
+	private String locator(Object[] array, int index) {
 		return parentLocator + model.subPath(array, index);
 	}
 	

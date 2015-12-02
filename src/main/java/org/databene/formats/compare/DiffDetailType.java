@@ -15,12 +15,24 @@
 package org.databene.formats.compare;
 
 /**
- * Enumerates types of differences between object states.<br/><br/>
+ * <Enumerates the kinds of difference that may be diagnosed on the lowest level of comparison, the {@link DiffDetail}.<br/><br/>
  * Created: 21.11.2013 11:33:30
- * @since 1.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public enum DiffType {
-	DIFFERENT, UNEXPECTED, MISSING, MOVED
+public enum DiffDetailType {
+    
+    /** An expected element was found but differs in some way. */
+    DIFFERENT, 
+
+    /** An element was which was not expected at this place. */
+    UNEXPECTED, 
+    
+    /** An expected element was not found. */
+    MISSING,
+    
+    /** An expected element was found at an unexpected place. */
+    MOVED
+    
 }

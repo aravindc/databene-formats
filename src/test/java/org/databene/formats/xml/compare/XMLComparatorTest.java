@@ -1,18 +1,18 @@
 /*
- * Copyright (C) 2010-2014 Hamburg Sud and the contributors.
+ * Copyright (C) 2011-2014 Volker Bergmann (volker.bergmann@bergmann-it.de).
+ * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.databene.formats.xml.compare;
 
 import static org.junit.Assert.assertEquals;
@@ -23,16 +23,22 @@ import java.io.IOException;
 import org.databene.commons.xml.XMLUtil;
 import org.databene.commons.xml.XPathUtil;
 import org.databene.formats.compare.AggregateDiff;
-import org.databene.formats.compare.Diff;
+import org.databene.formats.compare.DiffDetail;
 import org.databene.formats.compare.DiffFactory;
 import org.databene.formats.xml.compare.XMLComparator;
 import org.databene.formats.xml.compare.XMLComparisonSettings;
 import org.junit.Test;
+import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.ProcessingInstruction;
+import org.w3c.dom.Text;
 
 /** Tests the {@link XmlContentImpl}
- * @author Volker Bergmann */
+ * @since 1.0.5
+ * @author Volker Bergmann 
+ */
 @SuppressWarnings("javadoc")
 public class XMLComparatorTest {
 
@@ -40,9 +46,14 @@ public class XMLComparatorTest {
     
     private static final String SIMPLE_XML_PATH = RESOURCE_PATH + "simple.xml";
 	private static final String SIMPLE_XML_ISO_8859_1_PATH = RESOURCE_PATH + "simple-iso-8859-1.xml";
+    private static final String ESCAPED_XML_PATH = RESOURCE_PATH + "escaped.xml";
+    private static final String NS_XZ_PATH = RESOURCE_PATH + "namespace_xz.xml";
+    private static final String NS_XPZP_PATH = RESOURCE_PATH + "namespace_xpzp.xml";
+    private static final String NS_ZX_PATH = RESOURCE_PATH + "namespace_zx.xml";
+    private static final String NS_NONE_PATH = RESOURCE_PATH + "namespace_none.xml";
 
-    // TODO test character escaping
-
+	private DiffFactory diffFactory = new DiffFactory();
+	
     @Test
     public void testDiff_identical() throws Exception {
         Document doc = parseSimpleXmlUtf8();
@@ -59,7 +70,7 @@ public class XMLComparatorTest {
         settings.setEncodingRelevant(true);
 		AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.different("utf-8", "iso-8859-1", "document encoding", "/"), diff.getDetails().get(0));
+        assertEquals(diffFactory.different("utf-8", "iso-8859-1", "document encoding", "/"), diff.getDetails().get(0));
     }
     
     @Test
@@ -82,59 +93,58 @@ public class XMLComparatorTest {
 		AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertTrue("Unexpected diff", diff.isEmpty());
     }
-    /*
+    
     @Test
     public void testDiff_unexpectedProcessingInstruction() throws Exception {
         Document expected = parseSimpleXmlUtf8();
         Document actual = XMLUtil.parse(RESOURCE_PATH + "special.xml");
-        ProcessingInstruction pi = null; // TODO retrieve processing instruction
+        ProcessingInstruction pi = (ProcessingInstruction) XPathUtil.queryNode(actual, "/root/processing-instruction('procint')");
         XMLComparisonSettings settings = new XMLComparisonSettings();
         settings.setProcessingInstructionRelevant(true);
         settings.setCdataRelevant(false);
 		AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.unexpected(pi, "processing instruction", "/root"), diff.getDetails().get(0));
+        assertEquals(diffFactory.unexpected(pi, "processing instruction", "/root/?procint"), diff.getDetails().get(0));
     }
     
     @Test
     public void testDiff_missingProcessingInstruction() throws Exception {
     	Document expected = XMLUtil.parse(RESOURCE_PATH + "special.xml");
         Document actual = parseSimpleXmlUtf8();
-        ProcessingInstruction pi = null; // TODO retrieve processing instruction
+        ProcessingInstruction pi = (ProcessingInstruction) XPathUtil.queryNode(expected, "/root/processing-instruction('procint')");
         XMLComparisonSettings settings = new XMLComparisonSettings();
         settings.setProcessingInstructionRelevant(true);
         settings.setCdataRelevant(false);
 		AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.missing(pi, "processing instruction", "/root"), diff.getDetails().get(0));
+        assertEquals(diffFactory.missing(pi, "processing instruction", "/root/?procint"), diff.getDetails().get(0));
     }
     
     @Test
-    public void testDiff_unexpectedCdata() throws Exception {
+    public void testDiff_cdataRelevant() throws Exception {
         Document expected = parseSimpleXmlUtf8();
         Document actual = XMLUtil.parse(RESOURCE_PATH + "special.xml");
-        String cdata = "cdata_text"; 
+        Text text = (Text) XPathUtil.queryNode(expected, "/root/node/text()"); 
+        CDATASection cdata = (CDATASection) XPathUtil.queryNode(actual, "/root/node/text()"); 
         XMLComparisonSettings settings = new XMLComparisonSettings();
         settings.setProcessingInstructionRelevant(false);
         settings.setCdataRelevant(true);
 		AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.unexpected(cdata, "CDATA", "/root"), diff.getDetails().get(0));
+        assertEquals(diffFactory.different(text, cdata, "element text", "/root/node"), diff.getDetails().get(0));
     }
     
     @Test
-    public void testDiff_missingCdata() throws Exception {
+    public void testDiff_cdataIrrelevant() throws Exception {
     	Document expected = XMLUtil.parse(RESOURCE_PATH + "special.xml");
         Document actual = parseSimpleXmlUtf8();
-        String cdata = "cdata_text"; 
         XMLComparisonSettings settings = new XMLComparisonSettings();
         settings.setProcessingInstructionRelevant(false);
-        settings.setCdataRelevant(true);
+        settings.setCdataRelevant(false);
 		AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
-        assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.missing(cdata, "CDATA", "/root"), diff.getDetails().get(0));
+        assertTrue("Unexpected diff", diff.isEmpty());
     }
-    */
+    
     // test attribute diffs ----------------------------------------------------
 
     @Test
@@ -144,7 +154,23 @@ public class XMLComparatorTest {
         actual.getDocumentElement().setAttribute("att", "val2");
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.different("val", "val2", "attribute", "/root/@att"), diff.getDetails().get(0));
+        assertEquals(diffFactory.different("val", "val2", "attribute", "/root/@att"), diff.getDetails().get(0));
+    }
+
+    @Test
+    public void testDiff_otherAttributeAndTextEscaped() throws Exception {
+        Document expected = parseSimpleXmlUtf8();
+        Document actual = XMLUtil.parse(ESCAPED_XML_PATH);
+        AggregateDiff diff = new XMLComparator().compare(expected, actual);
+        assertEquals(2, diff.getDetails().size());
+        // verify attribute diff
+        assertEquals(diffFactory.different("val", "<@att&>", "attribute", "/root/@att"), diff.getDetails().get(0));
+        // verify text diff
+        Text expectedText = (Text) XPathUtil.queryNode(expected, "/root/node/text()");
+        assertEquals("text", expectedText.getTextContent());
+        Text actualText = (Text) XPathUtil.queryNode(actual, "/root/node/text()");
+        assertEquals("<text&>", actualText.getTextContent());
+        assertEquals(diffFactory.different(expectedText, actualText, "element text", "/root/node"), diff.getDetails().get(1));
     }
 
     @Test
@@ -165,7 +191,7 @@ public class XMLComparatorTest {
         actual.getDocumentElement().setAttribute("att2", "val2");
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.unexpected("val2", "attribute", "/root/@att2"), diff.getDetails().get(0));
+        assertEquals(diffFactory.unexpected("val2", "attribute", "/root/@att2"), diff.getDetails().get(0));
     }
 
     @Test
@@ -186,7 +212,7 @@ public class XMLComparatorTest {
         actual.getDocumentElement().removeAttribute("att");
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        assertEquals(DiffFactory.missing("val", "attribute", "/root/@att"), diff.getDetails().get(0));
+        assertEquals(diffFactory.missing("val", "attribute", "/root/@att"), diff.getDetails().get(0));
     }
 
     @Test
@@ -209,7 +235,8 @@ public class XMLComparatorTest {
         node(actual).setTextContent("otherText");
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        Diff<?> expectedDiff = DiffFactory.different("text", "otherText", "element text", "/root/node");
+        DiffDetail expectedDiff = diffFactory.different(XPathUtil.queryNode(expected, "/root/node/text()"), XPathUtil.queryNode(actual, "/root/node/text()"), "element text", "/root/node");
+        System.out.println(expectedDiff);
         assertEquals(expectedDiff, diff.getDetails().get(0));
     }
 
@@ -231,8 +258,8 @@ public class XMLComparatorTest {
         actual.getDocumentElement().removeChild(node(actual));
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        Diff<?> expectedDiff = DiffFactory.missing(node(expected), "list element", "/root/node");
-        Diff<?> actualDiff = diff.getDetails().get(0);
+        DiffDetail expectedDiff = diffFactory.missing(node(expected), "list element", "/root/node");
+        DiffDetail actualDiff = diff.getDetails().get(0);
         assertEquals(expectedDiff, actualDiff);
     }
 
@@ -255,8 +282,8 @@ public class XMLComparatorTest {
         actual.getDocumentElement().appendChild(node2);
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        Diff<?> expectedDiff = DiffFactory.unexpected(node2, "list element", "/root/node2");
-        Diff<?> actualDiff = diff.getDetails().get(0);
+        DiffDetail expectedDiff = diffFactory.unexpected(node2, "list element", "/root/node2");
+        DiffDetail actualDiff = diff.getDetails().get(0);
         assertEquals(expectedDiff, actualDiff);
     }
 
@@ -279,8 +306,8 @@ public class XMLComparatorTest {
         Document actual = XMLUtil.parse(RESOURCE_PATH + "list_2_bob_1_alice.xml");
         AggregateDiff diff = new XMLComparator().compare(expected, actual);
         assertEquals(1, diff.getDetails().size());
-        Diff<?> expectedDiff = DiffFactory.moved(alice, "list element", "/list/item[1]", "/list/item[2]");
-        Diff<?> actualDiff = diff.getDetails().get(0);
+        DiffDetail expectedDiff = diffFactory.moved(alice, "list element", "/list/item[1]", "/list/item[2]");
+        DiffDetail actualDiff = diff.getDetails().get(0);
         assertEquals(expectedDiff, actualDiff);
     }
 
@@ -302,11 +329,15 @@ public class XMLComparatorTest {
         settings.addKeyExpression("item", "@no");
         AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertEquals(2, diff.getDetails().size());
-        Diff<?> expectedDiff1 = DiffFactory.different("Alice", "Bob", "element text", "/list/item[1]");
-        Diff<?> actualDiff1 = diff.getDetails().get(0);
+        Node alice1 = XPathUtil.queryNode(expected, "/list/item[position()=1]/text()");
+        Node alice2 = XPathUtil.queryNode(actual, "/list/item[position()=2]/text()");
+        Node bob2 = XPathUtil.queryNode(expected, "/list/item[position()=2]/text()");
+        Node bob1 = XPathUtil.queryNode(actual, "/list/item[position()=1]/text()");
+        DiffDetail expectedDiff1 = diffFactory.different(alice1, bob1, "element text", "/list/item[1]");
+        DiffDetail actualDiff1 = diff.getDetails().get(0);
         assertEquals(expectedDiff1, actualDiff1);
-        Diff<?> expectedDiff2 = DiffFactory.different("Bob", "Alice", "element text", "/list/item[2]");
-        Diff<?> actualDiff2 = diff.getDetails().get(1);
+        DiffDetail expectedDiff2 = diffFactory.different(bob2, alice2, "element text", "/list/item[2]");
+        DiffDetail actualDiff2 = diff.getDetails().get(1);
         assertEquals(expectedDiff2, actualDiff2);
     }
 
@@ -319,11 +350,11 @@ public class XMLComparatorTest {
         AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertEquals(3, diff.getDetails().size());
         Element alice = XPathUtil.queryElement(expected, "/list/item[position()=1]");
-        Diff<?> expectedDiff1 = DiffFactory.moved(alice, "list element", "/list/item[1]", "/list/item[2]");
+        DiffDetail expectedDiff1 = diffFactory.moved(alice, "list element", "/list/item[1]", "/list/item[2]");
         assertEquals(expectedDiff1, diff.getDetails().get(0));
-        Diff<?> expectedDiff2 = DiffFactory.different("1", "2", "attribute", "/list/item[1]/@no");
+        DiffDetail expectedDiff2 = diffFactory.different("1", "2", "attribute", "/list/item[1]/@no");
         assertEquals(expectedDiff2, diff.getDetails().get(1));
-        Diff<?> expectedDiff3 = DiffFactory.different("2", "1", "attribute", "/list/item[2]/@no");
+        DiffDetail expectedDiff3 = diffFactory.different("2", "1", "attribute", "/list/item[2]/@no");
         assertEquals(expectedDiff3, diff.getDetails().get(2));
     }
 
@@ -337,6 +368,63 @@ public class XMLComparatorTest {
         settings.tolerateDifferentAt("//item/@no");
         AggregateDiff diff = new XMLComparator(settings).compare(expected, actual);
         assertTrue("Unexpected diff", diff.isEmpty());
+    }
+    
+    @Test
+    public void testEntityInclusion() throws Exception { // TODO implement tests
+    	Document doc = XMLUtil.parse(RESOURCE_PATH + "container.xml");
+    	System.out.println(XMLUtil.format(doc));
+    }
+
+    @Test
+    public void testNamespaceNotRelevant() throws Exception {
+    	Document xzDoc = XMLUtil.parse(NS_XZ_PATH);
+    	Document zxDoc = XMLUtil.parse(NS_ZX_PATH);
+    	Document simpleDoc = XMLUtil.parse(NS_NONE_PATH);
+    	XMLComparisonSettings settings = new XMLComparisonSettings();
+    	settings.setNamespaceRelevant(false);
+		XMLComparator comparator = new XMLComparator(settings);
+		AggregateDiff diff = comparator.compare(simpleDoc, xzDoc);
+		assertTrue(diff.isEmpty());
+		assertTrue(comparator.compare(xzDoc, zxDoc).isEmpty());
+		assertTrue(comparator.compare(zxDoc, simpleDoc).isEmpty());
+    }
+
+    @Test
+    public void testSameNamespacesDifferentPrefix() throws Exception {
+    	Document xzDoc = XMLUtil.parse(NS_XZ_PATH);
+    	Document pDoc = XMLUtil.parse(NS_XPZP_PATH);
+    	XMLComparisonSettings settings = new XMLComparisonSettings();
+    	settings.setNamespaceRelevant(true);
+		XMLComparator comparator = new XMLComparator(settings);
+		AggregateDiff diff = comparator.compare(xzDoc, pDoc);
+		assertTrue(diff.isEmpty());
+    }
+
+    @Test
+    public void testNoNamespaceVsNamespace() throws Exception {
+    	Document xzDoc = XMLUtil.parse(NS_XZ_PATH);
+    	Document simpleDoc = XMLUtil.parse(NS_NONE_PATH);
+    	XMLComparisonSettings settings = new XMLComparisonSettings();
+    	settings.setNamespaceRelevant(true);
+		XMLComparator comparator = new XMLComparator(settings);
+		AggregateDiff diff = comparator.compare(simpleDoc, xzDoc);
+		assertEquals(2, diff.getDetailCount());
+		assertEquals(diffFactory.different("none", "http://databene.org/formats/xml/compare/xx", "Element namespace", "/root/node[1]"), diff.getDetail(0));
+		assertEquals(diffFactory.different("none", "http://databene.org/formats/xml/compare/zz", "Element namespace", "/root/node[2]"), diff.getDetail(1));
+    }
+
+    @Test
+    public void testNamespacesDifferent() throws Exception {
+    	Document xzDoc = XMLUtil.parse(NS_XZ_PATH);
+    	Document zxDoc = XMLUtil.parse(NS_ZX_PATH);
+    	XMLComparisonSettings settings = new XMLComparisonSettings();
+    	settings.setNamespaceRelevant(true);
+		XMLComparator comparator = new XMLComparator(settings);
+		AggregateDiff diff = comparator.compare(xzDoc, zxDoc);
+		assertEquals(2, diff.getDetailCount());
+		assertEquals(diffFactory.different("http://databene.org/formats/xml/compare/xx", "http://databene.org/formats/xml/compare/zz", "Element namespace", "/root/xx:node"), diff.getDetail(0));
+		assertEquals(diffFactory.different("http://databene.org/formats/xml/compare/zz", "http://databene.org/formats/xml/compare/xx", "Element namespace", "/root/zz:node"), diff.getDetail(1));
     }
 
     // private helpers ---------------------------------------------------------

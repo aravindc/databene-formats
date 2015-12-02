@@ -17,12 +17,13 @@ package org.databene.formats.compare;
 /**
  * Provides comparison for equality and comparison for objects of a given parameterized type E.<br/><br/>
  * Created: 20.11.2013 17:40:05
- * @since 1.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public interface ComparisonModel<E> {
-	boolean equal(E o1, E o2);
-	boolean correspond(E o1, E o2);
-	String subPath(E[] array, int index);
+public interface ComparisonModel {
+	void addKeyExpression(String locator, String keyExpression);
+	boolean equal(Object o1, Object o2);
+	boolean correspond(Object o1, Object o2);
+	String subPath(Object[] array, int index);
 }

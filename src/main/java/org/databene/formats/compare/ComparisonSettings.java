@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2014 Volker Bergmann (volker.bergmann@bergmann-it.de).
+ * Copyright (C) 2011-2014 Volker Bergmann (volker.bergmann@bergmann-it.de).
  * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,36 +17,30 @@ package org.databene.formats.compare;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.databene.commons.ProgrammerError;
-
 /**
  * Defines comparison settings: Which elements to ignore in comparisons 
  * and which differences to tolerate.<br/><br/>
  * Created: 03.06.2014 15:39:25
- * @since 1.2
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public class ComparisonSettings<E> {
+public class ComparisonSettings {
 
-	private ComparisonModel<E> model;
+	protected ComparisonModel model;
 	private Set<LocalDiffType> toleratedDiffs;
 
-	public ComparisonSettings(ComparisonModel<E> model) {
+	public ComparisonSettings(ComparisonModel model) {
 		this.model = model;
 		this.toleratedDiffs = new HashSet<LocalDiffType>();
 	}
 
-	public ComparisonModel<E> getModel() {
+	public ComparisonModel getModel() {
 		return model;
 	}
 	
 	public void addKeyExpression(String elementName, String keyExpression) {
-		if (model instanceof KeyExpressionHolder) {
-			((KeyExpressionHolder) model).addKeyExpression(elementName, keyExpression);
-		} else {
-			throw new ProgrammerError("Class does not support key expressions: " + model.getClass().getSimpleName());
-		}
+		model.addKeyExpression(elementName, keyExpression);
 	}
 
 	public Set<LocalDiffType> getToleratedDiffs() {
@@ -54,26 +48,26 @@ public class ComparisonSettings<E> {
 	}
 
 	public void tolerateDifferentAt(String xPath) {
-		this.toleratedDiffs.add(new LocalDiffType(DiffType.DIFFERENT, xPath));
+		this.toleratedDiffs.add(new LocalDiffType(DiffDetailType.DIFFERENT, xPath));
 	}
 
 	public void tolerateMissingAt(String xPath) {
-		this.toleratedDiffs.add(new LocalDiffType(DiffType.MISSING, xPath));
+		this.toleratedDiffs.add(new LocalDiffType(DiffDetailType.MISSING, xPath));
 	}
 
 	public void tolerateUnexpectedAt(String xPath) {
-		this.toleratedDiffs.add(new LocalDiffType(DiffType.UNEXPECTED, xPath));
+		this.toleratedDiffs.add(new LocalDiffType(DiffDetailType.UNEXPECTED, xPath));
 	}
 
 	public void tolerateMovedAt(String xPath) {
-		this.toleratedDiffs.add(new LocalDiffType(DiffType.MOVED, xPath));
+		this.toleratedDiffs.add(new LocalDiffType(DiffDetailType.MOVED, xPath));
 	}
 
 	public void tolerateAnyDiffAt(String xPath) {
 		this.toleratedDiffs.add(new LocalDiffType(null, xPath));
 	}
 
-	public void tolerateGenericDiff(DiffType type, String xPath) {
+	public void tolerateGenericDiff(DiffDetailType type, String xPath) {
 		this.toleratedDiffs.add(new LocalDiffType(type, xPath));
 	}
 

@@ -14,46 +14,45 @@
  */
 package org.databene.formats.compare;
 
-import org.databene.commons.SystemInfo;
-import org.databene.commons.xml.XMLUtil;
-import org.w3c.dom.Element;
+import org.databene.commons.Converter;
+import org.databene.commons.NullSafeComparator;
 
 /**
  * Represents a difference between the state of two objects.<br/><br/>
  * Created: 21.11.2013 11:29:35
- * @since 1.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public class Diff<E> {
+public class DiffDetail {
 	
-	private static final String LF = SystemInfo.getLineSeparator();
-	
-	private E expected;
-	private E actual;
+	private Object expected;
+	private Object actual;
 	private String objectClassifier;
-	private DiffType type;
+	private DiffDetailType type;
 	private String locator1;
 	private String locator2;
+	private Converter<Object, String> formatter;
 	
-	Diff(E expected, E actual, String objectClassifier, DiffType type) {
-		this(expected, actual, objectClassifier, type, null, null);
+	public DiffDetail(Object expected, Object actual, String objectClassifier, DiffDetailType type, Converter<Object, String> formatter) {
+		this(expected, actual, objectClassifier, type, null, null, formatter);
 	}
 	
-	Diff(E expected, E actual, String objectClassifier, DiffType type, String locator1, String locator2) {
+	public DiffDetail(Object expected, Object actual, String objectClassifier, DiffDetailType type, String locator1, String locator2, Converter<Object, String> formatter) {
 		this.expected = expected;
 		this.actual = actual;
 		this.objectClassifier = objectClassifier;
 		this.type = type;
 		this.locator1 = locator1;
 		this.locator2 = locator2;
+		this.formatter = formatter;
 	}
 
-	public E getExpected() {
+	public Object getExpected() {
 		return expected;
 	}
 	
-	public E getActual() {
+	public Object getActual() {
 		return actual;
 	}
 	
@@ -61,7 +60,7 @@ public class Diff<E> {
 		return objectClassifier;
 	}
 	
-	public DiffType getType() {
+	public DiffDetailType getType() {
 		return type;
 	}
 	
@@ -71,6 +70,10 @@ public class Diff<E> {
 	
 	public String getLocator2() {
 		return locator2;
+	}
+	
+	public void setFormat(Converter<Object, String> formatter) {
+		this.formatter = formatter;
 	}
 	
 	@Override
@@ -90,40 +93,14 @@ public class Diff<E> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (obj == null || getClass() != obj.getClass())
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		@SuppressWarnings("rawtypes")
-		Diff other = (Diff) obj;
-		if (locator1 == null) {
-			if (other.locator1 != null)
-				return false;
-		} else if (!locator1.equals(other.locator1))
-			return false;
-		if (locator2 == null) {
-			if (other.locator2 != null)
-				return false;
-		} else if (!locator2.equals(other.locator2))
-			return false;
-		if (objectClassifier == null) {
-			if (other.objectClassifier != null)
-				return false;
-		} else if (!objectClassifier.equals(other.objectClassifier))
-			return false;
-		if (type != other.type)
-			return false;
-		if (expected == null) {
-			if (other.expected != null)
-				return false;
-		} else if (!expected.equals(other.expected))
-			return false;
-		if (actual == null) {
-			if (other.actual != null)
-				return false;
-		} else if (!actual.equals(other.actual))
-			return false;
-		return true;
+		DiffDetail that = (DiffDetail) obj;
+		return (NullSafeComparator.equals(this.expected, that.expected) &&
+				NullSafeComparator.equals(this.actual, that.actual) &&
+				NullSafeComparator.equals(this.type, that.type) &&
+				NullSafeComparator.equals(this.locator1, that.locator1) &&
+				NullSafeComparator.equals(this.locator2, that.locator2));
 	}
 
 	@Override
@@ -137,11 +114,8 @@ public class Diff<E> {
 		}
 	}
 
-	private String format(E value) {
-		if (value instanceof Element)
-			return LF + XMLUtil.format((Element) value).trim() + LF;
-		else
-			return "'" + String.valueOf(value) + "'";
+	protected String format(Object value) {
+		return formatter.convert(value);
 	}
 	
 }

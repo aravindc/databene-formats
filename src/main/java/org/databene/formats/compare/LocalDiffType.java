@@ -21,16 +21,16 @@ import org.databene.commons.StringUtil;
 /**
  * Assigns a DiffType with a locator for special comparison configurations.<br/><br/>
  * Created: 08.07.2014 18:14:36
- * @since 2.0.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
 public class LocalDiffType {
 
 	private final String locator;
-	private final DiffType type;
+	private final DiffDetailType type;
 
-	public LocalDiffType(DiffType type, String locator) {
+	public LocalDiffType(DiffDetailType type, String locator) {
 		if (StringUtil.isEmpty(locator) && type == null)
 			throw new ConfigurationError("At least one of the argument 'locator' and 'type' must be not empty");
 		this.locator = locator;
@@ -41,7 +41,7 @@ public class LocalDiffType {
 		return locator;
 	}
 
-	public DiffType getType() {
+	public DiffDetailType getType() {
 		return type;
 	}
 

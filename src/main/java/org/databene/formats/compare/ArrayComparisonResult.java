@@ -20,19 +20,19 @@ import java.util.List;
 /**
  * Provides the result of a comparison.<br/><br/>
  * Created: 20.11.2013 17:54:31
- * @since 1.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
-public class ArrayComparisonResult<E> {
+public class ArrayComparisonResult {
 	
-	private List<Diff<E>> diffs;
+	private List<DiffDetail> diffs;
 	
 	public ArrayComparisonResult() {
-		this.diffs = new ArrayList<Diff<E>>();
+		this.diffs = new ArrayList<DiffDetail>();
 	}
 	
-	public void add(Diff<E> diff) {
+	public void add(DiffDetail diff) {
 		this.diffs.add(diff);
 	}
 
@@ -40,7 +40,7 @@ public class ArrayComparisonResult<E> {
 		return (diffs.size() == 0);
 	}
 
-	public List<Diff<E>> getDiffs() {
+	public List<DiffDetail> getDiffs() {
 		return diffs;
 	}
 

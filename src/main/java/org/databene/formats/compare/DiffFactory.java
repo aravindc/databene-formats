@@ -14,30 +14,47 @@
  */
 package org.databene.formats.compare;
 
+import org.databene.commons.Converter;
+import org.databene.commons.converter.ToStringConverter;
 
 /**
- * Creates {@link Diff} objects.<br/><br/>
+ * Creates {@link DiffDetail} objects.<br/><br/>
  * Created: 21.11.2013 12:25:59
- * @since 1.0
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
 public class DiffFactory {
 	
-	public static <T> Diff<T> missing(T object, String objectClassifier, String locator) {
-		return new Diff<T>(object, null, objectClassifier, DiffType.MISSING, locator, null);
-	}
+	private Converter<Object, String> formatter;
 	
-	public static <T> Diff<T> unexpected(T object, String objectClassifier, String locator) {
-		return new Diff<T>(null, object, objectClassifier, DiffType.UNEXPECTED, null, locator);
-	}
-	
-	public static <T> Diff<T> moved(T object, String objectClassifier, String locator1, String locator2) {
-		return new Diff<T>(object, object, objectClassifier, DiffType.MOVED, locator1, locator2);
+	public DiffFactory() {
+		this(new ToStringConverter());
 	}
 
-	public static <T> Diff<T> different(T version1, T version2, String objectClassifier, String locator2) {
-		return new Diff<T>(version1, version2, objectClassifier, DiffType.DIFFERENT, null, locator2);
+	public DiffFactory(Converter<Object, String> formatter) {
+		this.formatter = formatter;
+	}
+
+	public DiffDetail missing(Object object, String objectClassifier, String locator) {
+		return new DiffDetail(object, null, objectClassifier, DiffDetailType.MISSING, locator, null, formatter);
+	}
+	
+	public DiffDetail unexpected(Object object, String objectClassifier, String locator) {
+		return new DiffDetail(null, object, objectClassifier, DiffDetailType.UNEXPECTED, null, locator, formatter);
+	}
+	
+	public DiffDetail moved(Object object, String objectClassifier, String locator1, String locator2) {
+		return new DiffDetail(object, object, objectClassifier, DiffDetailType.MOVED, locator1, locator2, formatter);
+	}
+
+	public DiffDetail different(Object version1, Object version2, String objectClassifier, String locator2) {
+		return new DiffDetail(version1, version2, objectClassifier, DiffDetailType.DIFFERENT, null, locator2, formatter);
+	}
+
+	public DiffDetail genericDiff(Object version1, Object version2, String objectClassifier,
+			DiffDetailType diffType, String locator1, String locator2) {
+		return new DiffDetail(version1, version2, objectClassifier, diffType, locator1, locator2, formatter);
 	}
 	
 }

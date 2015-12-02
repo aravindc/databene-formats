@@ -23,37 +23,33 @@ import org.databene.commons.SystemInfo;
 /**
  * Collects the differences between two data structures.<br/><br/>
  * Created: 19.06.2014 15:58:59
- * @since 1.2.2
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
 public class AggregateDiff {
 	
-	private Object object1;
-	private Object object2;
-	private ComparisonSettings<?> comparisonSettings;
-	private List<Diff<?>> details;
+	private Object expected;
+	private Object actual;
+	private ComparisonSettings comparisonSettings;
+	private List<DiffDetail> details;
 	
-	public AggregateDiff(Object object1, Object object2, ComparisonSettings<?> comparisonSettings) {
-		this.object1 = object1;
-		this.object2 = object2;
+	public AggregateDiff(Object expected, Object actual, ComparisonSettings comparisonSettings) {
+		this.expected = expected;
+		this.actual = actual;
 		this.comparisonSettings = comparisonSettings;
-		this.details = new ArrayList<Diff<?>>();
+		this.details = new ArrayList<DiffDetail>();
 	}
 	
-	public Object getObject1() {
-		return object1;
+	public Object getExpected() {
+		return expected;
 	}
 	
-	public Object getObject2() {
-		return object2;
+	public Object getActual() {
+		return actual;
 	}
 	
-	public ComparisonModel<?> getComparisonModel() {
-		return comparisonSettings.getModel();
-	}
-	
-	public ComparisonSettings<?> getComparisonSettings() {
+	public ComparisonSettings getComparisonSettings() {
 		return comparisonSettings;
 	}
 	
@@ -61,19 +57,19 @@ public class AggregateDiff {
 		return details.isEmpty();
 	}
 	
+	public List<DiffDetail> getDetails() {
+		return details;
+	}
+	
 	public int getDetailCount() {
 		return details.size();
 	}
 	
-	public Diff<?> getDetail(int index) {
+	public DiffDetail getDetail(int index) {
 		return this.details.get(index);
 	}
 	
-	public List<Diff<?>> getDetails() {
-		return details;
-	}
-	
-	public void add(Diff<?> diff) {
+	public void addDetail(DiffDetail diff) {
 		this.details.add(diff);
 	}
 
@@ -85,7 +81,7 @@ public class AggregateDiff {
 			builder.append(" Empty");
 		} else {
 			builder.append(LF);
-			for (Diff<?> detail : details)
+			for (DiffDetail detail : details)
 				builder.append("- ").append(StringUtil.normalizeSpace(detail.toString())).append(LF);
 		}
 		return builder.toString();

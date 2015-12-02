@@ -18,14 +18,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.databene.commons.xml.XMLUtil;
-import org.databene.formats.xml.compare.NameBasedXMLComparisonModel;
+import org.databene.formats.xml.compare.DefaultXMLComparisonModel;
 import org.junit.Test;
 import org.w3c.dom.Element;
 
 /**
- * Tests the {@link NameBasedXMLComparisonModel}.<br/><br/>
+ * Tests the {@link DefaultXMLComparisonModel}.<br/><br/>
  * Created: 03.06.2014 14:12:51
- * @since 1.2
+ * @since 1.0.5
  * @author Volker Bergmann
  */
 
@@ -40,11 +40,12 @@ public class NameBasedXMLModelComparisonTest {
 		Element c1 = XMLUtil.parseStringAsElement("<c><d/></c>");
 		Element c2 = XMLUtil.parseStringAsElement("<c><d/><d/></c>");
 		Element c3 = XMLUtil.parseStringAsElement("<c><d/><e/></c>");
-		assertTrue(NameBasedXMLComparisonModel.equalElements(a1, a2));
-		assertFalse(NameBasedXMLComparisonModel.equalElements(a1, a3));
-		assertFalse(NameBasedXMLComparisonModel.equalElements(a1, b1));
-		assertFalse(NameBasedXMLComparisonModel.equalElements(c1, c2));
-		assertFalse(NameBasedXMLComparisonModel.equalElements(c1, c3));
+		DefaultXMLComparisonModel model = new DefaultXMLComparisonModel();
+		assertTrue(model.equalNodes(a1, a2));
+		assertFalse(model.equalNodes(a1, a3));
+		assertFalse(model.equalNodes(a1, b1));
+		assertFalse(model.equalNodes(c1, c2));
+		assertFalse(model.equalNodes(c1, c3));
 	}
 	
 }
