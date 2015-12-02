@@ -20,6 +20,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.databene.commons.converter.XMLNode2StringConverter;
 import org.databene.commons.xml.XMLUtil;
 import org.databene.commons.xml.XPathUtil;
 import org.databene.formats.compare.AggregateDiff;
@@ -52,7 +53,7 @@ public class XMLComparatorTest {
     private static final String NS_ZX_PATH = RESOURCE_PATH + "namespace_zx.xml";
     private static final String NS_NONE_PATH = RESOURCE_PATH + "namespace_none.xml";
 
-	private DiffFactory diffFactory = new DiffFactory();
+	private DiffFactory diffFactory = new DiffFactory(new XMLNode2StringConverter());
 	
     @Test
     public void testDiff_identical() throws Exception {

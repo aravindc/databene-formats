@@ -22,6 +22,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.databene.commons.NullSafeComparator;
 import org.databene.commons.StringUtil;
 import org.databene.commons.SystemInfo;
+import org.databene.commons.converter.XMLNode2StringConverter;
 import org.databene.commons.xml.XMLUtil;
 import org.databene.formats.compare.AggregateDiff;
 import org.databene.formats.compare.ArrayComparator;
@@ -55,7 +56,7 @@ public class XMLComparator {
 	
 	public XMLComparator(XMLComparisonSettings settings) {
 		this.settings = settings;
-		this.diffFactory = new DiffFactory();
+		this.diffFactory = new DiffFactory(new XMLNode2StringConverter());
 	}
 	
 	public void assertEquals(Document expected, Document actual) throws XPathExpressionException {

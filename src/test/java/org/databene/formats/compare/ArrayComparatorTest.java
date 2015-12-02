@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.databene.commons.CollectionUtil;
+import org.databene.commons.converter.XMLNode2StringConverter;
 import org.databene.formats.compare.ArrayComparator;
 import org.databene.formats.compare.ArrayComparisonResult;
 import org.databene.formats.compare.ComparisonModel;
@@ -35,7 +36,7 @@ import org.junit.Test;
 
 public class ArrayComparatorTest {
 	
-	private DiffFactory diffFactory = new DiffFactory();
+	private DiffFactory diffFactory = new DiffFactory(new XMLNode2StringConverter());
 	
 	@Test
 	public void testIdenticalLists() {
