@@ -19,8 +19,8 @@ import org.databene.commons.StringUtil;
 import org.databene.commons.converter.ThreadSafeConverter;
 
 /**
- * Splits a String by a separator character<br/>
- * <br/>
+ * Splits a String by a separator character
+ * 
  * Created: 19.06.2007 07:33:03
  * @author Volker Bergmann
  */

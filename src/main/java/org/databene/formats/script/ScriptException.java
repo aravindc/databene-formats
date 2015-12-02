@@ -15,8 +15,8 @@
 package org.databene.formats.script;
 
 /**
- * Indicates the failure of a {@link Script} execution.<br/>
- * <br/>
+ * Indicates the failure of a {@link Script} execution.
+ * 
  * Created: 03.02.2007 12:19:00
  * @author Volker Bergmann
  */

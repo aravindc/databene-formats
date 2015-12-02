@@ -39,7 +39,7 @@ import org.w3c.dom.ProcessingInstruction;
 import org.w3c.dom.Text;
 
 /**
- * Compares two XML documents.<br/><br/>
+ * Compares two XML documents.
  * Created: 16.11.2015 14:31:12
  * @since 1.0.5
  * @author Volker Bergmann

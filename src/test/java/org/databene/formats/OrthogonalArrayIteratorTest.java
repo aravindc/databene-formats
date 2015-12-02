@@ -21,7 +21,7 @@ import org.databene.formats.util.OrthogonalArrayIterator;
 import org.junit.Test;
 
 /**
- * Tests the {@link OrthogonalArrayIterator}.<br/><br/>
+ * Tests the {@link OrthogonalArrayIterator}.
  * Created: 08.12.2011 14:33:30
  * @since 0.6.5
  * @author Volker Bergmann

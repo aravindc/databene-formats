@@ -24,7 +24,7 @@ import org.databene.commons.format.PadFormat;
 import org.junit.Test;
 
 /**
- * Tests the {@link FixedWidthLineParser}.<br/><br/>
+ * Tests the {@link FixedWidthLineParser}.
  * Created: 22.02.2010 08:19:12
  * @since 0.5.0
  * @author Volker Bergmann

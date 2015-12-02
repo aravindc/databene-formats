@@ -16,7 +16,7 @@
 package org.databene.formats.xml.compare;
 
 /**
- * Abstract implementation of the {@link XMLComparisonModel} interface.<br/><br/>
+ * Abstract implementation of the {@link XMLComparisonModel} interface.
  * Created: 20.11.2015 17:12:36
  * @since 1.0.5
  * @author Volker Bergmann

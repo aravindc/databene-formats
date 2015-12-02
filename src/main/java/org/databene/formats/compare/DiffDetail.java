@@ -18,7 +18,7 @@ import org.databene.commons.Converter;
 import org.databene.commons.NullSafeComparator;
 
 /**
- * Represents a difference between the state of two objects.<br/><br/>
+ * Represents a difference between the state of two objects.
  * Created: 21.11.2013 11:29:35
  * @since 1.0.5
  * @author Volker Bergmann

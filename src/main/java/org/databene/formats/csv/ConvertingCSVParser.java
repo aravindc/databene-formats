@@ -24,8 +24,9 @@ import org.databene.formats.DataIterator;
 import org.databene.formats.util.ThreadLocalDataContainer;
 
 /**
- * Parses CSV files and converts the row to the desired target type.<br/><br/>
+ * Parses CSV files and converts the row to the desired target type.
  * Created at 25.04.2008 18:49:50
+ * @param <E> the type of the objects to provide
  * @since 0.4.2
  * @author Volker Bergmann
  */

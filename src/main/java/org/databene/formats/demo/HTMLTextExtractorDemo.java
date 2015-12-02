@@ -27,8 +27,8 @@ import java.text.ParseException;
 
 /**
  * This class demonstrates how to use the HTML2XML utility and the XSLTTransformer
- * for extracting data from a web page.<br/>
- * <br/>
+ * for extracting data from a web page.
+ * 
  * Created: 16.06.2007 10:08:41
  * @author Volker Bergmann
  */

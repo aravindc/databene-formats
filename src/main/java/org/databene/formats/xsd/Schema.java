@@ -21,7 +21,7 @@ import org.databene.commons.Visitor;
 import org.databene.commons.collection.OrderedNameMap;
 
 /**
- * Represents an XML schema.<br/><br/>
+ * Represents an XML schema.
  * Created: 16.05.2014 18:30:35
  * @since 0.8.2
  * @author Volker Bergmann

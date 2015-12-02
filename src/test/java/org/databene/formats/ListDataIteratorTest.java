@@ -20,7 +20,7 @@ import org.databene.formats.util.ListDataIterator;
 import org.junit.Test;
 
 /**
- * Testing {@link ListDataIterator}.<br/><br/>
+ * Testing {@link ListDataIterator}.
  * Created: 08.12.2011 14:42:32
  * @since 0.6.5
  * @author Volker Bergmann

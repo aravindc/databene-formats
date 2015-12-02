@@ -27,8 +27,8 @@ import java.util.ArrayList;
 
 /**
  * Gives access to content of a CSV file by String arrays
- * that represent the CSV rows as specified in RFC 4180.<br/>
- * <br/>
+ * that represent the CSV rows as specified in RFC 4180.
+ * 
  * @author Volker Bergmann
  */
 public class CSVLineIterator implements DataIterator<String[]> {
@@ -66,8 +66,8 @@ public class CSVLineIterator implements DataIterator<String[]> {
     /**
      * Creates a parser that reads from a uri
      * @param uri the URL to read from
-     * @param separator
-     * @throws IOException
+     * @param separator the cell separator character
+     * @throws IOException if stream access fails
      */
     public CSVLineIterator(String uri, char separator) throws IOException {
         this(uri, separator, false);
@@ -90,6 +90,7 @@ public class CSVLineIterator implements DataIterator<String[]> {
      * Creates a parser that reads from a reader and used a special separator character
      * @param reader the reader to use
      * @param separator the separator character
+     * @throws IOException if reader access fails
      */
     public CSVLineIterator(Reader reader, char separator) throws IOException {
         this(reader, separator, false);

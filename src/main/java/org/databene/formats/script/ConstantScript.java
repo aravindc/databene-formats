@@ -20,8 +20,8 @@ import java.io.IOException;
 import org.databene.commons.Context;
 
 /**
- * Script implementation that evaluates to a String constant.<br/>
- * <br/>
+ * Script implementation that evaluates to a String constant.
+ * 
  * Created: 16.06.2007 06:15:32
  * @author Volker Bergmann
  */

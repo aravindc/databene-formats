@@ -25,7 +25,7 @@ import org.databene.commons.mutator.AnyMutator;
 
 /**
  * Row type support for fixed-width files: formatting, parsing and verification 
- * for array- and bean-type data.<br/><br/>
+ * for array- and bean-type data.
  * Created: 28.03.2014 15:18:23
  * @since 0.7.3
  * @author Volker Bergmann

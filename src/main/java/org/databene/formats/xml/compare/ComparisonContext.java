@@ -30,7 +30,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * Holds the information which diff types are accepted at which XPaths 
- * and maps them to the related nodes of XML documents.<br/><br/>
+ * and maps them to the related nodes of XML documents.
  * Created: 09.07.2014 10:27:00
  * @since 1.0.5
  * @author Volker Bergmann

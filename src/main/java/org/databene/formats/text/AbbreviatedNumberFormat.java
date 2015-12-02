@@ -23,8 +23,8 @@ import java.text.ParsePosition;
 import java.util.Locale;
 
 /**
- * Formats and parses numbers with abbreviations, e.g. 5Mio for 5,000,000.<br/>
- * <br/>
+ * Formats and parses numbers with abbreviations, e.g. 5Mio for 5,000,000.
+ * 
  * Created: 16.05.2005 21:41:17
  */
 public class AbbreviatedNumberFormat extends NumberFormat {

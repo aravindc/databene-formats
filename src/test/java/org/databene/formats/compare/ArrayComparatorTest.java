@@ -28,7 +28,7 @@ import org.databene.formats.compare.DiffFactory;
 import org.junit.Test;
 
 /**
- * Tests the {@link ArrayComparator}.<br/><br/>
+ * Tests the {@link ArrayComparator}.
  * Created: 20.11.2013 19:08:28
  * @since 1.0.5
  * @author Volker Bergmann

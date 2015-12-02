@@ -15,7 +15,7 @@
 package org.databene.formats;
 
 /**
- * Address JavaBean for testing.<br/><br/>
+ * Address JavaBean for testing.
  * Created: 18.09.2014 19:03:30
  * @since 1.0.0
  * @author Volker Bergmann

@@ -18,8 +18,10 @@ import org.databene.commons.IOUtil;
 import org.databene.formats.DataSource;
 
 /**
- * Adapter for the {@link DataSource} class.<br/><br/>
+ * Adapter for the {@link DataSource} class.
  * Created: 24.07.2011 10:01:19
+ * @param <S> the type of data to iterate from the source
+ * @param <T> the type of data to provide to the client
  * @since 0.6.0
  * @author Volker Bergmann
  */

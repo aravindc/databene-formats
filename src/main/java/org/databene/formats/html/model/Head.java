@@ -19,7 +19,7 @@ import java.io.IOException;
 import org.databene.commons.IOUtil;
 
 /**
- * Represents an HTML &lt;head&gt;.<br/><br/>
+ * Represents an HTML &lt;head&gt;.
  * Created: 16.06.2014 11:06:23
  * @since 0.8.3
  * @author Volker Bergmann

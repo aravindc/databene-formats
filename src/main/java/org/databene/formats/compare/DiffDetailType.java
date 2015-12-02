@@ -15,7 +15,7 @@
 package org.databene.formats.compare;
 
 /**
- * <Enumerates the kinds of difference that may be diagnosed on the lowest level of comparison, the {@link DiffDetail}.<br/><br/>
+ * Enumerates the kinds of difference that may be diagnosed on the lowest level of comparison, the {@link DiffDetail}.
  * Created: 21.11.2013 11:33:30
  * @since 1.0.5
  * @author Volker Bergmann

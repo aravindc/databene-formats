@@ -26,8 +26,8 @@ import org.databene.formats.script.ConstantScript;
 import org.databene.commons.SystemInfo;
 
 /**
- * Tests the {@link ArrayCSVWriter}.<br/>
- * <br/>
+ * Tests the {@link ArrayCSVWriter}.
+ * 
  * Created: 16.06.2007 06:07:52
  * @since 0.1
  * @author Volker Bergmann

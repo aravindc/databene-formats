@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Arrays;
 
 /**
- * Represents an alternative expression part of a regular expression, e.g. '(yes|no)'.<br/>
- * <br/>
+ * Represents an alternative expression part of a regular expression, e.g. '(yes|no)'.
+ * 
  * Created: 17.09.2006 16:14:14
  */
 public class Choice implements RegexPart {
@@ -30,13 +30,15 @@ public class Choice implements RegexPart {
     
     // constructors ----------------------------------------------------------------------------------------------------
     
-    /** Constructor that takes a list of alternative patterns */
+    /** Constructor that takes a list of alternative patterns 
+     * @param alternatives the alternatives */
     public Choice(List<RegexPart> alternatives) {
     	RegexPart[] ra = new RegexPart[alternatives.size()];
         this.alternatives = alternatives.toArray(ra);
     }
     
-    /** Constructor that takes an array of alternative patterns */
+    /** Constructor that takes an array of alternative patterns 
+     * @param alternatives the alternatives */
     public Choice(RegexPart... alternatives) {
         this.alternatives = alternatives;
     }
@@ -44,7 +46,8 @@ public class Choice implements RegexPart {
     
     // properties ------------------------------------------------------------------------------------------------------
     
-    /** Returns the alternative patterns */
+    /** Returns the alternative patterns 
+     * @return the alternatives */
     public RegexPart[] getAlternatives() {
         return alternatives;
     }

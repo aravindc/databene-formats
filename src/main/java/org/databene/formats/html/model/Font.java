@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML font element.<br/><br/>
+ * Represents an HTML font element.
  * Created: 06.01.2014 08:34:32
  * @since 0.7.1
  * @author Volker Bergmann

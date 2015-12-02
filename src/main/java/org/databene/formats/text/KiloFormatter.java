@@ -20,7 +20,7 @@ import java.util.Locale;
 import org.databene.commons.ArrayUtil;
 
 /**
- * Renders a numerical value applying quantitative Symbols like 5 K for 5000.<br/><br/>
+ * Renders a numerical value applying quantitative Symbols like 5 K for 5000.
  * Created: 13.12.2012 14:02:39
  * @since 0.5.21
  * @author Volker Bergmann

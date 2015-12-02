@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML bold element.<br/><br/>
+ * Represents an HTML bold element.
  * Created: 06.01.2014 08:08:47
  * @since 0.7.1
  * @author Volker Bergmann

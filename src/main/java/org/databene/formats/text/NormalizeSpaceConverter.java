@@ -19,8 +19,8 @@ import org.databene.commons.StringUtil;
 import org.databene.commons.converter.ThreadSafeConverter;
 
 /**
- * Converter that normalizes white space on strings.<br/>
- * <br/>
+ * Converter that normalizes white space on strings.
+ * 
  * Created: 19.06.2007 07:36:32
  */
 public class NormalizeSpaceConverter extends ThreadSafeConverter<String, String> {

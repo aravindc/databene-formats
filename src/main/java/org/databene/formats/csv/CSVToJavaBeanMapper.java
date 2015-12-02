@@ -26,8 +26,8 @@ import org.databene.formats.util.ThreadLocalDataContainer;
 import java.io.*;
 
 /**
- * Reads a CSV file and maps its columns to JavaBeans.<br/>
- * <br/>
+ * Reads a CSV file and maps its columns to JavaBeans.
+ * @param <E> the type of the objects to write
  * Created: 21.07.2006 15:07:36
  * @author Volker Bergmann
  */

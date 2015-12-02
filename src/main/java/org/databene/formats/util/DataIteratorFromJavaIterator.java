@@ -22,8 +22,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Provides {@link DataIterator}-style access to a Java {@link Iterator}.<br/><br/>
+ * Provides {@link DataIterator}-style access to a Java {@link Iterator}.
  * Created: 24.07.2011 11:09:16
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */

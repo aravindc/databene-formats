@@ -19,7 +19,7 @@ import java.util.Collection;
 import org.databene.commons.StringUtil;
 
 /**
- * Provides utility methods for formatting Fot files.<br/><br/>
+ * Provides utility methods for formatting Fot files.
  * Created: 25.05.2014 05:59:44
  * @since 0.8.2
  * @author Volker Bergmann

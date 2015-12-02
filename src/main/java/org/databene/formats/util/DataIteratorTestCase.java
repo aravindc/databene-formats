@@ -20,7 +20,7 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Abstract parent class for tests that check {@link DataIterator}.<br/><br/>
+ * Abstract parent class for tests that check {@link DataIterator}.
  * Created: 24.07.2011 10:56:23
  * @since 0.6.0
  * @author Volker Bergmann

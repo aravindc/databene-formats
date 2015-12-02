@@ -22,7 +22,7 @@ import org.databene.formats.xls.XLSLineIterator;
 
 /**
  * {@link Iterable} implementation which creates {@link Iterator}s 
- * that provide lines of XLS files as array objects.<br/><br/>
+ * that provide lines of XLS files as array objects.
  * Created: 19.07.2011 08:36:18
  * @since 0.6.5
  * @author Volker Bergmann

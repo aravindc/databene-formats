@@ -15,8 +15,8 @@
 package org.databene.formats.regex;
 
 /**
- * Represents a quantifier of a regular expression, e.g. '{1,3}'.<br/>
- * <br/>
+ * Represents a quantifier of a regular expression, e.g. '{1,3}'.
+ * 
  */
 public class Quantifier {
 
@@ -26,18 +26,22 @@ public class Quantifier {
     /** maximum length */
     private Integer max;
 
-    /** Complete constructor that takes values for all attributes */
+    /** Complete constructor that takes values for all attributes 
+     * @param min the minimum quantity
+     * @param max the maximum quantity */
     public Quantifier(int min, Integer max) {
         this.min = min;
         this.max = max;
     }
 
-    /** returns the minimum value */
+    /** Returns the minimum quantity. 
+     * @return the minimum quantity */
     public int getMin() {
         return min;
     }
 
-    /** returns the maximum value */
+    /** Returns the maximum quantity.
+     * @return the maximum quantity */
     public Integer getMax() {
         return max;
     }

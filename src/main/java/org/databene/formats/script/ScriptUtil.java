@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Utility class for scripting.<br/><br/>
+ * Utility class for scripting.
  * @since 0.3.0
  * @author Volker Bergmann
  */

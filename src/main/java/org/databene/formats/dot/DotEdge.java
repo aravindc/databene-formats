@@ -15,7 +15,7 @@
 package org.databene.formats.dot;
 
 /**
- * Represents an edge in a Dot graph.<br/><br/>
+ * Represents an edge in a Dot graph.
  * Created: 24.05.2014 08:07:52
  * @since 0.8.2
  * @author Volker Bergmann

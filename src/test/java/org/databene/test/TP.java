@@ -15,7 +15,7 @@
 package org.databene.test;
 
 /**
- * JavaBean for testing.<br/><br/>
+ * JavaBean for testing.
  * Created: 16.06.2007 06:52:56
  * @author Volker Bergmann
  */

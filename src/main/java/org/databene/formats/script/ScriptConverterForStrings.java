@@ -20,7 +20,7 @@ import org.databene.commons.Converter;
 import org.databene.commons.converter.ThreadSafeConverter;
 
 /**
- * {@link Converter} can recognize and resolve script expressions in strings.<br/><br/>
+ * {@link Converter} can recognize and resolve script expressions in strings.
  * @since 0.3.0
  * @author Volker Bergmann
  */

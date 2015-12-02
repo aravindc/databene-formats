@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an ordered HTML list (&lt;ol&gt;).<br/><br/>
+ * Represents an ordered HTML list (&lt;ol&gt;).
  * Created: 09.07.2014 13:51:20
  * @since 0.8.4
  * @author Volker Bergmann

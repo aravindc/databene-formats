@@ -22,7 +22,7 @@ import org.databene.formats.text.KiloFormatter;
 import org.junit.Test;
 
 /**
- * Tests the {@link KiloFormatter}.<br/><br/>
+ * Tests the {@link KiloFormatter}.
  * Created: 13.12.2012 14:17:17
  * @since 0.5.21
  * @author Volker Bergmann

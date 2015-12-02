@@ -18,7 +18,7 @@ import org.databene.commons.Converter;
 import org.databene.commons.converter.ToStringConverter;
 
 /**
- * Creates {@link DiffDetail} objects.<br/><br/>
+ * Creates {@link DiffDetail} objects.
  * Created: 21.11.2013 12:25:59
  * @since 1.0.5
  * @author Volker Bergmann

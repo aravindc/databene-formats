@@ -15,7 +15,7 @@
 package org.databene.formats.dot;
 
 /**
- * Arrow type for dot graphs.<br/><br/>
+ * Arrow type for dot graphs.
  * Created: 24.05.2014 12:18:19
  * @since 0.8.2
  * @author Volker Bergmann

@@ -25,7 +25,7 @@ import org.databene.commons.ReaderLineIterator;
 import org.junit.Test;
 
 /**
- * Tests the {@link MultiTypeBeanFixedWidthWriter}.<br/><br/>
+ * Tests the {@link MultiTypeBeanFixedWidthWriter}.
  * Created: 14.03.2014 16:26:52
  * @since 0.7.2
  * @author Volker Bergmann

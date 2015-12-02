@@ -25,7 +25,7 @@ import org.databene.formats.script.ScriptUtil;
 import org.junit.Test;
 
 /**
- * Tests the {@link ScriptUtil} class.<br/><br/>
+ * Tests the {@link ScriptUtil} class.
  * Created: 09.08.2010 16:11:36
  * @since 0.5.4
  * @author Volker Bergmann

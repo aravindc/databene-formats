@@ -20,7 +20,7 @@ import java.util.Map;
 import org.databene.commons.collection.OrderedNameMap;
 
 /**
- * Parent class for schema elements that represent complex types.<br/><br/>
+ * Parent class for schema elements that represent complex types.
  * Created: 16.05.2014 19:21:44
  * @since 0.8.2
  * @author Volker Bergmann

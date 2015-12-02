@@ -15,7 +15,7 @@
 package org.databene.formats.script;
 
 /**
- * Describes if a text is a script text or plain text.<br/><br/>
+ * Describes if a text is a script text or plain text.
  * Created: 09.08.2010 16:42:33
  * @since 0.5.4
  * @author Volker Bergmann

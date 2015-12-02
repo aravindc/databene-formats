@@ -24,8 +24,8 @@ import java.io.*;
 /**
  * Parses a CSV file token by token as specified in RFC 4180.
  * It returns parsed values as CSVTokensType of type CELL, EOL and EOF.
- * The current cell content is accessible by the public attribute 'cell'.<br/>
- * <br/>
+ * The current cell content is accessible by the public attribute 'cell'.
+ * 
  * Created: 26.08.2006 17:19:35
  * @see CSVTokenType
  */
@@ -58,7 +58,7 @@ public class CSVTokenizer implements Closeable {
     /**
      * Creates a tokenizer that reads from a URL.
      * @param uri the URL to read from
-     * @throws IOException
+     * @throws IOException if stream access fails
      */
     public CSVTokenizer(String uri) throws IOException {
         this(uri, DEFAULT_SEPARATOR);
@@ -66,9 +66,9 @@ public class CSVTokenizer implements Closeable {
 
     /**
      * Creates a tokenizer that reads from a uri.
-     * @param uri       the uri to read from
+     * @param uri the uri to read from
      * @param separator character used for separating CSV cells
-     * @throws IOException
+     * @throws IOException if stream access fails
      */
     public CSVTokenizer(String uri, char separator) throws IOException {
         this(uri, separator, SystemInfo.getFileEncoding());

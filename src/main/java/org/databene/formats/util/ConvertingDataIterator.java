@@ -22,8 +22,10 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * {@link DataIterator} proxy which applies a {@link Converter} to the data provided by its source.<br/><br/>
+ * {@link DataIterator} proxy which applies a {@link Converter} to the data provided by its source.
  * Created: 24.07.2011 09:52:35
+ * @param <S> the type of data to iterate from the source
+ * @param <T> the type of data to provide to the client
  * @since 0.6.0
  * @author Volker Bergmann
  */

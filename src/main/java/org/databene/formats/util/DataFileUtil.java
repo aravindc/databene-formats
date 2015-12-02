@@ -15,7 +15,7 @@
 package org.databene.formats.util;
 
 /**
- * Provides general utility methods for data files.<br/><br/>
+ * Provides general utility methods for data files.
  * Created: 05.06.2013 18:17:20
  * @since 0.6.17
  * @author Volker Bergmann

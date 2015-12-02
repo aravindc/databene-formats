@@ -21,7 +21,7 @@ import org.databene.commons.Visitor;
 import org.databene.commons.collection.OrderedNameMap;
 
 /**
- * Represents a {@link ComplexType} which composes other ComplexTypes.<br/><br/>
+ * Represents a {@link ComplexType} which composes other ComplexTypes.
  * Created: 16.05.2014 19:59:51
  * @since 0.8.2
  * @author Volker Bergmann

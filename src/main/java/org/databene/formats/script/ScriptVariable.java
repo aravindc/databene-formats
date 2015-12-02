@@ -15,8 +15,8 @@
 package org.databene.formats.script;
 
 /**
- * Name-value-pair that represents a variable in a Script.<br/>
- * <br/>
+ * Name-value-pair that represents a variable in a Script.
+ * 
  * Created: 07.06.2007 11:43:01
  * @author Volker Bergmann
  */

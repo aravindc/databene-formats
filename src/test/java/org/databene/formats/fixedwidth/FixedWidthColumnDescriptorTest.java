@@ -28,7 +28,7 @@ import org.databene.commons.format.Alignment;
 import org.junit.Test;
 
 /**
- * Tests the {@link FixedWidthColumnDescriptor}.<br/><br/>
+ * Tests the {@link FixedWidthColumnDescriptor}.
  * Created at 05.05.2008 07:18:54
  * @since 0.5.3
  * @author Volker Bergmann

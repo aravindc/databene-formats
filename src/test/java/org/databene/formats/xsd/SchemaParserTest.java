@@ -22,7 +22,7 @@ import org.databene.formats.xsd.SchemaParser;
 import org.junit.Test;
 
 /**
- * Tests the {@link SchemaParser}.<br/><br/>
+ * Tests the {@link SchemaParser}.
  * Created: 16.05.2014 18:39:35
  * @since 0.8.2
  * @author Volker Bergmann

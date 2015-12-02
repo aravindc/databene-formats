@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an inline CSS stylesheet.<br/><br/>
+ * Represents an inline CSS stylesheet.
  * Created: 10.07.2014 13:43:42
  * @since 0.8.4
  * @author Volker Bergmann

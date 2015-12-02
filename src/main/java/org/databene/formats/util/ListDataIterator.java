@@ -22,8 +22,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * {@link List}-based implementation of the {@link DataIterator} interface.<br/><br/>
+ * {@link List}-based implementation of the {@link DataIterator} interface.
  * Created: 08.12.2011 14:36:08
+ * @param <E> the type of data to iterate
  * @since 0.6.5
  * @author Volker Bergmann
  */

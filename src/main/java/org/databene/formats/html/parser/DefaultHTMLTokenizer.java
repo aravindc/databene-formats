@@ -52,8 +52,8 @@ import java.io.IOException;
 import java.text.ParseException;
 
 /**
- * Default implementation of an {@link HTMLTokenizer}.<br/>
- * <br/>
+ * Default implementation of an {@link HTMLTokenizer}.
+ * 
  * Created: 15.06.2007 05:56:21
  * @author Volker Bergmann
  */

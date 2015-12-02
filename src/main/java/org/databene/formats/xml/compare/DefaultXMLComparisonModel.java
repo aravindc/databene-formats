@@ -33,7 +33,7 @@ import org.w3c.dom.ProcessingInstruction;
 import org.w3c.dom.Text;
 
 /**
- * XML comparison model based on element names.<br/><br/>
+ * XML comparison model based on element names.
  * Created: 03.06.2014 13:46:59
  * @since 1.0.5
  * @author Volker Bergmann

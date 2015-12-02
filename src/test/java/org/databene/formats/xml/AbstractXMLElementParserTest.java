@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.w3c.dom.Element;
 
 /**
- * Tests the {@link AbstractXMLElementParser}.<br/><br/>
+ * Tests the {@link AbstractXMLElementParser}.
  * Created: 14.12.2012 20:24:54
  * @since 0.6.15
  * @author Volker Bergmann

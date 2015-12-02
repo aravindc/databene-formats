@@ -21,7 +21,7 @@ import org.databene.commons.FileUtil;
 
 /**
  * {@link Anchor} implementation which relates to a {@link File} 
- * and provides the resolution of relative paths.<br/><br/>
+ * and provides the resolution of relative paths.
  * Created: 13.06.2011 12:29:36
  * @since 0.5.8
  * @author Volker Bergmann

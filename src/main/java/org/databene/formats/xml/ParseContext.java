@@ -26,8 +26,9 @@ import org.databene.commons.xml.XMLUtil;
 import org.w3c.dom.Element;
 
 /**
- * Provides context informations and operations for XML parsing.<br/><br/>
+ * Provides context informations and operations for XML parsing.
  * Created: 05.12.2010 12:09:54
+ * @param <E> the type of components that constitute the path
  * @since 0.5.4
  * @author Volker Bergmann
  */

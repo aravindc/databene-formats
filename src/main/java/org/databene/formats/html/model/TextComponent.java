@@ -17,7 +17,7 @@ package org.databene.formats.html.model;
 import org.databene.formats.html.util.HTMLUtil;
 
 /**
- * Represents an HTML text component.<br/><br/>
+ * Represents an HTML text component.
  * Created: 06.01.2014 08:25:00
  * @since 0.7.1
  * @author Volker Bergmann

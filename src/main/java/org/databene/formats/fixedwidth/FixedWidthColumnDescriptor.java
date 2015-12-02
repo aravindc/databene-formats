@@ -25,8 +25,8 @@ import org.databene.commons.format.Alignment;
 import org.databene.commons.format.PadFormat;
 
 /**
- * Describes a column of a flat file.<br/>
- * <br/>
+ * Describes a column of a flat file.
+ * 
  * Created: 07.06.2007 13:06:39
  * @author Volker Bergmann
  */

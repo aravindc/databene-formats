@@ -17,7 +17,7 @@ package org.databene.formats.script;
 import org.databene.commons.StringUtil;
 
 /**
- * Describes a script.<br/><br/>
+ * Describes a script.
  * Created: 09.08.2010 16:40:50
  * @since 0.5.4
  * @author Volker Bergmann

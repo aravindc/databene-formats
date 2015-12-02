@@ -19,8 +19,8 @@ import java.util.HashMap;
 import org.databene.formats.html.model.HtmlComponent;
 
 /**
- * Entity enumeration.<br/>
- * <br/>
+ * Entity enumeration.
+ * 
  * Created: 26.01.2007 10:04:35
  * @author Volker Bergmann
  */

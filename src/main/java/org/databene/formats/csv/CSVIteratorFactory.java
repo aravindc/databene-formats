@@ -19,7 +19,7 @@ import java.io.IOException;
 import org.databene.formats.DataIterator;
 
 /**
- * Factory for all kinds of CSV iterators.<br/><br/>
+ * Factory for all kinds of CSV iterators.
  * Created: 14.10.2009 11:40:31
  * @since 0.5.0
  * @author Volker Bergmann

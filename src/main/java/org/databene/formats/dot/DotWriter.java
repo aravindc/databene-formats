@@ -26,7 +26,7 @@ import org.databene.commons.StringUtil;
 import org.databene.commons.collection.OrderedNameMap;
 
 /**
- * Writes Dot files.<br/><br/>
+ * Writes Dot files.
  * Created: 24.05.2014 09:29:45
  * @since 0.8.2
  * @author Volker Bergmann

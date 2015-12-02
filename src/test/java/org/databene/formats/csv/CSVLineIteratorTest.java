@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Tests the {@link CSVLineIterator}.<br/><br/>
+ * Tests the {@link CSVLineIterator}.
  * Created: 29.09.2006 16:15:23
  * @since 0.1
  * @author Volker Bergmann

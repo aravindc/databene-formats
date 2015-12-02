@@ -18,8 +18,9 @@ import org.databene.formats.DataSource;
 
 /**
  * Abstract implementation of the {@link DataSource} interface, which holds a 'type' attribute 
- * and provides an empty close() method.<br/><br/>
+ * and provides an empty close() method.
  * Created: 04.08.2011 09:52:03
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */

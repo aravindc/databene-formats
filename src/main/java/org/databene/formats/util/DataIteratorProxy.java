@@ -18,8 +18,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Proxy for a {@link DataIterator}.<br/><br/>
+ * Proxy for a {@link DataIterator}.
  * Created: 24.07.2011 09:59:52
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */

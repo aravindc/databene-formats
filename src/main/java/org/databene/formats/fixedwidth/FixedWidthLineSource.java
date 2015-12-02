@@ -21,8 +21,8 @@ import org.databene.formats.util.AbstractDataSource;
 import java.io.IOException;
 
 /**
- * Creates Iterators that iterate through the lines of a flat file and returns each line as array of Strings.<br/>
- * <br/>
+ * Creates Iterators that iterate through the lines of a flat file and returns each line as array of Strings.
+ * 
  * Created: 27.08.2007 19:16:26
  * @author Volker Bergmann
  */

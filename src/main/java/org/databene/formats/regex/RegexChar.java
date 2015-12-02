@@ -17,7 +17,7 @@ package org.databene.formats.regex;
 import org.databene.commons.CharSet;
 
 /**
- * Represents a constant character as part of a regular expression.<br/><br/>
+ * Represents a constant character as part of a regular expression.
  * Created: 04.04.2014 18:22:39
  * @since 0.8.0
  * @author Volker Bergmann

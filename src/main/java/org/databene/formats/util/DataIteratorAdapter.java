@@ -19,8 +19,10 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Adapter for a {@link DataIterator}.<br/><br/>
+ * Adapter for a {@link DataIterator}.
  * Created: 24.07.2011 09:53:49
+ * @param <S> the type of data to iterate from the source
+ * @param <T> the type of data to provide to the client
  * @since 0.6.0
  * @author Volker Bergmann
  */

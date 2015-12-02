@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML list item (&lt;li&gt;).<br/><br/>
+ * Represents an HTML list item (&lt;li&gt;).
  * Created: 09.07.2014 13:53:40
  * @since 0.8.4
  * @author Volker Bergmann

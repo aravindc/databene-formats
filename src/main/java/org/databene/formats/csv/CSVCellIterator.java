@@ -21,8 +21,8 @@ import org.databene.formats.DataIterator;
 import java.io.IOException;
 
 /**
- * Iterates through cells of a CSV file.<br/>
- * <br/>
+ * Iterates through cells of a CSV file.
+ * 
  * Created: 26.08.2006 18:52:08
  * @author Volker Bergmann
  */

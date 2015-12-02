@@ -22,8 +22,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Uses a {@link DataIterator} which provides data rows and forwards its data in form of columns.<br/><br/>
+ * Uses a {@link DataIterator} which provides data rows and forwards its data in form of columns.
  * Created: 08.12.2011 13:45:37
+ * @param <E> the type of data to iterate
  * @since 0.6.5
  * @author Volker Bergmann
  */

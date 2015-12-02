@@ -19,8 +19,9 @@ import org.databene.formats.DataIterator;
 import org.databene.formats.DataSource;
 
 /**
- * {@link DataSource} proxy which provides a subset of the source's data defined by an offset.<br/><br/>
+ * {@link DataSource} proxy which provides a subset of the source's data defined by an offset.
  * Created: 24.07.2011 09:59:24
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */

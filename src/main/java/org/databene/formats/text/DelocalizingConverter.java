@@ -29,8 +29,8 @@ import java.util.HashMap;
 
 /**
  * Delocalizes a String bye replacing local characters by international latin characters.
- * For example the umlaut 'ä' is replaced with 'ae'.<br/>
- * <br/>
+ * For example the umlaut 'ä' is replaced with 'ae'.
+ * 
  * Created: 12.06.2006 18:53:55
  * @author Volker Bergmann
  */
@@ -46,7 +46,8 @@ public class DelocalizingConverter extends ThreadSafeConverter<String, String> {
      * the value the character to use for replacement*/
     private Map<Character, String> replacements;
 
-    /** Default constructor */
+    /** Default constructor.
+     * @throws IOException if reading the configuration file fails */
     public DelocalizingConverter() throws IOException {
     	super(String.class, String.class);
         init();

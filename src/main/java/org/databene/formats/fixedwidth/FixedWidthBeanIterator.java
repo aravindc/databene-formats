@@ -24,8 +24,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.util.DataIteratorAdapter;
 
 /**
- * Iterates fixed-width column files.<br/><br/>
+ * Iterates fixed-width column files.
  * Created: 20.12.2011 18:13:28
+ * @param <E> the type of the objects to provide
  * @since 0.6.6
  * @author Volker Bergmann
  */

@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
- * Tests the BeanFileWriter.<br/><br/>
+ * Tests the BeanFileWriter.
  * Created: 16.06.2007 06:07:52
  * @since 0.1
  * @author Volker Bergmann

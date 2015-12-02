@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.w3c.dom.Element;
 
 /**
- * Tests the {@link DefaultXMLComparisonModel}.<br/><br/>
+ * Tests the {@link DefaultXMLComparisonModel}.
  * Created: 03.06.2014 14:12:51
  * @since 1.0.5
  * @author Volker Bergmann

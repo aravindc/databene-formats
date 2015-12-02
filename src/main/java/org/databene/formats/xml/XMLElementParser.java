@@ -17,8 +17,9 @@ package org.databene.formats.xml;
 import org.w3c.dom.Element;
 
 /**
- * Parent interface for classes that parse XML structures into Java objects.<br/><br/>
+ * Parent interface for classes that parse XML structures into Java objects.
  * Created: 05.12.2010 10:42:56
+ * @param <E> the type of element to provide
  * @since 0.5.4
  * @author Volker Bergmann
  */

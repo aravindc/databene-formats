@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Provides the result of a comparison.<br/><br/>
+ * Provides the result of a comparison.
  * Created: 20.11.2013 17:54:31
  * @since 1.0.5
  * @author Volker Bergmann

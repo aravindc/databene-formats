@@ -23,8 +23,9 @@ import org.databene.commons.xml.XMLUtil;
 import org.w3c.dom.Element;
 
 /**
- * Factory method which provides {@link XMLElementParser}s.<br/><br/>
+ * Factory method which provides {@link XMLElementParser}s.
  * Created: 05.12.2010 12:15:57
+ * @param <E> the type of elements to provide
  * @since 0.5.4
  * @author Volker Bergmann
  */

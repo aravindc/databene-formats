@@ -41,7 +41,7 @@ import org.databene.formats.script.ScriptConverterForStrings;
 import org.databene.formats.util.ConvertingDataIterator;
 
 /**
- * Iterates XLS sheets and provides each row as JavaBean instance.<br/><br/>
+ * Iterates XLS sheets and provides each row as JavaBean instance.
  * Created: 18.09.2014 15:49:49
  * @since 1.0.0
  * @author Volker Bergmann

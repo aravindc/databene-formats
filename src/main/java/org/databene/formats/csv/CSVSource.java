@@ -22,7 +22,7 @@ import org.databene.formats.util.OrthogonalArrayIterator;
 
 /**
  * {@link DataSource} implementation that provides for 
- * row-wise or column-wise iteration through CSV files.<br/><br/>
+ * row-wise or column-wise iteration through CSV files.
  * Created: 23.11.2011 11:14:54
  * @since 0.6.4
  * @author Volker Bergmann

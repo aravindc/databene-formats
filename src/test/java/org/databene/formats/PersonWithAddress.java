@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Person JavaBean for testing.<br/><br/>
+ * Person JavaBean for testing.
  * Created: 18.09.2014 19:03:00
  * @since 1.0.0
  * @author Volker Bergmann

@@ -21,8 +21,9 @@ import org.databene.formats.DataIterator;
 import org.databene.formats.DataSource;
 
 /**
- * Provides {@link DataSource}-style access to a Java-SDK-{@link Iterable}.<br/><br/>
+ * Provides {@link DataSource}-style access to a Java-SDK-{@link Iterable}.
  * Created: 24.07.2011 11:07:04
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */

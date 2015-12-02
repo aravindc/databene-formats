@@ -17,7 +17,7 @@ package org.databene.formats.regex;
 import org.databene.commons.CharSet;
 
 /**
- * Parent class for classes that represent a single character in a regular expression.<br/><br/>
+ * Parent class for classes that represent a single character in a regular expression.
  * Created: 04.04.2014 16:24:52
  * @since 0.8.0
  * @author Volker Bergmann

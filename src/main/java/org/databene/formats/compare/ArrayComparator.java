@@ -18,7 +18,7 @@ import org.databene.commons.Assert;
 import org.databene.commons.ProgrammerError;
 
 /**
- * Compares arrays of objects using a {@link ComparisonModel}.<br/><br/>
+ * Compares arrays of objects using a {@link ComparisonModel}.
  * Created: 20.11.2013 17:40:38
  * @since 1.0.5
  * @author Volker Bergmann

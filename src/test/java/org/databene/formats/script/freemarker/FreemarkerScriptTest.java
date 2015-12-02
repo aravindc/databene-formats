@@ -29,7 +29,7 @@ import org.junit.Test;
 import freemarker.template.Configuration;
 
 /**
- * Tests the {@link FreeMarkerScript}.<br/><br/>
+ * Tests the {@link FreeMarkerScript}.
  * Created: 12.06.2007 17:36:30
  * @since 0.1
  * @author Volker Bergmann

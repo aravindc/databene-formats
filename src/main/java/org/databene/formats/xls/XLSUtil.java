@@ -31,8 +31,8 @@ import org.databene.commons.MathUtil;
 import org.databene.commons.converter.ToStringConverter;
 
 /**
- * Provides utility methods for HSSF (POI).<br/>
- * <br/>
+ * Provides utility methods for HSSF (POI).
+ * 
  * Created at 09.08.2009 07:47:52
  * @since 0.5.0
  * @author Volker Bergmann
@@ -79,12 +79,19 @@ public class XLSUtil {
 		}
 	}
 	
-	/** Resolves a formula or a normal cell and formats the result as it would be displayed in Excel */
+	/** Resolves a formula or a normal cell and formats the result as it would be displayed in Excel. 
+	 * @param cell the cell to resolve
+	 * @return a string representation of the cell value */
 	public static String resolveCellValueAsString(Cell cell) {
 		return resolveCellValueAsString(cell, "'", null, null);
 	}
 	
-	/** Resolves a formula or a normal cell and formats the result as it would be displayed in Excel */
+	/** Resolves a formula or a normal cell and formats the result as it would be displayed in Excel 
+	 * @param cell the cell to resolve
+	 * @param emptyMarker the string to interpret as empty field
+	 * @param nullMarker the string to interpret as null value
+	 * @param stringPreprocessor a preprocessor to apply to the raw field values
+	 * @return a string representation of the cell value */
 	public static String resolveCellValueAsString(Cell cell, String emptyMarker, String nullMarker, Converter<String, ?> stringPreprocessor) {
 		if (cell == null)
 			return null;

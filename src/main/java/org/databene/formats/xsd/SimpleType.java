@@ -15,7 +15,7 @@
 package org.databene.formats.xsd;
 
 /**
- * Represents a simple type in an XML schema.<br/><br/>
+ * Represents a simple type in an XML schema.
  * Created: 16.05.2014 19:03:00
  * @since 0.8.2
  * @author Volker Bergmann

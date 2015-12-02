@@ -21,8 +21,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Allows repeated iteration through a {@link DataIterator}.<br/><br/>
+ * Allows repeated iteration through a {@link DataIterator}.
  * Created: 22.05.2012 08:58:16
+ * @param <E> the type of data to iterate
  * @since 0.6.9
  * @author Volker Bergmann
  */

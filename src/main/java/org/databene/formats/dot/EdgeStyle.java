@@ -15,7 +15,7 @@
 package org.databene.formats.dot;
 
 /**
- * Represents a Dot edge style.<br/><br/>
+ * Represents a Dot edge style.
  * Created: 27.05.2014 08:04:34
  * @since 0.8.2
  * @author Volker Bergmann

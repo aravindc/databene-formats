@@ -18,8 +18,9 @@ import org.databene.formats.DataIterator;
 
 /**
  * Abstract implementation of the {@link DataIterator} interface. 
- * It holds type info and provides an empty implementation of the close() method.<br/><br/>
+ * It holds type info and provides an empty implementation of the close() method.
  * Created: 06.03.2012 21:55:57
+ * @param <E> the type of data to iterate
  * @since 0.6.7
  * @author Volker Bergmann
  */

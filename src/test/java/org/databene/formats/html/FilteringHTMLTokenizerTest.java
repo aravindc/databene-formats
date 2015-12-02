@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 /**
- * Tests the {@link FilteringHTMLTokenizer}.<br/><br/>
+ * Tests the {@link FilteringHTMLTokenizer}.
  * Created: 16.06.2007 05:53:50
  * @since 0.1
  * @author Volker Bergmann

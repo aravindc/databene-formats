@@ -23,7 +23,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests the {@link XLSLineIterator}.<br/><br/>
+ * Tests the {@link XLSLineIterator}.
  * Created at 28.01.2009 09:10:26
  * @since 0.4.8
  * @author Volker Bergmann

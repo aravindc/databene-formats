@@ -19,7 +19,7 @@ import java.io.IOException;
 import org.databene.commons.ParseException;
 
 /**
- * Factory class for {@link Script} objects.<br/><br/>
+ * Factory class for {@link Script} objects.
  * @since 0.3.0
  * @author Volker Bergmann
  */

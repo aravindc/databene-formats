@@ -27,8 +27,8 @@ import org.databene.formats.script.Script;
 import org.databene.formats.script.ScriptException;
 
 /**
- * {@link Script} implementation that uses the FreeMarker engine.<br/>
- * <br/>
+ * {@link Script} implementation that uses the FreeMarker engine.
+ * 
  * Created: 31.01.2007 19:56:20
  * @author Volker Bergmann
  */

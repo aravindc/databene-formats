@@ -19,8 +19,9 @@ import org.databene.formats.DataIterator;
 
 /**
  * Forwards the data of another {@link DataIterator}, swallowing the first elements 
- * provided by its {@link #next(DataContainer)} method.<br/><br/>
+ * provided by its {@link #next(DataContainer)} method.
  * Created: 18.09.2014 10:01:00
+ * @param <E> the type of data to iterate
  * @since 1.0
  * @author Volker Bergmann
  */

@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML table cell.<br/><br/>
+ * Represents an HTML table cell.
  * Created: 06.01.2014 09:20:56
  * @since 0.7.1
  * @author Volker Bergmann

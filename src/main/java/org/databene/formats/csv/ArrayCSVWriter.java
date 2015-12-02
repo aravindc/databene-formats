@@ -30,8 +30,8 @@ import java.io.Writer;
 import java.io.IOException;
 
 /**
- * Writes arrays as CSV rows.<br/>
- * <br/>
+ * Writes arrays as CSV rows.
+ * 
  * Created: 06.06.2007 19:35:29
  * @author Volker Bergmann
  */

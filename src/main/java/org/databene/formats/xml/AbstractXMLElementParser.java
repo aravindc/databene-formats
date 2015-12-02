@@ -31,8 +31,9 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 /**
- * Abstract implementation of the {@link XMLElementParser} interface.<br/><br/>
+ * Abstract implementation of the {@link XMLElementParser} interface.
  * Created: 05.12.2010 10:46:38
+ * @param <E> the type of the objects to provide
  * @since 0.5.4
  * @author Volker Bergmann
  */

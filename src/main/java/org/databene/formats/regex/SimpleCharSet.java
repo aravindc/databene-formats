@@ -19,7 +19,7 @@ import java.util.Set;
 import org.databene.commons.CharSet;
 
 /**
- * Represents a character from a simple character set.<br/><br/>
+ * Represents a character from a simple character set.
  * Created: 04.04.2014 17:59:13
  * @since 0.8.0
  * @author Volker Bergmann

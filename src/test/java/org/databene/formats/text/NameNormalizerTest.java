@@ -20,7 +20,7 @@ import org.databene.formats.text.NameNormalizer;
 import org.junit.Test;
 
 /**
- * Tests the {@link NameNormalizer}.<br/><br/>
+ * Tests the {@link NameNormalizer}.
  * Created at 20.11.2008 19:43:30
  * @since 0.4.6
  * @author Volker Bergmann

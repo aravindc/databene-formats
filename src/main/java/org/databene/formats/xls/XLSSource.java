@@ -19,7 +19,7 @@ import org.databene.formats.DataSource;
 import org.databene.formats.util.OrthogonalArrayIterator;
 
 /**
- * Defined XLSSource as abstraction for XLS row or column data sources.<br/><br/>
+ * Defined XLSSource as abstraction for XLS row or column data sources.
  * Created: 08.12.2011 16:51:08
  * @since 0.6.5
  * @author Volker Bergmann

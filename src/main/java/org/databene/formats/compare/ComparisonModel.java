@@ -15,7 +15,7 @@
 package org.databene.formats.compare;
 
 /**
- * Provides comparison for equality and comparison for objects of a given parameterized type E.<br/><br/>
+ * Provides comparison for equality and comparison for objects of a given parameterized type E.
  * Created: 20.11.2013 17:40:05
  * @since 1.0.5
  * @author Volker Bergmann

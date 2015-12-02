@@ -24,8 +24,8 @@ import org.databene.formats.util.FilteringDataIterator;
 import java.io.*;
 
 /**
- * Parses the rows of a CSV file and extracts the lines that match a {@link Filter} to a target file.<br/>
- * <br/>
+ * Parses the rows of a CSV file and extracts the lines that match a {@link Filter} to a target file.
+ * 
  * Created: 12.06.2007 19:32:31
  * @since 0.2
  * @author Volker Bergmann

@@ -20,7 +20,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Parses XML schemas and provides an representation by a {@link Schema} obejct.<br/><br/>
+ * Parses XML schemas and provides an representation by a {@link Schema} obejct.
  * Created: 16.05.2014 18:29:01
  * @since 0.8.2
  * @author Volker Bergmann

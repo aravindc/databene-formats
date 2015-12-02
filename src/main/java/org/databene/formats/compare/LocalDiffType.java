@@ -19,7 +19,7 @@ import org.databene.commons.NullSafeComparator;
 import org.databene.commons.StringUtil;
 
 /**
- * Assigns a DiffType with a locator for special comparison configurations.<br/><br/>
+ * Assigns a DiffType with a locator for special comparison configurations.
  * Created: 08.07.2014 18:14:36
  * @since 1.0.5
  * @author Volker Bergmann

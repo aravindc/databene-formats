@@ -19,7 +19,7 @@ import org.databene.formats.compare.ComparisonModel;
 import org.w3c.dom.Node;
 
 /**
- * Parent interface for XML comparison models.<br/><br/>
+ * Parent interface for XML comparison models.
  * Created: 19.11.2015 15:14:33
  * @since 1.0.5
  * @author Volker Bergmann

@@ -21,7 +21,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests the {@link DelocalizingConverter}.<br/><br/>
+ * Tests the {@link DelocalizingConverter}.
  * Created: 03.09.2006 19:29:56
  * @since 0.1
  * @author Volker Bergmann

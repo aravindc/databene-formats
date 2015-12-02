@@ -18,7 +18,7 @@ import org.databene.commons.StringUtil;
 import org.databene.commons.Visitor;
 
 /**
- * Parent class of all components that are part of an XML schema.<br/><br/>
+ * Parent class of all components that are part of an XML schema.
  * Created: 16.05.2014 18:31:43
  * @since 0.8.2
  * @author Volker Bergmann

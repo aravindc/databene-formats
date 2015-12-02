@@ -15,7 +15,7 @@
 package org.databene.formats.xsd;
 
 /**
- * Represents an attribute definition of an XML schema.<br/><br/>
+ * Represents an attribute definition of an XML schema.
  * Created: 16.05.2014 19:46:32
  * @since 0.8.2
  * @author Volker Bergmann

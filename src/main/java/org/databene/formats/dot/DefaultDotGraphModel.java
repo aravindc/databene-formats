@@ -18,7 +18,7 @@ import java.util.Collection;
 
 /**
  * Default implementation of a {@link DotGraphModel}, making use of {@link DotGraph}, 
- * {@link DotNode}s and {@link DotEdge}s.<br/><br/>
+ * {@link DotNode}s and {@link DotEdge}s.
  * Created: 24.05.2014 18:17:07
  * @since 0.8.2
  * @author Volker Bergmann

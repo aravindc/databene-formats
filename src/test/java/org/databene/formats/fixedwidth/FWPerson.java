@@ -15,7 +15,7 @@
 package org.databene.formats.fixedwidth;
 
 /**
- * Helper class for testing.<br/><br/>
+ * Helper class for testing.
  * Created: 14.03.2014 16:30:40
  * @since 0.7.2
  * @author Volker Bergmann

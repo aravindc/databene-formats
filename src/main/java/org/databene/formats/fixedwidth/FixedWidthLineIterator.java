@@ -28,8 +28,8 @@ import java.text.ParseException;
 import java.util.regex.Pattern;
 
 /**
- * Tests the FlatFileLineIterator.<br/>
- * <br/>
+ * Tests the FlatFileLineIterator.
+ * 
  * Created: 27.08.2007 06:43:50
  * @author Volker Bergmann
  */
@@ -94,7 +94,8 @@ public class FixedWidthLineIterator implements DataIterator<String[]> {
         lineIterator = null;
     }
     
-    /** Returns the line count iterated so far. */
+    /** Returns the number of lines iterated so far. 
+     * @return the number of lines iterated so far */
     public int lineCount() {
         return lineCount;
     }

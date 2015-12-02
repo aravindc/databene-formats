@@ -15,7 +15,7 @@
 package org.databene.formats.dot;
 
 /**
- * Enumerates Dot node shapes.<br/><br/>
+ * Enumerates Dot node shapes.
  * Created: 24.05.2014 06:51:37
  * @since 0.8.2
  * @author Volker Bergmann

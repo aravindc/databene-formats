@@ -15,7 +15,7 @@
 package org.databene.formats.html;
 
 /**
- * Abstract implementation of an HTML anchor &lt;a&gt; with label and target.<br/><br/>
+ * Abstract implementation of an HTML anchor &lt;a&gt; with label and target.
  * Created: 13.06.2011 12:14:52
  * @since 0.5.8
  * @author Volker Bergmann

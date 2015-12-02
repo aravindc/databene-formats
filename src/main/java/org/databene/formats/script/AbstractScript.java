@@ -24,8 +24,8 @@ import org.databene.commons.converter.ToStringConverter;
 /**
  * Abstract implementation of the Script interface. 
  * When inheriting from it, you must overwrite at least one of the methods 
- * <code>evaluate()</code> and <code>execute()</code>.<br/>
- * <br/>
+ * <code>evaluate()</code> and <code>execute()</code>.
+ * 
  * Created at 23.12.2008 07:15:39
  * @since 0.4.7
  * @author Volker Bergmann

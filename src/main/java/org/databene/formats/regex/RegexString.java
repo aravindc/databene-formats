@@ -17,7 +17,7 @@ package org.databene.formats.regex;
 import org.databene.commons.Assert;
 
 /**
- * Represents a constant string which is part of a regular expression.<br/><br/>
+ * Represents a constant string which is part of a regular expression.
  * Created: 04.04.2014 16:09:47
  * @since 0.8.0
  * @author Volker Bergmann

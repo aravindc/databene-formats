@@ -33,8 +33,8 @@ import java.util.Stack;
 import java.util.Map;
 
 /**
- * Provides utility methods for converting HTML to XML.<br/>
- * <br/>
+ * Provides utility methods for converting HTML to XML.
+ * 
  * Created: 25.01.2007 17:10:37
  * @author Volker Bergmann
  */

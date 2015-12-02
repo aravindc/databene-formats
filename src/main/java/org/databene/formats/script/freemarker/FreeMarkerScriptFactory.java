@@ -29,7 +29,7 @@ import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 
 /**
- * Creates {@link FreeMarkerScript}s.<br/><br/>
+ * Creates {@link FreeMarkerScript}s.
  * Created: 27.01.2008 16:47:21
  * @since 0.3.0
  * @author Volker Bergmann

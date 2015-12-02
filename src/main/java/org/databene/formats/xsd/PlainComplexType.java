@@ -15,7 +15,7 @@
 package org.databene.formats.xsd;
 
 /**
- * Represents a plain {@link ComplexType} of an XML schema.<br/><br/>
+ * Represents a plain {@link ComplexType} of an XML schema.
  * Created: 16.05.2014 20:01:00
  * @since 0.8.2
  * @author Volker Bergmann

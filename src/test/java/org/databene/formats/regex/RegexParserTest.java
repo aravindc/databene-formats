@@ -38,7 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Tests the {@link RegexParser}.<br/><br/>
+ * Tests the {@link RegexParser}.
  * Created: 18.08.2006 21:56:01
  * @since 0.1
  * @author Volker Bergmann

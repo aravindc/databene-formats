@@ -19,7 +19,7 @@ import org.databene.formats.html.HtmlEntity;
 import junit.framework.TestCase;
 
 /**
- * Tests the {@link HTMLEntityTest}.<br/><br/>
+ * Tests the {@link HTMLEntityTest}.
  * Created at 02.05.2008 17:28:04
  * @since 0.4.3
  * @author Volker Bergmann

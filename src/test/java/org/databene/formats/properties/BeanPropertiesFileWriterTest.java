@@ -27,8 +27,8 @@ import org.databene.formats.script.ConstantScript;
 import org.databene.test.TP;
 
 /**
- * Tests the BeanPropertiesFileWriter.<br/>
- * <br/>
+ * Tests the BeanPropertiesFileWriter.
+ * 
  * Created: 16.06.2007 06:07:52
  * @since 0.1
  * @author Volker Bergmann

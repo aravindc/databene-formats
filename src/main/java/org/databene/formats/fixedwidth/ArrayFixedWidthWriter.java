@@ -27,9 +27,9 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * Writes arrays as flat file columns.<br/>
- * <br/>
+ * Writes arrays as flat file columns.
  * Created: 07.06.2007 13:05:38
+ * @param <E> the type of the objects to write
  * @author Volker Bergmann
  */
 public class ArrayFixedWidthWriter<E> extends ScriptedDocumentWriter<E[]> {

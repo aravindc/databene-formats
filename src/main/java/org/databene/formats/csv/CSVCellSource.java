@@ -20,8 +20,8 @@ import org.databene.formats.DataIterator;
 import org.databene.formats.util.AbstractDataSource;
 
 /**
- * Creates Iterators that iterate through the cells of a CSV file.<br/>
- * <br/>
+ * Creates Iterators that iterate through the cells of a CSV file.
+ * 
  * Created: 01.09.2007 11:40:30
  * @author Volker Bergmann
  */

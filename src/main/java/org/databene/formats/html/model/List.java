@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Parent class for HTML lists.<br/><br/>
+ * Parent class for HTML lists.
  * Created: 09.07.2014 13:51:04
  * @since 0.8.4
  * @author Volker Bergmann

@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML table head (&lt;tfoot&gt;).<br/><br/>
+ * Represents an HTML table head (&lt;tfoot&gt;).
  * Created: 09.07.2014 14:29:06
  * @since 0.8.4
  * @author Volker Bergmann

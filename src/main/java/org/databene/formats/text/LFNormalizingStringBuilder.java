@@ -17,7 +17,7 @@ package org.databene.formats.text;
 import org.databene.commons.StringUtil;
 
 /**
- * Behaves like a {@link StringBuilder}, but normalizes all inserted line separators to a default.<br/><br/>
+ * Behaves like a {@link StringBuilder}, but normalizes all inserted line separators to a default.
  * Created: 05.04.2010 08:54:42
  * @since 0.5.0
  * @author Volker Bergmann

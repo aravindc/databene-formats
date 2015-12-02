@@ -20,8 +20,8 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * Abstraction of a Script.<br/>
- * <br/>
+ * Abstraction of a Script.
+ * 
  * Created: 03.02.2007 11:50:27
  * @author Volker Bergmann
  */

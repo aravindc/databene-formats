@@ -32,7 +32,7 @@ import org.databene.formats.dot.RankDir;
 import org.junit.Test;
 
 /**
- * Tests the {@link DotWriter}.<br/><br/>
+ * Tests the {@link DotWriter}.
  * Created: 24.05.2014 08:13:11
  * @since 0.8.2
  * @author Volker Bergmann

@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML body.<br/><br/>
+ * Represents an HTML body.
  * Created: 06.01.2014 09:40:09
  * @since 0.7.1
  * @author Volker Bergmann

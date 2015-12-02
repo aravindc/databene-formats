@@ -27,7 +27,7 @@ import org.databene.commons.format.Alignment;
 import org.junit.Test;
 
 /**
- * Tests the {@link FixedWidthUtil}.<br/><br/>
+ * Tests the {@link FixedWidthUtil}.
  * Created at 29.04.2008 19:06:41
  * @since 0.4.2
  * @author Volker Bergmann

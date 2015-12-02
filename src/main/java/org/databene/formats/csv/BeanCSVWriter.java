@@ -34,9 +34,10 @@ import java.io.Writer;
 import java.io.IOException;
 
 /**
- * Writes JavaBeans as CSV rows.<br/>
- * <br/>
+ * Writes JavaBeans as CSV rows.
  * Created: 06.06.2007 19:35:29
+ * @param <E> the type of the objects to write
+ * @author Volker Bergmann
  */
 public class BeanCSVWriter<E> extends ScriptedDocumentWriter<E> {
 

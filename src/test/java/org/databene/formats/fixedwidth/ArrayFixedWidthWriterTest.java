@@ -26,7 +26,7 @@ import org.databene.commons.format.Alignment;
 import org.databene.formats.script.ConstantScript;
 
 /**
- * Tests the {@link ArrayFixedWidthWriter}.<br/><br/>
+ * Tests the {@link ArrayFixedWidthWriter}.
  * Created: 16.06.2007 06:07:52
  * @since 0.1
  * @author Volker Bergmann

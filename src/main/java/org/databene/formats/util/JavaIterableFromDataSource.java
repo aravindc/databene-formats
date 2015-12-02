@@ -19,8 +19,9 @@ import org.databene.commons.HeavyweightIterator;
 import org.databene.formats.DataSource;
 
 /**
- * Wraps a {@link DataSource} with a Java {@link Iterable}.<br/><br/>
+ * Wraps a {@link DataSource} with a Java {@link Iterable}.
  * Created: 25.01.2012 15:20:26
+ * @param <E> the type of data to iterate
  * @since 0.6.6
  * @author Volker Bergmann
  */

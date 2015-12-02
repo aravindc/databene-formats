@@ -22,8 +22,10 @@ import org.databene.formats.DataIterator;
 import org.databene.formats.DataSource;
 
 /**
- * {@link DataSource} proxy which applies a {@link Converter} to the source's data.<br/><br/>
+ * {@link DataSource} proxy which applies a {@link Converter} to the source's data.
  * Created: 24.07.2011 10:06:31
+ * @param <S> the type of data to iterate from the source
+ * @param <T> the type of data to provide to the client
  * @since 0.6.0
  * @author Volker Bergmann
  */

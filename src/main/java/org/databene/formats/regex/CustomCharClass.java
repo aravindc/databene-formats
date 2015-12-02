@@ -20,8 +20,8 @@ import java.util.List;
 import org.databene.commons.CharSet;
 
 /**
- * Represents a custom character class with inclusions and exclusions.<br/>
- * <br/>
+ * Represents a custom character class with inclusions and exclusions.
+ * 
  * Created at 20.09.2009 11:18:28
  * @since 0.5.0
  * @author Volker Bergmann

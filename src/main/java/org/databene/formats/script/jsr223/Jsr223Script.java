@@ -26,8 +26,8 @@ import org.databene.formats.script.Script;
 import org.databene.formats.script.ScriptException;
 
 /**
- * Provides {@link Script} functionality based on JSR 227: Scripting for the Java platform.<br/>
- * <br/>
+ * Provides {@link Script} functionality based on JSR 227: Scripting for the Java platform.
+ * 
  * Created at 23.12.2008 07:19:54
  * @since 0.4.7
  * @author Volker Bergmann

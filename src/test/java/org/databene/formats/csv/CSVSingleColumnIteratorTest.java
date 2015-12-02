@@ -23,7 +23,7 @@ import org.databene.formats.util.DataIteratorTestCase;
 import org.junit.Test;
 
 /**
- * Tests the {@link CSVSingleColumIterator}.<br/><br/>
+ * Tests the {@link CSVSingleColumIterator}.
  * Created: 14.10.2009 12:06:42
  * @since 0.5.0
  * @author Volker Bergmann

@@ -37,8 +37,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Parses a regular expression into an object model.<br/>
- * <br/>
+ * Parses a regular expression into an object model.
+ * 
  * Created: 18.08.2006 19:10:42
  * @since 0.1
  * @author Volker Bergmann

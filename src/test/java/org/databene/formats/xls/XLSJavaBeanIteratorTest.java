@@ -28,7 +28,7 @@ import org.databene.formats.PersonWithAddress;
 import org.junit.Test;
 
 /**
- * Tests the {@link XLSJavaBeanIterator}.<br/><br/>
+ * Tests the {@link XLSJavaBeanIterator}.
  * Created: 18.09.2014 18:57:05
  * @since 1.0.0
  * @author Volker Bergmann

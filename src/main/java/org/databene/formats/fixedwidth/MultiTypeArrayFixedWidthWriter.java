@@ -25,7 +25,7 @@ import org.databene.commons.Assert;
 import org.databene.commons.SystemInfo;
 
 /**
- * Writes data arrays to fixed-width files supporting different row types and formats.<br/><br/>
+ * Writes data arrays to fixed-width files supporting different row types and formats.
  * Created: 13.03.2014 12:37:54
  * @since 0.7.2
  * @author Volker Bergmann

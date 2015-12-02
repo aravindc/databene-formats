@@ -17,7 +17,7 @@ package org.databene.formats.dot;
 import java.util.Collection;
 
 /**
- * Abstract implementation of the {@link DotGraphModel}.<br/><br/>
+ * Abstract implementation of the {@link DotGraphModel}.
  * Created: 25.05.2014 06:29:29
  * @since 0.8.2
  * @author Volker Bergmann

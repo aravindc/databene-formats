@@ -27,8 +27,8 @@ import org.databene.commons.format.PadFormat;
 import org.databene.formats.DataContainer;
 
 /**
- * Tests the {@link FixedWidthLineIterator}.<br/>
- * <br/>
+ * Tests the {@link FixedWidthLineIterator}.
+ * 
  * Created: 27.08.2007 07:20:05
  * @author Volker Bergmann
  */

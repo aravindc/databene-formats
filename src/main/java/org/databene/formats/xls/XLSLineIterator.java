@@ -33,8 +33,8 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Iterates the lines of a sheet in an Excel document.<br/>
- * <br/>
+ * Iterates the lines of a sheet in an Excel document.
+ * 
  * Created at 27.01.2009 22:04:47
  * @since 0.4.8
  * @author Volker Bergmann

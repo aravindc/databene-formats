@@ -20,7 +20,7 @@ import org.databene.commons.Named;
 import org.databene.commons.collection.OrderedNameMap;
 
 /**
- * Represents a Dot graph.<br/><br/>
+ * Represents a Dot graph.
  * Created: 24.05.2014 06:01:34
  * @since 0.8.2
  * @author Volker Bergmann

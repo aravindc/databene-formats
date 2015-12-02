@@ -31,8 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * Provides utility methods for processing flat files.<br/>
- * <br/>
+ * Provides utility methods for processing flat files.
+ * 
  * Created: 03.09.2007 23:39:57
  * @author Volker Bergmann
  */

@@ -21,7 +21,7 @@ import org.databene.commons.StringUtil;
 import org.databene.commons.SystemInfo;
 
 /**
- * Collects the differences between two data structures.<br/><br/>
+ * Collects the differences between two data structures.
  * Created: 19.06.2014 15:58:59
  * @since 1.0.5
  * @author Volker Bergmann

@@ -18,20 +18,24 @@ import java.io.Closeable;
 
 /**
  * Interface for classes that provide data access by {@link DataIterator}s. 
- * Implementors are expected to be thread-safe.<br/><br/>
+ * Implementors are expected to be thread-safe.
  * Created: 24.07.2011 08:48:26
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */
 public interface DataSource<E> extends Closeable {
 	
-	/** Returns the type of the iterated objects. */
+	/** Returns the type of the iterated objects. 
+	 * @return the type of data to iterate */
 	Class<E> getType();
 	
-	/** Creates a {@link DataIterator} for iterating the available data items. */
+	/** Creates a {@link DataIterator} for iterating the available data items. 
+	 * @return an iterator to iterate the available data */
 	DataIterator<E> iterator();
 	
 	/** Closes the data source */
 	@Override
 	void close();
+	
 }

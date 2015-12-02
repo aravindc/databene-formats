@@ -22,8 +22,9 @@ import org.databene.commons.SystemInfo;
 import org.databene.commons.collection.OrderedNameMap;
 
 /**
- * Parent class for HTML element classes.<br/><br/>
+ * Parent class for HTML element classes.
  * Created: 06.01.2014 08:13:00
+ * @param <E> Generic parameter to be set by child classes to the child class itself
  * @since 0.7.1
  * @author Volker Bergmann
  */

@@ -23,7 +23,7 @@ import org.databene.commons.converter.ThreadSafeConverter;
 
 /**
  * {@link Converter} that transforms an object into its hexadecimal representation.
- * It works with integral numbers, characters and strings.<br/><br/>
+ * It works with integral numbers, characters and strings.
  * Created: 29.10.2009 08:44:53
  * @since 0.5.0
  * @author Volker Bergmann

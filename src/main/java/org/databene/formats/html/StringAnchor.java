@@ -15,7 +15,7 @@
 package org.databene.formats.html;
 
 /**
- * {@link Anchor} implementation for an arbitrary String-based URL.<br/><br/>
+ * {@link Anchor} implementation for an arbitrary String-based URL.
  * Created: 13.06.2011 12:50:11
  * @since 0.5.8
  * @author Volker Bergmann

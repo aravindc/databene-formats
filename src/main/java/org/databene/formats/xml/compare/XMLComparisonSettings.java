@@ -18,7 +18,7 @@ package org.databene.formats.xml.compare;
 import org.databene.formats.compare.ComparisonSettings;
 
 /**
- * Provides settings and models for the comparison of XML documents.<br/><br/>
+ * Provides settings and models for the comparison of XML documents.
  * Created: 19.11.2015 15:11:03
  * @since 1.0.5
  * @author Volker Bergmann

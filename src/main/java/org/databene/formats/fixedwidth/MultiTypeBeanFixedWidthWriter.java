@@ -25,7 +25,7 @@ import org.databene.commons.Assert;
 import org.databene.commons.SystemInfo;
 
 /**
- * Writes JavaBean properties (graphs) to a file with fixed-width columns.<br/><br/>
+ * Writes JavaBean properties (graphs) to a file with fixed-width columns.
  * Created: 14.03.2014 16:09:37
  * @since 0.7.2
  * @author Volker Bergmann

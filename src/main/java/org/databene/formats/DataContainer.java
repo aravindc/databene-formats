@@ -15,8 +15,9 @@
 package org.databene.formats;
 
 /**
- * Container object for data items.<br/><br/>
+ * Container object for data items.
  * Created: 24.07.2011 14:40:21
+ * @param <E> the type of the objects to wrap
  * @since 0.6.0
  * @author Volker Bergmann
  */

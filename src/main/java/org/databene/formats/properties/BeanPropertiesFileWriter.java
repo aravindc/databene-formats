@@ -38,9 +38,9 @@ import java.text.FieldPosition;
 import java.beans.PropertyDescriptor;
 
 /**
- * Writes JavaBeans to property files.<br/>
- * <br/>
+ * Writes JavaBeans to property files.
  * Created: 07.06.2007 13:05:38
+ * @param <E> the type of the objects to write
  * @author Volker Bergmann
  */
 public class BeanPropertiesFileWriter<E> extends ScriptedDocumentWriter<E> {

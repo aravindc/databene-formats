@@ -17,8 +17,9 @@ package org.databene.formats.util;
 import org.databene.formats.DataContainer;
 
 /**
- * Holds a {@link DataContainer} for each thread using the {@link ThreadLocal} mechanism.<br/><br/>
+ * Holds a {@link DataContainer} for each thread using the {@link ThreadLocal} mechanism.
  * Created: 24.07.2011 14:46:18
+ * @param <E> the type of data to hold
  * @since 0.6.0
  * @author Volker Bergmann
  */

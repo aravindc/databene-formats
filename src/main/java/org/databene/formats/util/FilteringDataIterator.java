@@ -19,8 +19,9 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * {@link DataIterator} proxy which applies a {@link Filter} to the data provides by its source.<br/><br/>
+ * {@link DataIterator} proxy which applies a {@link Filter} to the data provides by its source.
  * Created: 24.07.2011 10:19:41
+ * @param <E> the type of data to iterate
  * @since 0.6.0
  * @author Volker Bergmann
  */

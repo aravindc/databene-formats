@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an unordered HTML list (&lt;ul&gt;).<br/><br/>
+ * Represents an unordered HTML list (&lt;ul&gt;).
  * Created: 09.07.2014 15:09:06
  * @since 0.8.4
  * @author Volker Bergmann

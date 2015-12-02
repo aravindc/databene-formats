@@ -20,7 +20,7 @@ import org.databene.commons.StringUtil;
 import org.databene.commons.format.PadFormat;
 
 /**
- * Parses a line of a flat file.<br/><br/>
+ * Parses a line of a flat file.
  * Created: 22.02.2010 08:06:41
  * @since 0.5.0
  * @author Volker Bergmann

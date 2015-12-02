@@ -17,7 +17,7 @@ package org.databene.formats.regex;
 import org.databene.commons.CharSet;
 
 /**
- * Represents a character within a range from {@link #first} to {@link #last}.<br/><br/>
+ * Represents a character within a range from {@link #first} to {@link #last}.
  * Created: 04.04.2014 17:05:57
  * @since 0.8.0
  * @author Volker Bergmann

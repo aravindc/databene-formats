@@ -23,7 +23,7 @@ import org.databene.formats.html.util.HTMLUtil;
 import org.junit.Test;
 
 /**
- * Tests the {@link HTMLUtil} class.<br/><br/>
+ * Tests the {@link HTMLUtil} class.
  * Created: 22.11.2010 08:09:08
  * @since 0.5.4
  * @author Volker Bergmann

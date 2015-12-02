@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Utility methods for CSV processing.<br/>
- * <br/>
+ * Utility methods for CSV processing.
+ * 
  * Created: 07.06.2007 07:44:28
  * @since 0.5.4
  * @author Volker Bergmann

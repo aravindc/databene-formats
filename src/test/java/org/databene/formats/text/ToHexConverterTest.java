@@ -20,7 +20,7 @@ import org.databene.formats.text.ToHexConverter;
 import org.junit.Test;
 
 /**
- * Tests the {@link ToHexConverter}.<br/><br/>
+ * Tests the {@link ToHexConverter}.
  * Created: 29.10.2009 10:26:04
  * @since 0.5.0
  * @author Volker Bergmann

@@ -15,7 +15,7 @@
 package org.databene.formats.dot;
 
 /**
- * Enumerates Dot rankdirs.<br/><br/>
+ * Enumerates Dot rankdirs.
  * Created: 24.05.2014 15:05:06
  * @since 0.8.2
  * @author Volker Bergmann

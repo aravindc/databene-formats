@@ -21,8 +21,8 @@ import java.text.ParseException;
 import java.util.Map;
 
 /**
- * {@link HTMLTokenizer} proxy that returns only the tokens that match a {@link Filter}.<br/>
- * <br/>
+ * {@link HTMLTokenizer} proxy that returns only the tokens that match a {@link Filter}.
+ * 
  * Created: 16.06.2007 05:50:50
  * @author Volker Bergmann
  */

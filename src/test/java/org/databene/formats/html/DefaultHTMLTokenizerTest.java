@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Tests the {@link DefaultHTMLTokenizer}.<br/><br/>
+ * Tests the {@link DefaultHTMLTokenizer}.
  * Created: 25.01.2007 13:29:54
  * @since 0.1
  * @author Volker Bergmann

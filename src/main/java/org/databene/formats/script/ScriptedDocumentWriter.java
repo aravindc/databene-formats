@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * A DocumentWriter that uses {@link Script}s for rendering head, body parts and footer.<br/>
- * <br/>
+ * A DocumentWriter that uses {@link Script}s for rendering head, body parts and footer.
  * Created: 07.06.2007 11:32:09
+ * @param <E> the type of objects to write
  * @author Volker Bergmann
  */
 public class ScriptedDocumentWriter<E> implements DocumentWriter<E> {

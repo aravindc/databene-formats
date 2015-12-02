@@ -15,7 +15,7 @@
 package org.databene.formats.xsd;
 
 /**
- * Parent class for {@link SchemaElement}s that carry a name (attribute).<br/><br/>
+ * Parent class for {@link SchemaElement}s that carry a name (attribute).
  * Created: 16.05.2014 19:30:31
  * @since 0.8.2
  * @author Volker Bergmann

@@ -15,7 +15,7 @@
 package org.databene.formats.dot;
 
 /**
- * Represents a Dot node style.<br/><br/>
+ * Represents a Dot node style.
  * Created: 27.05.2014 07:45:29
  * @since 0.8.2
  * @author Volker Bergmann

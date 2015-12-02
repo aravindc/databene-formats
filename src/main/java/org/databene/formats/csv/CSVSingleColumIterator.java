@@ -24,7 +24,7 @@ import org.databene.formats.util.DataIteratorAdapter;
 import org.databene.formats.util.ThreadLocalDataContainer;
 
 /**
- * {@link HeavyweightIterator} that iterates through all cells of a single CSV column.<br/><br/>
+ * {@link HeavyweightIterator} that iterates through all cells of a single CSV column.
  * Created: 14.10.2009 11:42:49
  * @since 0.5.0
  * @author Volker Bergmann

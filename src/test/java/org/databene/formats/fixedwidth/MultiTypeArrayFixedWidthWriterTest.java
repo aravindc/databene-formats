@@ -27,7 +27,7 @@ import org.databene.commons.TimeUtil;
 import org.junit.Test;
 
 /**
- * Tests the {@link MultiTypeArrayFixedWidthWriter}.<br/><br/>
+ * Tests the {@link MultiTypeArrayFixedWidthWriter}.
  * Created: 13.03.2014 13:10:27
  * @since 0.7.2
  * @author Volker Bergmann

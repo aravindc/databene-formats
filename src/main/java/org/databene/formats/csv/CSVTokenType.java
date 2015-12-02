@@ -15,8 +15,8 @@
 package org.databene.formats.csv;
 
 /**
- * Enumeration of the tokens of a CSV file.<br/>
- * <br/>
+ * Enumeration of the tokens of a CSV file.
+ * 
  * Created: 26.08.2006 17:34:11
  */
 public enum CSVTokenType {

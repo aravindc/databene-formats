@@ -18,7 +18,7 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 
 /**
- * Utility class for {@link DataIterator}-related functionality.<br/><br/>
+ * Utility class for {@link DataIterator}-related functionality.
  * Created: 24.07.2011 16:15:48
  * @since 0.6.0
  * @author Volker Bergmann

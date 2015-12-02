@@ -25,8 +25,8 @@ import org.databene.formats.script.Script;
 import org.databene.formats.script.ScriptFactory;
 
 /**
- * Creates {@link Jsr223Script}s.<br/>
- * <br/>
+ * Creates {@link Jsr223Script}s.
+ * 
  * Created at 23.12.2008 07:35:08
  * @since 0.4.7
  * @author Volker Bergmann

@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 /**
  * Represents a sequence of regular expression factors.
- * <br/>
+ * 
  * @see Factor 
  */
 public class Sequence implements RegexPart {

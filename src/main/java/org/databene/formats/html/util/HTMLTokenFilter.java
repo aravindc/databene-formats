@@ -18,8 +18,8 @@ import org.databene.commons.Filter;
 import org.databene.formats.html.parser.HTMLTokenizer;
 
 /**
- * {@link Filter} that accepts HTML tokens by type and name.<br/>
- * <br/>
+ * {@link Filter} that accepts HTML tokens by type and name.
+ * 
  * Created: 16.06.2007 05:54:38
  * @author Volker Bergmann
  */

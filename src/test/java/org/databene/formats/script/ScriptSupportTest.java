@@ -22,7 +22,7 @@ import org.databene.formats.script.ScriptUtil;
 import org.junit.Test;
 
 /**
- * Test the ScriptSupport class.<br/><br/>
+ * Test the ScriptSupport class.
  * Created: 27.01.2008 17:38:51
  * @author Volker Bergmann
  */

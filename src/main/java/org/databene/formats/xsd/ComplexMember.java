@@ -18,7 +18,7 @@ import org.databene.commons.Visitor;
 
 /**
  * Represents a member of a {@link ComplexType}, having a name, 
- * a type and a permitted cardinality range.<br/><br/>
+ * a type and a permitted cardinality range.
  * Created: 16.05.2014 20:15:57
  * @since 0.8.2
  * @author Volker Bergmann

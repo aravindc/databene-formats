@@ -30,7 +30,8 @@ public interface DotGraphModel {
 	/** @return the name of the graph */
 	String getName();
 	
-	/** Tells if the graph is directed */
+	/** Tells if the graph is directed 
+	 * @return true if the graph is directed, otherwise false */
 	boolean isDirected();
 	
 	/** @return the graph's rankdir attribute */
@@ -61,7 +62,8 @@ public interface DotGraphModel {
 	/** @return the number of nodes in the graph */
 	int getNodeCount();
 	
-	/** @return the graph node at the given index */
+	/** @param index the index of the requested node
+	 * @return the graph node at the given index */
 	Object getNode(int index);
 	
 	String getNodeId(Object node);

@@ -15,8 +15,8 @@
 package org.databene.formats.regex;
 
 /**
- * Represents a regular expression part composed of a SubPattern and a Quantifier.<br/>
- * <br/>
+ * Represents a regular expression part composed of a SubPattern and a Quantifier.
+ * 
  * Created: 18.08.2006 19:11:31
  */
 public class Factor implements RegexPart {
@@ -44,12 +44,14 @@ public class Factor implements RegexPart {
     
     // properties ------------------------------------------------------------------------------------------------------
     
-    /** Returns the atom */
+    /** Returns the atom. 
+     * @return the atom */
     public RegexPart getAtom() {
         return atom;
     }
     
-    /** Returns the represented quantifier */
+    /** Returns the represented quantifier. 
+     * @return the quantifier */
     public Quantifier getQuantifier() {
         return quantifier;
     }

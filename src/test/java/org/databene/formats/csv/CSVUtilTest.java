@@ -23,7 +23,7 @@ import org.databene.formats.csv.CSVUtil;
 import org.junit.Test;
 
 /**
- * Tests the {@link CSVUtil} class.<br/><br/>
+ * Tests the {@link CSVUtil} class.
  * Created: 16.09.2011 13:17:50
  * @since 0.6.2
  * @author Volker Bergmann

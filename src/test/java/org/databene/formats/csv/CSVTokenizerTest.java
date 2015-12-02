@@ -25,7 +25,7 @@ import static org.databene.formats.csv.CSVTokenType.*;
 import static org.junit.Assert.*;
 
 /**
- * Tests the {@link CSVTokenizer}.<br/><br/>
+ * Tests the {@link CSVTokenizer}.
  * Created: 26.08.2006 17:51:14
  * @author Volker Bergmann
  */

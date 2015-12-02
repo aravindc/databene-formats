@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * Performs XSL transformations on XML strings and streams.<br/>
- * <br/>
+ * Performs XSL transformations on XML strings and streams.
+ * 
  * Created: 26.01.2007 08:31:09
  */
 public class XSLTTransformer {

@@ -15,20 +15,22 @@
 package org.databene.formats.regex;
 
 /**
- * Represents a group in a regular expression, e.g. '(abc)'.<br/>
- * <br/>
+ * Represents a group in a regular expression, e.g. '(abc)'.
+ * 
  */
 public class Group implements RegexPart {
 	
     /** The regular sub expression */
     private RegexPart regex;
     
-    /** Constructor that takes a sub expression */
+    /** Constructor that takes a sub expression 
+     * @param regex the regular expression for the group */
     public Group(RegexPart regex) {
         this.regex = regex;
     }
     
-    /** returns the sub expression */
+    /** Returns the sub expression. 
+     * @return the sub expression */
     public RegexPart getRegex() {
         return regex;
     }

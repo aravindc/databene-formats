@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
- * Tests the {@link ScriptedDocumentWriter}.<br/><br/>
+ * Tests the {@link ScriptedDocumentWriter}.
  * Created: 16.06.2007 06:07:52
  * @since 0.1
  * @author Volker Bergmann

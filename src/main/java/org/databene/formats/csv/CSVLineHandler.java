@@ -15,8 +15,8 @@
 package org.databene.formats.csv;
 
 /**
- * Callback interface for CSV parsing.<br/>
- * <br/>
+ * Callback interface for CSV parsing.
+ * 
  * Created: 26.10.2007 12:53:01
  */
 public interface CSVLineHandler {

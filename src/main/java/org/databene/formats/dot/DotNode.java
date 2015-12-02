@@ -20,7 +20,7 @@ import java.util.List;
 import org.databene.commons.Named;
 
 /**
- * Represents a node in a Dot graph.<br/><br/>
+ * Represents a node in a Dot graph.
  * Created: 24.05.2014 07:36:36
  * @since 0.8.2
  * @author Volker Bergmann

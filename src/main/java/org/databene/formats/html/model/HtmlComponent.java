@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Parent class for HTML component classes.<br/><br/>
+ * Parent class for HTML component classes.
  * Created: 06.01.2014 08:12:43
  * @since 0.7.1
  * @author Volker Bergmann

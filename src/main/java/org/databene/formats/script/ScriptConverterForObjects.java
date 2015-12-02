@@ -21,7 +21,7 @@ import org.databene.commons.converter.ConverterWrapper;
 
 /**
  * {@link Converter} can recognize and resolve script expressions in {@link String} values,
- * forwarding values of other Java type 'as is'.<br/><br/>
+ * forwarding values of other Java type 'as is'.
  * Created: 07.08.2011 08:27:27
  * @since 0.5.9
  * @author Volker Bergmann

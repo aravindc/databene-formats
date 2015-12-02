@@ -15,7 +15,7 @@
 package org.databene.formats.html.model;
 
 /**
- * Represents an HTML anchor.<br/><br/>
+ * Represents an HTML anchor.
  * Created: 06.01.2014 08:55:54
  * @since 0.7.1
  * @author Volker Bergmann

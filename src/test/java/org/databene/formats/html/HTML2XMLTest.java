@@ -26,7 +26,7 @@ import org.databene.commons.SystemInfo;
 import org.databene.formats.html.HTML2XML;
 
 /**
- * Tests the {@link HTML2XML} class.<br/><br/>
+ * Tests the {@link HTML2XML} class.
  * Created: 25.01.2007 17:31:28
  * @since 0.1
  * @author Volker Bergmann

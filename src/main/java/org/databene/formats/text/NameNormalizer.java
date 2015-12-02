@@ -20,8 +20,8 @@ import org.databene.commons.StringUtil;
  * Normalizes names in capitalization and spacing. 
  * This includes trimming left and right, internal 
  * space normalization and starting each single word 
- * with a capital letter.<br/>
- * <br/>
+ * with a capital letter.
+ * 
  * Created at 20.11.2008 19:39:20
  * @since 0.4.6
  * @author Volker Bergmann

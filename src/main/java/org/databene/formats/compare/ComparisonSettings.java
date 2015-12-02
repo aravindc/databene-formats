@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  * Defines comparison settings: Which elements to ignore in comparisons 
- * and which differences to tolerate.<br/><br/>
+ * and which differences to tolerate.
  * Created: 03.06.2014 15:39:25
  * @since 1.0.5
  * @author Volker Bergmann

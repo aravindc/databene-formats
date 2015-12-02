@@ -28,8 +28,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Provides utility methods for HTML processing.<br/>
- * <br/>
+ * Provides utility methods for HTML processing.
+ * 
  * Created: 15.06.2007 19:42:19
  * @author Volker Bergmann
  */
@@ -170,7 +170,7 @@ public class HTMLUtil {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < lines.size(); i++) {
 			if (i > 0)
-				builder.append("<br/>").append(LF);
+				builder.append("").append(LF);
 			builder.append(lines.get(i));
 		}
 		return builder.toString();
