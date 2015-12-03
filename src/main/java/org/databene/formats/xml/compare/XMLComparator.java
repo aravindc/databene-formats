@@ -176,7 +176,7 @@ public class XMLComparator {
 		for (DiffDetail diff : result.getDiffs()) {
 			if (diff.getType() == DiffDetailType.DIFFERENT && diff.getExpected() instanceof Element && diff.getActual() instanceof Element) {
 				// if two elements differ in general, dive deeper in the comparison
-				compareElements((Element) diff.getExpected(), (Element) diff.getActual(), context, String.valueOf(diff.getLocator2()), diffs);
+				compareElements((Element) diff.getExpected(), (Element) diff.getActual(), context, String.valueOf(diff.getLocatorOfActual()), diffs);
 			} else if (diff.getType() == DiffDetailType.DIFFERENT && diff.getExpected() instanceof Text && diff.getActual() instanceof Text) {
 				handleTextDiff(diff, diffs, context);
 			} else if (diff.getExpected() instanceof ProcessingInstruction || diff.getActual() instanceof ProcessingInstruction) {
@@ -190,19 +190,19 @@ public class XMLComparator {
 
 	private void handleTextDiff(DiffDetail diff, AggregateDiff diffs, ComparisonContext context) {
 		// special handling for text nodes
-		String locator2 = StringUtil.removeSuffixIfPresent("/#text", diff.getLocator2());
-		if (!context.isTolerated(DiffDetailType.DIFFERENT, locator2))
-			diffs.addDetail(diffFactory.different(diff.getExpected(), diff.getActual(), "element text", locator2));
+		String locatorOfActual = StringUtil.removeSuffixIfPresent("/#text", diff.getLocatorOfActual());
+		if (!context.isTolerated(DiffDetailType.DIFFERENT, locatorOfActual))
+			diffs.addDetail(diffFactory.different(diff.getExpected(), diff.getActual(), "element text", locatorOfActual));
 	}
 
 	private void handleProcesingInstructionDiff(DiffDetail diff, AggregateDiff diffs, ComparisonContext context) {
 		// special handling for processing instructions
 		ProcessingInstruction expectedPI = (ProcessingInstruction) diff.getExpected();
 		ProcessingInstruction actualPI = (ProcessingInstruction) diff.getActual();
-		String locator1 = procIntLocator(StringUtil.removeSuffixIfPresent("/procint", diff.getLocator1()), expectedPI);
-		String locator2 = procIntLocator(StringUtil.removeSuffixIfPresent("/procint", diff.getLocator2()), actualPI);
-		if (!context.isTolerated(diff.getType(), locator1) && !context.isTolerated(diff.getType(), locator2)) {
-			diffs.addDetail(diffFactory.genericDiff(expectedPI, actualPI, "processing instruction", diff.getType(), locator1, locator2));
+		String locatorOfExpected = procIntLocator(StringUtil.removeSuffixIfPresent("/procint", diff.getLocatorOfExpected()), expectedPI);
+		String locatorOfActual = procIntLocator(StringUtil.removeSuffixIfPresent("/procint", diff.getLocatorOfActual()), actualPI);
+		if (!context.isTolerated(diff.getType(), locatorOfExpected) && !context.isTolerated(diff.getType(), locatorOfActual)) {
+			diffs.addDetail(diffFactory.genericDiff(expectedPI, actualPI, "processing instruction", diff.getType(), locatorOfExpected, locatorOfActual));
 		}
 	}
 

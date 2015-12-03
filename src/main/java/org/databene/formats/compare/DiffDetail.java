@@ -30,21 +30,21 @@ public class DiffDetail {
 	private Object actual;
 	private String objectClassifier;
 	private DiffDetailType type;
-	private String locator1;
-	private String locator2;
+	private String locatorOfExpected;
+	private String locatorOfActual;
 	private Converter<Object, String> formatter;
 	
 	public DiffDetail(Object expected, Object actual, String objectClassifier, DiffDetailType type, Converter<Object, String> formatter) {
 		this(expected, actual, objectClassifier, type, null, null, formatter);
 	}
 	
-	public DiffDetail(Object expected, Object actual, String objectClassifier, DiffDetailType type, String locator1, String locator2, Converter<Object, String> formatter) {
+	public DiffDetail(Object expected, Object actual, String objectClassifier, DiffDetailType type, String locatorOfExpected, String locatorOfActual, Converter<Object, String> formatter) {
 		this.expected = expected;
 		this.actual = actual;
 		this.objectClassifier = objectClassifier;
 		this.type = type;
-		this.locator1 = locator1;
-		this.locator2 = locator2;
+		this.locatorOfExpected = locatorOfExpected;
+		this.locatorOfActual = locatorOfActual;
 		this.formatter = formatter;
 	}
 
@@ -64,12 +64,12 @@ public class DiffDetail {
 		return type;
 	}
 	
-	public String getLocator1() {
-		return locator1;
+	public String getLocatorOfExpected() {
+		return locatorOfExpected;
 	}
 	
-	public String getLocator2() {
-		return locator2;
+	public String getLocatorOfActual() {
+		return locatorOfActual;
 	}
 	
 	public void setFormat(Converter<Object, String> formatter) {
@@ -80,8 +80,8 @@ public class DiffDetail {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((locator1 == null) ? 0 : locator1.hashCode());
-		result = prime * result + ((locator2 == null) ? 0 : locator2.hashCode());
+		result = prime * result + ((locatorOfExpected == null) ? 0 : locatorOfExpected.hashCode());
+		result = prime * result + ((locatorOfActual == null) ? 0 : locatorOfActual.hashCode());
 		result = prime * result + ((objectClassifier == null) ? 0 : objectClassifier.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((expected == null) ? 0 : expected.hashCode());
@@ -99,18 +99,18 @@ public class DiffDetail {
 		return (NullSafeComparator.equals(this.expected, that.expected) &&
 				NullSafeComparator.equals(this.actual, that.actual) &&
 				NullSafeComparator.equals(this.type, that.type) &&
-				NullSafeComparator.equals(this.locator1, that.locator1) &&
-				NullSafeComparator.equals(this.locator2, that.locator2));
+				NullSafeComparator.equals(this.locatorOfExpected, that.locatorOfExpected) &&
+				NullSafeComparator.equals(this.locatorOfActual, that.locatorOfActual));
 	}
 
 	@Override
 	public String toString() {
 		switch (type) {
-			case DIFFERENT :  return "Different " + objectClassifier + ": expected " + format(expected) + " but found " + format(actual) + (locator2 != null ? " at " + locator2 : "");
-			case MISSING :    return "Missing " + objectClassifier + " " + format(expected) + " at " + locator1;
-			case UNEXPECTED : return "Unexpected " + objectClassifier + " " + format(actual) + " found at " + locator2;
-			case MOVED :      return "Moved " + objectClassifier + " " + format(expected) + " from " + locator1 + " to " + locator2;
-			default :         return type + " " + objectClassifier + ", expected " + format(expected) + ", found " + actual + " " + locator1 + " " + locator2;
+			case DIFFERENT :  return "Different " + objectClassifier + ": expected " + format(expected) + " but found " + format(actual) + (locatorOfActual != null ? " at " + locatorOfActual : "");
+			case MISSING :    return "Missing " + objectClassifier + " " + format(expected) + " at " + locatorOfExpected;
+			case UNEXPECTED : return "Unexpected " + objectClassifier + " " + format(actual) + " found at " + locatorOfActual;
+			case MOVED :      return "Moved " + objectClassifier + " " + format(expected) + " from " + locatorOfExpected + " to " + locatorOfActual;
+			default :         return type + " " + objectClassifier + ", expected " + format(expected) + ", found " + actual + " " + locatorOfExpected + " " + locatorOfActual;
 		}
 	}
 
