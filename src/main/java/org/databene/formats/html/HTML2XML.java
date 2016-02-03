@@ -17,6 +17,8 @@ package org.databene.formats.html;
 import org.databene.commons.CollectionUtil;
 import org.databene.commons.Encodings;
 import org.databene.commons.IOUtil;
+import org.databene.commons.ParseUtil;
+import org.databene.commons.StringCharacterIterator;
 import org.databene.commons.SystemInfo;
 import org.databene.commons.xml.XMLUtil;
 import org.databene.formats.html.parser.DefaultHTMLTokenizer;
@@ -73,7 +75,27 @@ public class HTML2XML {
     
 	public static Document parseHtmlAsXml(String url, boolean namespaceAware) 
 			throws IOException, ParseException, UnsupportedEncodingException {
-		return parseHtmlTextAsXml(IOUtil.getContentOfURI(url), namespaceAware);
+		byte[] bytes = IOUtil.getBinaryContentOfUri(url);
+		String encoding = getEncoding(bytes);
+		if (encoding == null)
+			encoding = Encodings.ISO_8859_1;
+		String htmlText = new String(bytes, encoding);
+		return parseHtmlTextAsXml(htmlText, namespaceAware);
+	}
+
+	private static String getEncoding(byte[] bytes) throws UnsupportedEncodingException {
+		String tmp = new String(bytes, Encodings.ISO_8859_1);
+		int startIndex = tmp.indexOf("charset=");
+		if (startIndex < 0)
+			return null;
+		startIndex += "charset=".length();
+		StringCharacterIterator it = new StringCharacterIterator(tmp, startIndex);
+		it.skipWhitespace();
+		StringBuilder builder = new StringBuilder();
+		int c;
+		while ((c = it.next()) != -1 && ParseUtil.isNMAfterStartChar((char) c))
+			builder.append((char) c);
+		return builder.toString();
 	}
 
 	public static Document parseHtmlTextAsXml(String html, boolean namespaceAware) throws ParseException, IOException,
