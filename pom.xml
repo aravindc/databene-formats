@@ -4,7 +4,7 @@
 
 	<groupId>org.databene</groupId>
 	<artifactId>databene-formats</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<packaging>jar</packaging>
 
 	<name>Databene Formats</name>
@@ -15,7 +15,7 @@
 	<inceptionYear>2006</inceptionYear>
 
 	<properties>
-		<commons_version>1.0.6</commons_version>
+		<commons_version>1.0.7</commons_version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
