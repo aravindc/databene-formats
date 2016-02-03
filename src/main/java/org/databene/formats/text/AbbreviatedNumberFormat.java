@@ -14,13 +14,18 @@
  */
 package org.databene.formats.text;
 
+import org.databene.commons.LocaleUtil;
 import org.databene.commons.StringUtil;
 import org.databene.commons.ParseUtil;
 
 import java.text.NumberFormat;
 import java.text.FieldPosition;
 import java.text.ParsePosition;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Formats and parses numbers with abbreviations, e.g. 5Mio for 5,000,000.
@@ -30,31 +35,46 @@ import java.util.Locale;
 public class AbbreviatedNumberFormat extends NumberFormat {
 
 	private static final long serialVersionUID = -3938256314974549704L;
+	
+	private static final Map<Locale, List<AbbreviatedScale>> ABBREVIATIONS;
 
-	private Object [][] availableScales = new Object[][] {
-        {"Mrd", new Double(1E9)},
-        {"Mrd.", new Double(1E9)},
-        {"B", new Double(1E9)},
+	static {
+		ABBREVIATIONS = new HashMap<Locale, List<AbbreviatedScale>>();
+		createAbbreviation("Mrd", new Double(1E9), Locale.GERMAN);
+        createAbbreviation("Mrd.", new Double(1E9), Locale.GERMAN);
+        createAbbreviation("Mio", new Double(1E6), Locale.GERMAN);
+        createAbbreviation("Mio.", new Double(1E6), Locale.GERMAN);
+        createAbbreviation("Tsd", new Double(1E3), Locale.GERMAN);
+        createAbbreviation("Tsd.", new Double(1E3), Locale.GERMAN);
+        createAbbreviation("T", new Double(1E3), Locale.GERMAN);
 
-        {"Mio", new Double(1E6)},
-        {"Mio.", new Double(1E6)},
-        {"M", new Double(1E6)},
-
-        {"Tsd", new Double(1E3)},
-        {"Tsd.", new Double(1E3)},
-        {"T", new Double(1E3)},
-        {"K", new Double(1E3)}
-    };
+        createAbbreviation("Tsd", new Double(1E3), Locale.ENGLISH);
+        createAbbreviation("T", new Double(1E12), Locale.ENGLISH);
+        createAbbreviation("B", new Double(1E9), Locale.ENGLISH);
+        createAbbreviation("M", new Double(1E6), Locale.ENGLISH);
+        createAbbreviation("K", new Double(1E3), Locale.ENGLISH);
+	};
+	
+    private static void createAbbreviation(String abbreviation, Double factor, Locale locale) {
+		List<AbbreviatedScale> localAbbrevs = ABBREVIATIONS.get(locale);
+		if (localAbbrevs == null) {
+			localAbbrevs = new ArrayList<AbbreviatedScale>();
+			ABBREVIATIONS.put(locale, localAbbrevs);
+		}
+		AbbreviatedScale entry = new AbbreviatedScale(abbreviation, factor);
+		localAbbrevs.add(entry);
+	}
 
     private String defaultScaleId;
     private double defaultScale;
+    private List<AbbreviatedScale> abbreviations;
     private NumberFormat snf;
 
     public AbbreviatedNumberFormat() {
         this(1);
     }
 
-    public AbbreviatedNumberFormat(double scale) {
+	public AbbreviatedNumberFormat(double scale) {
         this(scale, Locale.getDefault());
     }
 
@@ -63,11 +83,13 @@ public class AbbreviatedNumberFormat extends NumberFormat {
     }
 
     public AbbreviatedNumberFormat(double scale, Locale locale) {
+    	abbreviations = abbreviationsForLocale(locale);
         defaultScale = scale;
         defaultScaleId = "";
-        for (int i = 0; i < availableScales.length; i++) {
-            if (((Double) availableScales[i][1]).doubleValue() == scale) {
-                defaultScaleId = (String)availableScales[i][0];
+        for (int i = 0; i < abbreviations.size(); i++) {
+        	AbbreviatedScale abbScale = abbreviations.get(i);
+            if (abbScale.factor == scale) {
+                defaultScaleId = (String) abbScale.code;
                 break;
             }
         }
@@ -96,10 +118,10 @@ public class AbbreviatedNumberFormat extends NumberFormat {
 
     private StringBuffer formatFree(double number, StringBuffer toAppendTo, FieldPosition pos) {
         String selectedPrefix = "";
-        for (int i = 0; i < availableScales.length; i++) {
-            double scale = ((Double)availableScales[i][1]).doubleValue();
+        for (int i = 0; i < abbreviations.size(); i++) {
+            double scale = ((Double) abbreviations.get(i).factor).doubleValue();
             if (number >= scale) {
-                selectedPrefix = (String) availableScales[i][0];
+                selectedPrefix = (String) abbreviations.get(i).code;
                 number /= scale;
                 snf.format(number, toAppendTo, pos);
                 toAppendTo.append(' ');
@@ -121,14 +143,38 @@ public class AbbreviatedNumberFormat extends NumberFormat {
         int start = ParseUtil.nextNonWhitespaceIndex(source, pos.getIndex());
         if (start == -1)
             return value;
-        for (int i = 0; i < availableScales.length; i++) {
-            String prefix = (String) availableScales[i][0];
+        for (int i = 0; i < abbreviations.size(); i++) {
+            String prefix = (String) abbreviations.get(i).code;
             if (source.substring(start).startsWith(prefix))  {
-                value = new Double(value.doubleValue() * ((Double) availableScales[i][1]).doubleValue());
+                value = new Double(value.doubleValue() * ((Double) abbreviations.get(i).factor).doubleValue());
                 pos.setIndex(start + prefix.length());
                 break;
             }
         }
         return value;
     }
+    
+	private static List<AbbreviatedScale> abbreviationsForLocale(Locale locale) {
+		Locale tmp = locale;
+		List<AbbreviatedScale> abbs;
+		do {
+			abbs = ABBREVIATIONS.get(tmp);
+			if (abbs != null)
+				return abbs;
+			tmp = LocaleUtil.parent(tmp);
+		} while (tmp != null);
+		throw new UnsupportedOperationException("Locale not supported: " + locale);
+	}
+
+    private static class AbbreviatedScale {
+    	
+    	public String code;
+    	public double factor;
+    	
+		public AbbreviatedScale(String code, double factor) {
+			this.code = code;
+			this.factor = factor;
+		}
+    }
+    
 }
