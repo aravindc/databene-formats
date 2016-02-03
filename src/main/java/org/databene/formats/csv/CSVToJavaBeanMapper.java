@@ -50,8 +50,11 @@ public class CSVToJavaBeanMapper<E> implements DataIterator<E> {
 
     public CSVToJavaBeanMapper(Reader reader, Class<E> type, char separator, String emptyValue) throws IOException {
     	CSVLineIterator iterator = new CSVLineIterator(reader, separator, true);
-        String[] attributeNames = iterator.next(dataContainer.get()).getData();
-        init(iterator, type, emptyValue, attributeNames);
+        DataContainer<String[]> tmp = iterator.next(dataContainer.get());
+        if (tmp != null) {
+			String[] attributeNames = tmp.getData();
+	        init(iterator, type, emptyValue, attributeNames);
+        }
     }
 
     public CSVToJavaBeanMapper(Reader reader, Class<E> type, char separator, String emptyValue, String[] attributeNames) throws IOException {
@@ -92,6 +95,7 @@ public class CSVToJavaBeanMapper<E> implements DataIterator<E> {
             }
             return wrapper.setData(bean);
         } catch (Exception e) {
+        	e.printStackTrace();
             throw new ConfigurationError("Failed to set property '" + 
                     mutators[i].getName() + "' to '" + value + "' on class " + type, e);
         }
