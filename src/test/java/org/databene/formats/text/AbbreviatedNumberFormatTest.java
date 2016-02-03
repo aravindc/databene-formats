@@ -32,12 +32,16 @@ public class AbbreviatedNumberFormatTest {
     private static final double DELTA = 0.0001;
 
     @Test
-    public void testParse() throws Exception {
+    public void testParseEnglish() throws Exception {
         checkParse("1", 1, Locale.US);
         checkParse("1 Tsd", 1000, Locale.US);
         checkParse("1. Tsd", 1000, Locale.US);
         checkParse("1.234 Tsd", 1234, Locale.US);
         checkParse("1,234.56 Mio", 1234560000, Locale.US);
+    }
+
+    @Test
+    public void testParseGerman() throws Exception {
         checkParse("1", 1, Locale.GERMANY);
         checkParse("1 Tsd", 1000, Locale.GERMANY);
         checkParse("1, Tsd", 1000, Locale.GERMANY);
@@ -51,11 +55,9 @@ public class AbbreviatedNumberFormatTest {
         checkFormat(1, "1.00", Locale.US);
         checkFormat(1000, "1.00 Tsd", Locale.US);
         checkFormat(1234, "1.23 Tsd", Locale.US);
-        checkFormatFixed(1234560000, "1,234.56 Mio", 1000000, Locale.US);
         checkFormat(1, "1,00", Locale.GERMANY);
         checkFormat(1000, "1,00 Tsd", Locale.GERMANY);
         checkFormat(1234, "1,23 Tsd", Locale.GERMANY);
-        checkFormatFixed(1234560000, "1.234,56 Mio", 1000000, Locale.GERMANY);
     }
 
     @Test
@@ -64,7 +66,7 @@ public class AbbreviatedNumberFormatTest {
         checkFormatFixed(123, "0.12 Tsd", 1000, Locale.US);
         checkFormatFixed(1000, "1.00 Tsd", 1000, Locale.US);
         checkFormatFixed(1234, "1.23 Tsd", 1000, Locale.US);
-        checkFormatFixed(1234560000, "1,234.56 Mio", 1000000, Locale.US);
+        checkFormatFixed(1234560000, "1,234.56 M", 1000000, Locale.US);
         checkFormatFixed(1, "1,00", 1, Locale.GERMANY);
         checkFormatFixed(123, "0,12 Tsd", 1000, Locale.GERMANY);
         checkFormatFixed(1000, "1,00 Tsd", 1000, Locale.GERMANY);
