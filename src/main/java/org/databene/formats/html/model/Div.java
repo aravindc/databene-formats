@@ -31,6 +31,7 @@ public class Div extends HtmlElement<Div> {
 		super("div", inline);
 	}
 	
+	@Override
 	public Div withTitle(String title) {
 		return this.withAttribute("title", title);
 	}

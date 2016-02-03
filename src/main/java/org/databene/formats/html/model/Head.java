@@ -31,6 +31,7 @@ public class Head extends HtmlElement<Head> {
 		super("head", false);
 	}
 	
+	@Override
 	public Head withTitle(String title) {
 		return this.withAttribute("title", title);
 	}
