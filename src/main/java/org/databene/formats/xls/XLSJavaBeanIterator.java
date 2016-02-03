@@ -47,7 +47,7 @@ import org.databene.formats.util.ConvertingDataIterator;
  * @author Volker Bergmann
  */
 
-public class XLSJavaBeanIterator extends ConvertingDataIterator<Object[], Object> {
+public class XLSJavaBeanIterator<E> extends ConvertingDataIterator<Object[], E> {
 	
 	private String uri;
 	private boolean formatted;
@@ -56,6 +56,7 @@ public class XLSJavaBeanIterator extends ConvertingDataIterator<Object[], Object
 		this(uri, sheetName, formatted, null, "", new ConstantClassProvider<Object>(beanClass));
 	}
 
+	@SuppressWarnings("unchecked")
 	public XLSJavaBeanIterator(String uri, String sheetName, boolean formatted, String nullMarker, String emptyMarker, ClassProvider<Object> beanClassProvider) 
 			throws IOException, InvalidFormatException {
 		super(null, null);
@@ -67,19 +68,14 @@ public class XLSJavaBeanIterator extends ConvertingDataIterator<Object[], Object
 		iterator.setEmptyMarker(emptyMarker);
 		String[] headers = parseHeaders(uri, sheetName, iterator);
 		this.source = iterator;
-		this.converter = new PropertyArray2JavaBeanConverter(beanClassProvider, headers, new RefResolver());
+		this.converter = (Converter<Object[], E>) new PropertyArray2JavaBeanConverter(beanClassProvider, headers, new RefResolver());
 	}
 
-	public static List<Object> parseAll(String uri, String sheetName, boolean formatted, Class<?> beanClass) 
+	public static <T> List<T> parseAll(String uri, String sheetName, boolean formatted, Class<T> type) 
 			throws InvalidFormatException, IOException {
-		return parseAll(uri, sheetName, formatted, new ConstantClassProvider<Object>(beanClass));
-	}
-
-	public static List<Object> parseAll(String uri, String sheetName, boolean formatted, ClassProvider<Object> beanClassProvider) 
-			throws InvalidFormatException, IOException {
-		XLSJavaBeanIterator iterator = new XLSJavaBeanIterator(uri, sheetName, formatted, null, "", beanClassProvider);
-		List<Object> result = new ArrayList<Object>();
-		DataContainer<Object> container = new DataContainer<Object>();
+		XLSJavaBeanIterator<T> iterator = new XLSJavaBeanIterator<T>(uri, sheetName, formatted, type);
+		List<T> result = new ArrayList<T>();
+		DataContainer<T> container = new DataContainer<T>();
 		while (iterator.next(container) != null)
 			result.add(container.getData());
 		return result;
