@@ -16,6 +16,8 @@ package org.databene.formats.xsd;
 
 import org.databene.commons.StringUtil;
 import org.databene.commons.xml.XMLUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -27,6 +29,8 @@ import org.w3c.dom.Element;
  */
 
 public class SchemaParser {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaParser.class);
 	
 	public Schema parse(Document document) {
 		Element root = document.getDocumentElement();
@@ -76,7 +80,7 @@ public class SchemaParser {
 		throw new UnsupportedOperationException("Not a supported kind of 'complexType': " + element.getAttribute("name"));
 	}
 
-	private ComplexType parseComplexTypeWithSimpleContent(Element element) {
+	private static ComplexType parseComplexTypeWithSimpleContent(Element element) {
 		String name = XMLUtil.getAttribute(element, "name", false);
 		PlainComplexType type = new PlainComplexType(name);
 		for (Element child : XMLUtil.getChildElements(element)) {
@@ -91,10 +95,26 @@ public class SchemaParser {
 		return type;
 	}
 
-	private void parseSimpleContent(Element child, PlainComplexType type) {
-		// TODO parse simple schema content
+	private static void parseSimpleContent(Element element, PlainComplexType type) {
+		for (Element child : XMLUtil.getChildElements(element)) {
+			String childName = child.getLocalName();
+			if ("restriction".equals(childName))
+				parseRestriction(child, type);
+			else
+				LOGGER.warn("Not a supported child of '" + element.getNodeName() + "': " + childName);
+		}
 	}
 
+	private static void parseRestriction(Element element, PlainComplexType type) {
+		for (Element child : XMLUtil.getChildElements(element)) {
+			String childName = child.getLocalName();
+			if ("minLength".equals(childName))
+				type.setMinLength(XMLUtil.getIntegerAttribute(child, "value", null));
+			else if ("maxLength".equals(childName))
+				type.setMaxLength(XMLUtil.getIntegerAttribute(child, "value", null));
+		}
+	}
+	
 	private ComplexType parseComplexTypeWithSequence(Element element, Schema schema) {
 		String name = XMLUtil.getAttribute(element, "name", false);
 		CompositeComplexType type = new CompositeComplexType(name);

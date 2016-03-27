@@ -22,9 +22,28 @@ package org.databene.formats.xsd;
  */
 
 public class PlainComplexType extends ComplexType {
+	
+	private Integer minLength;
+	private Integer maxLength;
 
 	public PlainComplexType(String name) {
 		super(name);
+	}
+	
+	public Integer getMinLength() {
+		return minLength;
+	}
+	
+	public void setMinLength(Integer minLength) {
+		this.minLength = minLength;
+	}
+
+	public Integer getMaxLength() {
+		return maxLength;
+	}
+	
+	public void setMaxLength(Integer maxLength) {
+		this.maxLength = maxLength;
 	}
 
 	@Override
