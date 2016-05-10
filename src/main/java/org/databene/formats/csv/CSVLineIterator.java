@@ -19,6 +19,7 @@ import org.databene.commons.CollectionUtil;
 import org.databene.commons.SystemInfo;
 import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
+import static org.databene.formats.csv.CSVTokenType.*;
 
 import java.io.*;
 import java.util.HashMap;
@@ -50,8 +51,6 @@ public class CSVLineIterator implements DataIterator<String[]> {
 
 	private HashMap<String, Integer> headerIndexes;
     
-    private boolean eol;
-
     // constructors ----------------------------------------------------------------------------------------------------
 
     /**
@@ -101,7 +100,6 @@ public class CSVLineIterator implements DataIterator<String[]> {
         this.ignoreEmptyLines = ignoreEmptyLines;
         this.nextLine = parseNextLine();
         this.lineCount = 0;
-        this.eol = false;
         this.stringRep = reader.toString();
     }
 
@@ -196,22 +194,20 @@ public class CSVLineIterator implements DataIterator<String[]> {
         CSVTokenType tokenType;
         do {
             list = new ArrayList<String>();
-            while ((tokenType = tokenizer.next()) == CSVTokenType.CELL) {
-                list.add(tokenizer.cell);
-            }
-            if (tokenType == CSVTokenType.EOF)
-                close();
-        } while (tokenType != CSVTokenType.EOF && (ignoreEmptyLines && list.size() == 0));
+            while ((tokenType = tokenizer.next()) == CELL)
+            	list.add(tokenizer.cell);
+        } while (tokenType != EOF && ignoreEmptyLines && list.size() == 0);
+        if (tokenType == EOF)
+            close();
         if (list.size() > 0) {
-            eol = (tokenType == CSVTokenType.EOL);
             String[] line = CollectionUtil.toArray(list, String.class);
            	checkHeaders(line);
 			return line;
-        }
-        if (eol) {
-           	checkHeaders(null);
+        } else {
+        	String[] line = new String[0];
+           	checkHeaders(line);
         	if (!ignoreEmptyLines)
-        		return new String[0];
+        		return line;
         }
         return null;
     }

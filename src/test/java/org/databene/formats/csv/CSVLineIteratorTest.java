@@ -55,7 +55,18 @@ public class CSVLineIteratorTest {
     }
 	
 	@Test
-    public void testEmpty() throws IOException {
+    public void testEmptyRow() throws IOException {
+        CSVLineIterator iterator = new CSVLineIterator("string://DATA\r\n\r\nDATA2");
+        DataContainer<String[]> container = new DataContainer<String[]>();
+        assertTrue(Arrays.equals(new String[] { "DATA" }, iterator.next(container).getData()));
+        assertTrue(Arrays.equals(new String[0], iterator.next(container).getData()));
+        assertTrue(Arrays.equals(new String[] { "DATA2" }, iterator.next(container).getData()));
+        assertNull(iterator.next(container));
+        iterator.close();
+    }
+	
+	@Test
+    public void testEmptyCell() throws IOException {
         CSVLineIterator iterator = new CSVLineIterator("string://name,\"\",,x");
         DataContainer<String[]> container = new DataContainer<String[]>();
         String[] line = iterator.next(container).getData();
