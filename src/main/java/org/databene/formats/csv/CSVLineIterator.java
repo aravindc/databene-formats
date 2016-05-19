@@ -29,7 +29,7 @@ import java.util.ArrayList;
 /**
  * Gives access to content of a CSV file by String arrays
  * that represent the CSV rows as specified in RFC 4180. 
- * @see https://www.ietf.org/rfc/rfc4180.txt
+ * @see <a href="https://www.ietf.org/rfc/rfc4180.txt">https://www.ietf.org/rfc/rfc4180.txt</a>
  * 
  * @author Volker Bergmann
  */
