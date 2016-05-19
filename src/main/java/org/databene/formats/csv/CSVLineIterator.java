@@ -28,7 +28,8 @@ import java.util.ArrayList;
 
 /**
  * Gives access to content of a CSV file by String arrays
- * that represent the CSV rows as specified in RFC 4180.
+ * that represent the CSV rows as specified in RFC 4180. 
+ * @see https://www.ietf.org/rfc/rfc4180.txt
  * 
  * @author Volker Bergmann
  */
@@ -203,7 +204,7 @@ public class CSVLineIterator implements DataIterator<String[]> {
             String[] line = CollectionUtil.toArray(list, String.class);
            	checkHeaders(line);
 			return line;
-        } else {
+        } else if (tokenType != EOF) {
         	String[] line = new String[0];
            	checkHeaders(line);
         	if (!ignoreEmptyLines)
