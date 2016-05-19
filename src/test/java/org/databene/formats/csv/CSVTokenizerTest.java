@@ -170,6 +170,7 @@ public class CSVTokenizerTest {
         assertNextToken(tokenizer, EOL, null);
         assertNextToken(tokenizer, CELL, "Charly");
         assertNextToken(tokenizer, EOL, null);
+        assertNextToken(tokenizer, EOL, null);
         assertNextToken(tokenizer, CELL, "Dieter");
         assertNextToken(tokenizer, CELL, "Indiana\r\nJones");
         assertNextToken(tokenizer, EOL, null);
