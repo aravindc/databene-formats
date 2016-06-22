@@ -39,12 +39,16 @@ public class ComparisonSettings {
 		return model;
 	}
 	
-	public void addKeyExpression(String elementName, String keyExpression) {
-		model.addKeyExpression(elementName, keyExpression);
+	public void addKeyExpression(String locator, String expression) {
+		model.addKeyExpression(locator, expression);
 	}
 
 	public Set<LocalDiffType> getToleratedDiffs() {
 		return toleratedDiffs;
+	}
+	
+	public void addToleratedDiff(LocalDiffType toleratedDiff) {
+		this.toleratedDiffs.add(toleratedDiff);
 	}
 
 	public void tolerateDifferentAt(String xPath) {
