@@ -37,19 +37,19 @@ public class DiffFactory {
 	}
 
 	public DiffDetail missing(Object object, String objectClassifier, String locator) {
-		return new DiffDetail(object, null, objectClassifier, DiffDetailType.MISSING, locator, null, formatter);
+		return genericDiff(object, null, objectClassifier, DiffDetailType.MISSING, locator, null);
 	}
 	
 	public DiffDetail unexpected(Object object, String objectClassifier, String locator) {
-		return new DiffDetail(null, object, objectClassifier, DiffDetailType.UNEXPECTED, null, locator, formatter);
+		return genericDiff(null, object, objectClassifier, DiffDetailType.UNEXPECTED, null, locator);
 	}
 	
 	public DiffDetail moved(Object object, String objectClassifier, String locatorOfExpected, String locatorOfActual) {
-		return new DiffDetail(object, object, objectClassifier, DiffDetailType.MOVED, locatorOfExpected, locatorOfActual, formatter);
+		return genericDiff(object, object, objectClassifier, DiffDetailType.MOVED, locatorOfExpected, locatorOfActual);
 	}
 
 	public DiffDetail different(Object expected, Object actual, String objectClassifier, String locatorOfActual) {
-		return new DiffDetail(expected, actual, objectClassifier, DiffDetailType.DIFFERENT, null, locatorOfActual, formatter);
+		return genericDiff(expected, actual, objectClassifier, DiffDetailType.DIFFERENT, locatorOfActual, locatorOfActual);
 	}
 
 	public DiffDetail genericDiff(Object expected, Object actual, String objectClassifier,
