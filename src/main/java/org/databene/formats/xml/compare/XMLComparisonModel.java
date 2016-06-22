@@ -15,6 +15,7 @@
 package org.databene.formats.xml.compare;
 
 import org.databene.formats.compare.ComparisonModel;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -25,6 +26,17 @@ import org.w3c.dom.Node;
  */
 
 public interface XMLComparisonModel extends ComparisonModel {
+	
+	public static final String DOCUMENT = "document";
+	public static final String DOCUMENT_ENCODING = "document encoding";
+	public static final String ELEMENT = "element";
+	public static final String ELEMENT_NAMESPACE = "element namespace";
+	public static final String ELEMENT_NAME = "element name";
+	public static final String ELEMENT_TEXT = "element text";
+	public static final String ATTRIBUTE = "attribute value";
+	public static final String TEXT = "text";
+	public static final String COMMENT = "comment";
+	public static final String PROCESSING_INSTRUCTION = "processing instruction";
 	
 	boolean isNamespaceRelevant();
 	void setNamespaceRelevant(boolean namespaceRelevant);
@@ -37,5 +49,6 @@ public interface XMLComparisonModel extends ComparisonModel {
 	boolean isProcessingInstructionRelevant();
 	void setProcessingInstructionRelevant(boolean processingInstructionRelevant);
 	
+	void init(Document document1, Document document2);
 	Node[] childNodes(Node parent);
 }
