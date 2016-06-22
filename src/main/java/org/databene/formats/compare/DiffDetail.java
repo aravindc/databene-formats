@@ -26,13 +26,13 @@ import org.databene.commons.NullSafeComparator;
 
 public class DiffDetail {
 	
-	private Object expected;
-	private Object actual;
-	private String objectClassifier;
-	private DiffDetailType type;
-	private String locatorOfExpected;
-	private String locatorOfActual;
-	private Converter<Object, String> formatter;
+	protected final Object expected;
+	protected final Object actual;
+	protected final String objectClassifier;
+	protected final DiffDetailType type;
+	protected final String locatorOfExpected;
+	protected final String locatorOfActual;
+	protected final Converter<Object, String> formatter;
 	
 	public DiffDetail(Object expected, Object actual, String objectClassifier, DiffDetailType type, Converter<Object, String> formatter) {
 		this(expected, actual, objectClassifier, type, null, null, formatter);
@@ -72,8 +72,8 @@ public class DiffDetail {
 		return locatorOfActual;
 	}
 	
-	public void setFormat(Converter<Object, String> formatter) {
-		this.formatter = formatter;
+	public Converter<Object, String> getFormatter() {
+		return formatter;
 	}
 	
 	@Override
