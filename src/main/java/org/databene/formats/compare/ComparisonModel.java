@@ -14,6 +14,8 @@
  */
 package org.databene.formats.compare;
 
+import java.util.List;
+
 /**
  * Provides comparison for equality and comparison for objects of a given parameterized type E.
  * Created: 20.11.2013 17:40:05
@@ -22,7 +24,9 @@ package org.databene.formats.compare;
  */
 
 public interface ComparisonModel {
+	String classifierOf(Object object);
 	void addKeyExpression(String locator, String keyExpression);
+	List<KeyExpression> getKeyExpressions();
 	boolean equal(Object o1, Object o2);
 	boolean correspond(Object o1, Object o2);
 	String subPath(Object[] array, int index);
