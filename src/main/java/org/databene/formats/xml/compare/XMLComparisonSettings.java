@@ -45,6 +45,10 @@ public class XMLComparisonSettings extends ComparisonSettings {
 		return (XMLComparisonModel) super.getModel();
 	}
 	
+	public void setModel(XMLComparisonModel model) {
+		this.model = model;
+	}
+	
     public boolean isEncodingRelevant() {
 		return encodingRelevant;
 	}
@@ -77,6 +81,18 @@ public class XMLComparisonSettings extends ComparisonSettings {
     	getModel().setWhitespaceRelevant(whitespaceRelevant);
     }
 
+    /** Tells if comments are relevant
+     * @return true if whitespace is relevant, otherwise false */
+    public boolean isCommentRelevant() {
+        return getModel().isCommentRelevant();
+    }
+
+    /** Sets if comments are relevant
+     * @param commentRelevant true if whitespace shall be relevant, otherwise false */
+    public void setCommentRelevant(boolean commentRelevant) {
+    	getModel().setCommentRelevant(commentRelevant);
+    }
+
     /** Tells if CDATA is relevant
      * @return true if CDATA is relevant, otherwise false */
     public boolean isCdataRelevant() {
@@ -100,5 +116,10 @@ public class XMLComparisonSettings extends ComparisonSettings {
     public void setProcessingInstructionRelevant(boolean processingInstructionRelevant) {
     	getModel().setProcessingInstructionRelevant(processingInstructionRelevant);
     }
+
+	public XMLComparisonSettings withCommentRelevant(boolean commentRelevant) {
+		setCommentRelevant(commentRelevant);
+		return this;
+	}
 
 }
