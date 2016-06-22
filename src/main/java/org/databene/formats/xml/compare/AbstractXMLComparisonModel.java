@@ -14,6 +14,12 @@
  */
 package org.databene.formats.xml.compare;
 
+import org.w3c.dom.Comment;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.ProcessingInstruction;
+import org.w3c.dom.Text;
+
 /**
  * Abstract implementation of the {@link XMLComparisonModel} interface.
  * Created: 20.11.2015 17:12:36
@@ -82,6 +88,21 @@ public abstract class AbstractXMLComparisonModel implements XMLComparisonModel {
 	@Override
 	public void setCommentRelevant(boolean commentRelevant) {
 		this.commentRelevant = commentRelevant;
+	}
+
+	@Override
+	public String classifierOf(Object object) {
+		if (object instanceof Document)
+			return DOCUMENT;
+		else if (object instanceof Element)
+			return ELEMENT;
+		else if (object instanceof Comment)
+			return COMMENT;
+		else if (object instanceof Text)
+			return TEXT;
+		else if (object instanceof ProcessingInstruction)
+			return PROCESSING_INSTRUCTION;
+		throw new UnsupportedOperationException("Not a supported type: " + object.getClass());
 	}
 
 }

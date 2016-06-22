@@ -14,18 +14,23 @@
  */
 package org.databene.formats.xml.compare;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.xpath.XPathExpressionException;
 
 import org.databene.commons.ArrayBuilder;
+import org.databene.commons.ConfigurationError;
 import org.databene.commons.NullSafeComparator;
 import org.databene.commons.StringUtil;
 import org.databene.commons.xml.XMLUtil;
 import org.databene.commons.xml.XPathUtil;
+import org.databene.formats.compare.KeyExpression;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,19 +46,44 @@ import org.w3c.dom.Text;
 
 public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 	
-	private Map<String, String> keyExpressions;
+	private List<KeyExpression> keyExpressions;
+	
+	private Map<Element, String> keys;
 	
 	public DefaultXMLComparisonModel() {
-		this.keyExpressions = new HashMap<String, String>();
+		this.keyExpressions = new ArrayList<KeyExpression>();
+		this.keys = new HashMap<Element, String>();
 	}
 	
 	@Override
-	public void addKeyExpression(String elementName, String keyExpression) {
-		this.keyExpressions.put(elementName, keyExpression);
+	public void addKeyExpression(String locator, String keyExpression) {
+		this.keyExpressions.add(new KeyExpression(locator, keyExpression));
 	}
 	
-	public Map<String, String> getKeyExpressions() {
+	@Override
+	public List<KeyExpression> getKeyExpressions() {
 		return keyExpressions;
+	}
+	
+	@Override
+	public void init(Document document1, Document document2) {
+		try {
+			this.keys.clear();
+			for (KeyExpression keyExpression : keyExpressions) {
+				List<Element> elements1 = XPathUtil.queryElements(document1, keyExpression.getLocator());
+				for (Element element : elements1) {
+					String key1 = XPathUtil.queryString(element, keyExpression.getExpression());
+					this.keys.put(element, key1);
+				}
+				List<Element> elements2 = XPathUtil.queryElements(document2, keyExpression.getLocator());
+				for (Element element : elements2) {
+					String key2 = XPathUtil.queryString(element, keyExpression.getExpression());
+					this.keys.put(element, key2);
+				}
+			}
+		} catch (XPathExpressionException e) {
+			throw new ConfigurationError("Error evaluating key expression", e);
+		}
 	}
 	
 	@Override
@@ -78,25 +108,14 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 			} else if (ln2 != null) {
 				return false;
 			}
-			String key1 = keyOf(e1);
+			String key1 = keys.get(e1);
 			if (key1 == null)
 				return true;
-			return (key1.equals(keyOf(e2)));
+			return (key1.equals(keys.get(e2)));
 		}
 		return (n1.getNodeName().equals(n2.getNodeName()));
 	}
 	
-	private String keyOf(Element element) {
-		String keyExpression = keyExpressions.get(element.getNodeName());
-		if (keyExpression == null)
-			return null;
-		try {
-			return XPathUtil.queryString(element, keyExpression);
-		} catch (XPathExpressionException e) {
-			throw new RuntimeException("Illegal XPath: " + keyExpression);
-		}
-	}
-
 	@Override
 	public String subPath(Object[] array, int index) {
 		Node node = (Node) array[index];
@@ -109,13 +128,13 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 			for (int i = 0; i < array.length; i++) {
 				if (name((Node) array[i]).equals(name)) {
 					if (i == index)
-						indexAmongHomonyms = i + 1;
+						indexAmongHomonyms = nameOccurrences;
 					nameOccurrences++;
 				}
 			}
 			String result = "/" + name;
 			if (nameOccurrences > 1)
-				result += "[" + indexAmongHomonyms + "]";
+				result += "[" + (indexAmongHomonyms + 1) + "]";
 			return result;
 		}
 	}
@@ -203,7 +222,12 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 	}
 	
 	private static String name(Node node) {
-		return node.getNodeName();
+		if (node instanceof Text)
+			return "text()";
+		else if (node instanceof Comment)
+			return "comment()";
+		else
+			return node.getNodeName();
 	}
 	
 	@Override

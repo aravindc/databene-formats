@@ -12,7 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.databene.formats.xml.compare;
+
+import static org.databene.formats.xml.compare.XMLComparisonModel.ATTRIBUTE;
+import static org.databene.formats.xml.compare.XMLComparisonModel.DOCUMENT_ENCODING;
+import static org.databene.formats.xml.compare.XMLComparisonModel.ELEMENT_NAME;
+import static org.databene.formats.xml.compare.XMLComparisonModel.ELEMENT_NAMESPACE;
+import static org.databene.formats.xml.compare.XMLComparisonModel.ELEMENT_TEXT;
+import static org.databene.formats.xml.compare.XMLComparisonModel.PROCESSING_INSTRUCTION;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -28,8 +36,8 @@ import org.databene.formats.compare.AggregateDiff;
 import org.databene.formats.compare.ArrayComparator;
 import org.databene.formats.compare.ArrayComparisonResult;
 import org.databene.formats.compare.DiffDetail;
-import org.databene.formats.compare.DiffFactory;
 import org.databene.formats.compare.DiffDetailType;
+import org.databene.formats.compare.DiffFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -81,13 +89,14 @@ public class XMLComparator {
 	public AggregateDiff compare(Document expectedDocument, Document actualDocument) throws XPathExpressionException {
 		// prepare comparison
 		ComparisonContext context = new ComparisonContext(settings.getToleratedDiffs(), expectedDocument, actualDocument);
+		settings.getModel().init(actualDocument, expectedDocument);
 		AggregateDiff diffs = new AggregateDiff(expectedDocument, actualDocument, settings);
 		
 		// check encoding
 		String expectedEncoding = expectedDocument.getInputEncoding();
 		String actualEncoding = actualDocument.getInputEncoding();
 		if (!NullSafeComparator.equals(expectedEncoding, actualEncoding) && settings.isEncodingRelevant())
-			diffs.addDetail(diffFactory.different(expectedEncoding, actualEncoding, "document encoding", "/"));
+			diffs.addDetail(diffFactory.different(expectedEncoding, actualEncoding, DOCUMENT_ENCODING, "/"));
 		
 		// check element tree
 		String rootNodeName = expectedDocument.getDocumentElement().getNodeName();
@@ -113,13 +122,13 @@ public class XMLComparator {
 	private void compareElementNames(Element expected, Element actual, String parentPath, AggregateDiff diffs) {
 		// assert equal node names
 		String elementName = expected.getLocalName();
-		expectEqualStrings(elementName, actual.getLocalName(), "Element name", parentPath, diffs);
+		expectEqualStrings(elementName, actual.getLocalName(), ELEMENT_NAME, parentPath, diffs);
 		if (settings.isNamespaceRelevant()) {
 			String expectedNs = StringUtil.emptyToNull(expected.getNamespaceURI());
 			String actualNs = StringUtil.emptyToNull(actual.getNamespaceURI());
 			if (!NullSafeComparator.equals(expectedNs, actualNs)) {
-				// expectEqualStrings("'" + expectedNs + "'", "'" + actualNs + "'", "Element namespace", parentPath, diffs);
-				diffs.addDetail(diffFactory.different(nsDescription(expectedNs), nsDescription(actualNs), "Element namespace", parentPath));
+				// TODO expectEqualStrings("'" + expectedNs + "'", "'" + actualNs + "'", ELEMENT_NAMESPACE, parentPath, diffs);
+				diffs.addDetail(diffFactory.different(nsDescription(expectedNs), nsDescription(actualNs), ELEMENT_NAMESPACE, parentPath));
 			}
 		}
 	}
@@ -144,7 +153,7 @@ public class XMLComparator {
 			Attr actualAttribute = (Attr) actualAttributes.item(i);
 			Attr expectedAttribute = (Attr) expectedAttributes.getNamedItem(actualAttribute.getNodeName());
 			if (expectedAttribute == null && !isXmlnsAttribute(actualAttribute) && !context.isTolerated(DiffDetailType.UNEXPECTED, expectedAttribute, actualAttribute)) {
-				diffs.addDetail(diffFactory.unexpected(actualAttribute.getValue(), "attribute", attributePath(parentPath, actualAttribute)));
+				diffs.addDetail(diffFactory.unexpected(actualAttribute.getValue(), ATTRIBUTE, attributePath(parentPath, actualAttribute)));
 			}
 		}
 	}
@@ -192,7 +201,7 @@ public class XMLComparator {
 		// special handling for text nodes
 		String locatorOfActual = StringUtil.removeSuffixIfPresent("/#text", diff.getLocatorOfActual());
 		if (!context.isTolerated(DiffDetailType.DIFFERENT, locatorOfActual))
-			diffs.addDetail(diffFactory.different(diff.getExpected(), diff.getActual(), "element text", locatorOfActual));
+			diffs.addDetail(diffFactory.different(diff.getExpected(), diff.getActual(), ELEMENT_TEXT, locatorOfActual));
 	}
 
 	private void handleProcesingInstructionDiff(DiffDetail diff, AggregateDiff diffs, ComparisonContext context) {
@@ -202,7 +211,7 @@ public class XMLComparator {
 		String locatorOfExpected = procIntLocator(StringUtil.removeSuffixIfPresent("/procint", diff.getLocatorOfExpected()), expectedPI);
 		String locatorOfActual = procIntLocator(StringUtil.removeSuffixIfPresent("/procint", diff.getLocatorOfActual()), actualPI);
 		if (!context.isTolerated(diff.getType(), locatorOfExpected) && !context.isTolerated(diff.getType(), locatorOfActual)) {
-			diffs.addDetail(diffFactory.genericDiff(expectedPI, actualPI, "processing instruction", diff.getType(), locatorOfExpected, locatorOfActual));
+			diffs.addDetail(diffFactory.genericDiff(expectedPI, actualPI, PROCESSING_INSTRUCTION, diff.getType(), locatorOfExpected, locatorOfActual));
 		}
 	}
 
@@ -217,12 +226,12 @@ public class XMLComparator {
 		String expectedAttValue = expectedAttribute.getValue();
 		if (actualAttribute == null) {
 			if (!context.isTolerated(DiffDetailType.MISSING, expectedAttribute, null)) {
-				diffs.addDetail(diffFactory.missing(expectedAttValue, "attribute", attributePath(parentPath, expectedAttribute)));
+				diffs.addDetail(diffFactory.missing(expectedAttValue, ATTRIBUTE, attributePath(parentPath, expectedAttribute)));
 			}
 		} else {
 			String actualAttValue = actualAttribute.getValue();
 			if (!expectedAttValue.equals(actualAttValue) && !context.isTolerated(DiffDetailType.DIFFERENT, expectedAttribute, actualAttribute)) {
-				diffs.addDetail(diffFactory.different(expectedAttValue, actualAttValue, "attribute", attributePath(parentPath, actualAttribute)));
+				diffs.addDetail(diffFactory.different(expectedAttValue, actualAttValue, ATTRIBUTE, attributePath(parentPath, actualAttribute)));
 			}
 		}
 	}

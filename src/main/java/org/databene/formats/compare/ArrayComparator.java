@@ -54,7 +54,6 @@ public class ArrayComparator {
 	}
 	
 	private ArrayComparisonResult compare() {
-		String objectType = "list element";
 		
 		// 1. step: match identical elements
 		for (int i1 = 0; i1 < array1.length; i1++) {
@@ -102,23 +101,29 @@ public class ArrayComparator {
 			Match match1 = (i1 < matches1.length ? matches1[i1] : null);
 			Match match2 = (i2 < matches2.length ? matches2[i2] : null);
 			if (match1 != null && match1.type == REMOVED) {
-				result.add(diffFactory.missing(array1[match1.i1], objectType, locator(array1, match1.i1)));
+				Object missingObject = array1[match1.i1];
+				result.add(diffFactory.missing(missingObject, model.classifierOf(missingObject), locator(array1, match1.i1)));
 				match1.consume();
 				i1 = nextUnconsumed(matches1, i1); 
 			} else if (match2 != null && match2.type == ADDED) {
-				result.add(diffFactory.unexpected(array2[match2.i2], objectType, locator(array2, match2.i2)));
+				Object newObject = array2[match2.i2];
+				result.add(diffFactory.unexpected(newObject, model.classifierOf(newObject), locator(array2, match2.i2)));
 				match2.consume();
 				i2 = nextUnconsumed(matches2, i2);
 			} else {
 				Assert.notNull(match1, "match1");
 				Assert.notNull(match2, "match2");
 				switch (match1.type) {
-					case CHANGED: 	if (match1.i1 != i1 || match1.i2 != i2)
-										result.add(diffFactory.moved(array1[match1.i1], objectType, locator(array1, match1.i1), locator(array1, match1.i2)));
-									result.add(diffFactory.different(array1[match1.i1], array2[match1.i2], objectType, locator(array1, match1.i1))); 
+					case CHANGED: 	Object changedObject = array1[match1.i1];
+									String classifier = model.classifierOf(changedObject);
+									if (match1.i1 != i1 || match1.i2 != i2)
+										result.add(diffFactory.moved(array1[match1.i1], classifier, locator(array1, match1.i1), locator(array1, match1.i2)));
+									result.add(diffFactory.different(array1[match1.i1], array2[match1.i2], classifier, locator(array1, match1.i1))); 
 									break;
-					case IDENTICAL:	if ((match1.i1 != match1.i2) && (match1.i1 != i1 || match1.i2 != i2))
-										result.add(diffFactory.moved(array1[match1.i1], objectType, locator(array1, match1.i1), locator(array1, match1.i2)));
+					case IDENTICAL:	if ((match1.i1 != match1.i2) && (match1.i1 != i1 || match1.i2 != i2)) {
+										Object movedObject = array1[match1.i1];
+										result.add(diffFactory.moved(movedObject, model.classifierOf(movedObject), locator(array1, match1.i1), locator(array1, match1.i2)));
+									}
 									break;
 					default: 		throw new ProgrammerError();
 				}
