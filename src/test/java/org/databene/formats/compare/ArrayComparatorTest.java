@@ -14,17 +14,14 @@
  */
 package org.databene.formats.compare;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.databene.commons.CollectionUtil;
 import org.databene.commons.converter.XMLNode2StringConverter;
-import org.databene.formats.compare.ArrayComparator;
-import org.databene.formats.compare.ArrayComparisonResult;
-import org.databene.formats.compare.ComparisonModel;
-import org.databene.formats.compare.DiffDetail;
-import org.databene.formats.compare.DiffFactory;
 import org.junit.Test;
 
 /**
@@ -202,8 +199,18 @@ public class ArrayComparatorTest {
 	static class StringComparisonModel implements ComparisonModel {
 
 		@Override
+		public String classifierOf(Object object) {
+			return "string";
+		}
+
+		@Override
 		public void addKeyExpression(String locator, String keyExpression) {
 			// not supported
+		}
+		
+		@Override
+		public List<KeyExpression> getKeyExpressions() {
+			return null;
 		}
 
 		@Override
