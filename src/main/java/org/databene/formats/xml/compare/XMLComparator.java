@@ -96,12 +96,13 @@ public class XMLComparator {
 		String expectedEncoding = expectedDocument.getInputEncoding();
 		String actualEncoding = actualDocument.getInputEncoding();
 		if (!NullSafeComparator.equals(expectedEncoding, actualEncoding) && settings.isEncodingRelevant())
-			diffs.addDetail(diffFactory.different(expectedEncoding, actualEncoding, DOCUMENT_ENCODING, "/"));
+			diffs.addDetail(diffFactory.different(expectedEncoding, actualEncoding, DOCUMENT_ENCODING, "/", "/"));
 		
 		// check element tree
-		String rootNodeName = expectedDocument.getDocumentElement().getNodeName();
+		String expectedRootName = expectedDocument.getDocumentElement().getNodeName();
+		String actualRootName = actualDocument.getDocumentElement().getNodeName();
 		compareElements(expectedDocument.getDocumentElement(),
-				actualDocument.getDocumentElement(), context, "/" + rootNodeName, diffs);
+				actualDocument.getDocumentElement(), context, "/" + expectedRootName, "/" + actualRootName, diffs);
 		
 		return diffs;
 	}
@@ -110,26 +111,24 @@ public class XMLComparator {
 	
 	// private helpers -------------------------------------------------------------------------------------------------
 
-	AggregateDiff compareElements(Element expected, Element actual, ComparisonContext context, String parentPath, AggregateDiff diffs) {
+	AggregateDiff compareElements(Element expected, Element actual, ComparisonContext context, String parentPathOfExpected, String parentPathOfActual, AggregateDiff diffs) {
 		if (context.isExcluded(expected)) // if this is an excluded node then return without checking
 			return diffs;
-		compareElementNames(expected, actual, parentPath, diffs);
-		compareAttributes(expected, actual, context, parentPath, diffs);
-		compareChildNodes(expected, actual, context, parentPath, diffs);
+		compareElementNames(expected, actual, parentPathOfExpected, parentPathOfActual, diffs);
+		compareAttributes(expected, actual, context, parentPathOfExpected, parentPathOfActual, diffs);
+		compareChildNodes(expected, actual, context, parentPathOfExpected, parentPathOfActual, diffs);
 		return diffs;
 	}
 
-	private void compareElementNames(Element expected, Element actual, String parentPath, AggregateDiff diffs) {
+	private void compareElementNames(Element expected, Element actual, String parentPathOfExpected, String parentPathOfActual, AggregateDiff diffs) {
 		// assert equal node names
 		String elementName = expected.getLocalName();
-		expectEqualStrings(elementName, actual.getLocalName(), ELEMENT_NAME, parentPath, diffs);
+		expectEqualStrings(elementName, actual.getLocalName(), ELEMENT_NAME, parentPathOfExpected, parentPathOfActual, diffs);
 		if (settings.isNamespaceRelevant()) {
 			String expectedNs = StringUtil.emptyToNull(expected.getNamespaceURI());
 			String actualNs = StringUtil.emptyToNull(actual.getNamespaceURI());
-			if (!NullSafeComparator.equals(expectedNs, actualNs)) {
-				// TODO expectEqualStrings("'" + expectedNs + "'", "'" + actualNs + "'", ELEMENT_NAMESPACE, parentPath, diffs);
-				diffs.addDetail(diffFactory.different(nsDescription(expectedNs), nsDescription(actualNs), ELEMENT_NAMESPACE, parentPath));
-			}
+			if (!NullSafeComparator.equals(expectedNs, actualNs))
+				diffs.addDetail(diffFactory.different(nsDescription(expectedNs), nsDescription(actualNs), ELEMENT_NAMESPACE, parentPathOfExpected, parentPathOfActual));
 		}
 	}
 
@@ -138,14 +137,14 @@ public class XMLComparator {
 	}
 
 	private void compareAttributes(Element expectedElement, Element actualElement, ComparisonContext context,
-			String parentPath, AggregateDiff diffs) {
+			String parentPathOfExpected, String parentPathOfActual, AggregateDiff diffs) {
 		// assert equal attributes
 		// first check that each expected attribute exists and matches...
 		NamedNodeMap expectedAttributes = expectedElement.getAttributes();
 		for (int i = 0; i < expectedAttributes.getLength(); i++) {
 			Attr expectedAttribute = (Attr) expectedAttributes.item(i);
 			if (!isXmlnsAttribute(expectedAttribute) && !context.isExcluded(expectedAttribute))
-				expectEqualAttribute(expectedAttribute, actualElement, context, parentPath, diffs);
+				expectEqualAttribute(expectedAttribute, actualElement, context, parentPathOfExpected, parentPathOfActual, diffs);
 		}
 		// ...then check that there do not exist additional ones
 		NamedNodeMap actualAttributes = actualElement.getAttributes();
@@ -153,7 +152,7 @@ public class XMLComparator {
 			Attr actualAttribute = (Attr) actualAttributes.item(i);
 			Attr expectedAttribute = (Attr) expectedAttributes.getNamedItem(actualAttribute.getNodeName());
 			if (expectedAttribute == null && !isXmlnsAttribute(actualAttribute) && !context.isTolerated(DiffDetailType.UNEXPECTED, expectedAttribute, actualAttribute)) {
-				diffs.addDetail(diffFactory.unexpected(actualAttribute.getValue(), ATTRIBUTE, attributePath(parentPath, actualAttribute)));
+				diffs.addDetail(diffFactory.unexpected(actualAttribute.getValue(), ATTRIBUTE, attributePath(parentPathOfActual, actualAttribute)));
 			}
 		}
 	}
@@ -163,13 +162,13 @@ public class XMLComparator {
 		return "xmlns".equals(name) || name.startsWith("xmlns:");
 	}
 
-	private void compareChildNodes(Element expected, Element actual, ComparisonContext context, String parentPath,
-			AggregateDiff diffs) {
+	private void compareChildNodes(Element expected, Element actual, ComparisonContext context, 
+			String parentPathOfExpected, String parentPathOfActual, AggregateDiff diffs) {
 		Node[] expectedChildNodes = settings.getModel().childNodes(expected);
 		Node[] actualChildNodes = settings.getModel().childNodes(actual);
 		if (expectedChildNodes.length > 0 || actualChildNodes.length > 0) {
 			// if child elements exist, then compare them
-			compareNodeArrays(expectedChildNodes, actualChildNodes, context, parentPath, diffs);
+			compareNodeArrays(expectedChildNodes, actualChildNodes, context, parentPathOfExpected, parentPathOfActual, diffs);
 		}
 		Iterator<DiffDetail> iterator = diffs.getDetails().iterator();
 		while (iterator.hasNext()) {
@@ -180,12 +179,12 @@ public class XMLComparator {
 	}
 
 	private void compareNodeArrays(Node[] expectedNodes, Node[] actualNodes,
-			ComparisonContext context, String parentPath, AggregateDiff diffs) {
-		ArrayComparisonResult result = ArrayComparator.compare(expectedNodes, actualNodes, settings.getModel(), parentPath, diffFactory);
+			ComparisonContext context, String parentPathOfExpected, String parentPathOfActual, AggregateDiff diffs) {
+		ArrayComparisonResult result = ArrayComparator.compare(expectedNodes, actualNodes, settings.getModel(), parentPathOfExpected, parentPathOfActual, diffFactory);
 		for (DiffDetail diff : result.getDiffs()) {
 			if (diff.getType() == DiffDetailType.DIFFERENT && diff.getExpected() instanceof Element && diff.getActual() instanceof Element) {
 				// if two elements differ in general, dive deeper in the comparison
-				compareElements((Element) diff.getExpected(), (Element) diff.getActual(), context, String.valueOf(diff.getLocatorOfActual()), diffs);
+				compareElements((Element) diff.getExpected(), (Element) diff.getActual(), context, String.valueOf(diff.getLocatorOfExpected()), String.valueOf(diff.getLocatorOfActual()), diffs);
 			} else if (diff.getType() == DiffDetailType.DIFFERENT && diff.getExpected() instanceof Text && diff.getActual() instanceof Text) {
 				handleTextDiff(diff, diffs, context);
 			} else if (diff.getExpected() instanceof ProcessingInstruction || diff.getActual() instanceof ProcessingInstruction) {
@@ -200,8 +199,9 @@ public class XMLComparator {
 	private void handleTextDiff(DiffDetail diff, AggregateDiff diffs, ComparisonContext context) {
 		// special handling for text nodes
 		String locatorOfActual = StringUtil.removeSuffixIfPresent("/#text", diff.getLocatorOfActual());
+		String locatorOfExpected = StringUtil.removeSuffixIfPresent("/#text", diff.getLocatorOfExpected());
 		if (!context.isTolerated(DiffDetailType.DIFFERENT, locatorOfActual))
-			diffs.addDetail(diffFactory.different(diff.getExpected(), diff.getActual(), ELEMENT_TEXT, locatorOfActual));
+			diffs.addDetail(diffFactory.different(diff.getExpected(), diff.getActual(), ELEMENT_TEXT, locatorOfExpected, locatorOfActual));
 	}
 
 	private void handleProcesingInstructionDiff(DiffDetail diff, AggregateDiff diffs, ComparisonContext context) {
@@ -215,23 +215,25 @@ public class XMLComparator {
 		}
 	}
 
-	private void expectEqualStrings(String expectedValue, String actualValue, String type, String locator, AggregateDiff diffs) {
+	private void expectEqualStrings(String expectedValue, String actualValue, String type, String locatorOfExpected, String locatorOfActual, AggregateDiff diffs) {
 		if (!NullSafeComparator.equals(expectedValue, actualValue))
-			diffs.addDetail(diffFactory.different(expectedValue, actualValue, type, locator));
+			diffs.addDetail(diffFactory.different(expectedValue, actualValue, type, locatorOfExpected, locatorOfActual));
 	}
 
-	private void expectEqualAttribute(Attr expectedAttribute, Element actualElement, ComparisonContext context, String parentPath, AggregateDiff diffs) {
+	private void expectEqualAttribute(Attr expectedAttribute, Element actualElement, ComparisonContext context, String parentPathOfExpected, String parentPathOfActual, AggregateDiff diffs) {
 		String attributeName = expectedAttribute.getName();
 		Attr actualAttribute = actualElement.getAttributeNode(attributeName);
 		String expectedAttValue = expectedAttribute.getValue();
 		if (actualAttribute == null) {
 			if (!context.isTolerated(DiffDetailType.MISSING, expectedAttribute, null)) {
-				diffs.addDetail(diffFactory.missing(expectedAttValue, ATTRIBUTE, attributePath(parentPath, expectedAttribute)));
+				diffs.addDetail(diffFactory.missing(expectedAttValue, ATTRIBUTE, attributePath(parentPathOfExpected, expectedAttribute)));
 			}
 		} else {
 			String actualAttValue = actualAttribute.getValue();
 			if (!expectedAttValue.equals(actualAttValue) && !context.isTolerated(DiffDetailType.DIFFERENT, expectedAttribute, actualAttribute)) {
-				diffs.addDetail(diffFactory.different(expectedAttValue, actualAttValue, ATTRIBUTE, attributePath(parentPath, actualAttribute)));
+				String locatorOfExpected = attributePath(parentPathOfExpected, expectedAttribute);
+				String locatorOfActual = attributePath(parentPathOfActual, actualAttribute);
+				diffs.addDetail(diffFactory.different(expectedAttValue, actualAttValue, ATTRIBUTE, locatorOfExpected, locatorOfActual));
 			}
 		}
 	}
