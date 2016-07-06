@@ -47,12 +47,13 @@ import org.w3c.dom.Text;
 public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 	
 	private List<KeyExpression> keyExpressions;
-	
 	private Map<Element, String> keys;
+	private boolean initialized;
 	
 	public DefaultXMLComparisonModel() {
 		this.keyExpressions = new ArrayList<KeyExpression>();
 		this.keys = new HashMap<Element, String>();
+		this.initialized = false;
 	}
 	
 	@Override
@@ -70,29 +71,37 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 		try {
 			this.keys.clear();
 			for (KeyExpression keyExpression : keyExpressions) {
-				List<Element> elements1 = XPathUtil.queryElements(document1, keyExpression.getLocator());
-				for (Element element : elements1) {
-					String key1 = XPathUtil.queryString(element, keyExpression.getExpression());
-					this.keys.put(element, key1);
+				if (document1 != null) {
+					List<Element> elements1 = XPathUtil.queryElements(document1, keyExpression.getLocator());
+					for (Element element : elements1) {
+						String key1 = XPathUtil.queryString(element, keyExpression.getExpression());
+						this.keys.put(element, key1);
+					}
 				}
-				List<Element> elements2 = XPathUtil.queryElements(document2, keyExpression.getLocator());
-				for (Element element : elements2) {
-					String key2 = XPathUtil.queryString(element, keyExpression.getExpression());
-					this.keys.put(element, key2);
+				if (document2 != null) {
+					List<Element> elements2 = XPathUtil.queryElements(document2, keyExpression.getLocator());
+					for (Element element : elements2) {
+						String key2 = XPathUtil.queryString(element, keyExpression.getExpression());
+						this.keys.put(element, key2);
+					}
 				}
 			}
+			this.initialized = true;
 		} catch (XPathExpressionException e) {
+			this.keys.clear();
 			throw new ConfigurationError("Error evaluating key expression", e);
 		}
 	}
 	
 	@Override
 	public boolean equal(Object o1, Object o2) {
+		assertInitialized();
 		return equalNodes((Node) o1, (Node) o2);
 	}
 	
 	@Override
 	public boolean correspond(Object o1, Object o2) {
+		assertInitialized();
 		Node n1 = (Node) o1;
 		Node n2 = (Node) o2;
 		if (n1 instanceof Text && n2 instanceof Text)
@@ -118,6 +127,7 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 	
 	@Override
 	public String subPath(Object[] array, int index) {
+		assertInitialized();
 		Node node = (Node) array[index];
 		String name = name(node);
 		if (name.length() == 0) {
@@ -140,6 +150,7 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 	}
 	
 	public boolean equalNodes(Node n1, Node n2) {
+		assertInitialized();
 		// compare node names
 		if (n1 instanceof Element && n2 instanceof Element) {
 			if (!elementNamesMatch((Element) n1, (Element) n2))
@@ -173,6 +184,7 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
 
 	@Override
 	public Node[] childNodes(Node parent) {
+		assertInitialized();
 		if (!(parent instanceof Element))
 			return new Node[0];
         NodeList childNodes = parent.getChildNodes();
@@ -206,6 +218,11 @@ public class DefaultXMLComparisonModel extends AbstractXMLComparisonModel {
         }
         return builder.toArray();
     }
+
+	private void assertInitialized() {
+		if (!initialized)
+			throw new IllegalStateException(getClass().getName() + " is not initialized, call the init() method before using it");
+	}
 
 	private boolean elementNamesMatch(Element e1, Element e2) {
 		String ln1 = e1.getLocalName();

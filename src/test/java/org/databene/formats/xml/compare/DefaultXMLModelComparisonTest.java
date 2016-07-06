@@ -18,7 +18,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.databene.commons.xml.XMLUtil;
-import org.databene.formats.xml.compare.DefaultXMLComparisonModel;
 import org.junit.Test;
 import org.w3c.dom.Element;
 
@@ -29,7 +28,7 @@ import org.w3c.dom.Element;
  * @author Volker Bergmann
  */
 
-public class NameBasedXMLModelComparisonTest {
+public class DefaultXMLModelComparisonTest {
 
 	@Test
 	public void testEquals() {
@@ -41,6 +40,7 @@ public class NameBasedXMLModelComparisonTest {
 		Element c2 = XMLUtil.parseStringAsElement("<c><d/><d/></c>");
 		Element c3 = XMLUtil.parseStringAsElement("<c><d/><e/></c>");
 		DefaultXMLComparisonModel model = new DefaultXMLComparisonModel();
+		model.init(null, null);
 		assertTrue(model.equalNodes(a1, a2));
 		assertFalse(model.equalNodes(a1, a3));
 		assertFalse(model.equalNodes(a1, b1));
