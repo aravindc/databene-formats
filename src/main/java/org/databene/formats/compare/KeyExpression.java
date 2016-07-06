@@ -15,6 +15,8 @@
 
 package org.databene.formats.compare;
 
+import org.databene.commons.NullSafeComparator;
+
 /**
  * Provides a key definition for an object based on a {@link #locator} expression 
  * for the related object and a {@link KeyExpression} to derive a key from the object.
@@ -43,6 +45,23 @@ public class KeyExpression {
 		return expression;
 	}
 	
+	@Override
+	public int hashCode() {
+		return ((expression == null) ? 0 : expression.hashCode()) * 31 
+				+ ((locator == null) ? 0 : locator.hashCode());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		KeyExpression that = (KeyExpression) obj;
+		return NullSafeComparator.equals(this.expression, that.expression)
+				&& NullSafeComparator.equals(this.locator, that.locator);
+	}
+
 	@Override
 	public String toString() {
 		return locator + " -> " + expression;
