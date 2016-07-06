@@ -39,7 +39,7 @@ public class ArrayComparatorTest {
 	public void testIdenticalLists() {
 		String[] l1 = new String[] { "A", "B", "C" };
 		String[] l2 = new String[] { "A", "B", "C" };
-		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", diffFactory);
+		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", "", diffFactory);
 		assertTrue(result.identical());
 	}
 	
@@ -47,7 +47,7 @@ public class ArrayComparatorTest {
 	public void testEmptyLists() {
 		String[] l1 = new String[] { };
 		String[] l2 = new String[] { };
-		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", diffFactory);
+		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", "", diffFactory);
 		assertTrue(result.identical());
 	}
 	
@@ -118,7 +118,7 @@ public class ArrayComparatorTest {
 	public void testSwappedEnds() {
 		String[] l1 = new String[] { "A", "B", "C" };
 		String[] l2 = new String[] { "C", "B", "A" };
-		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", diffFactory);
+		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", "", diffFactory);
 		assertFalse(result.identical());
 		check(
 			new String[] { "A", "B", "C" }, 
@@ -131,7 +131,7 @@ public class ArrayComparatorTest {
 	public void testRingChange() {
 		String[] l1 = new String[] { "A", "B", "C" };
 		String[] l2 = new String[] { "B", "C", "A" };
-		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", diffFactory);
+		ArrayComparisonResult result = ArrayComparator.compare(l1, l2, new StringComparisonModel(), "", "", diffFactory);
 		assertFalse(result.identical());
 		check(
 			new String[] { "A", "B", "C" }, 
@@ -145,7 +145,7 @@ public class ArrayComparatorTest {
 		check(
 			new String[] { "A", "B",  "C" }, 
 			new String[] { "A", "B2", "C" }, 
-			diffFactory.different("B", "B2", "list element", "[1]")
+			diffFactory.different("B", "B2", "list element", "[1]", "[1]")
 		);
 	}
 	
@@ -164,8 +164,8 @@ public class ArrayComparatorTest {
 		check(
 			new String[] { "A", "B",  "C" }, 
 			new String[] { "A", "C", "B2" }, 
-			diffFactory.moved("B", "list element", "[1]", "[2]"),
-			diffFactory.different("B", "B2", "list element", "[1]")
+			diffFactory.moved("B", "string", "[1]", "[2]"),
+			diffFactory.different("B", "B2", "string", "[1]", "[2]")
 		);
 	}
 	
@@ -176,7 +176,7 @@ public class ArrayComparatorTest {
 				new String[] { "A", "X", "B", "D2", "C" }, 
 				diffFactory.unexpected("X", "list element", "[1]"),
 				diffFactory.moved("C", "list element", "[2]", "[4]"),
-				diffFactory.different("D", "D2", "list element", "[3]"),
+				diffFactory.different("D", "D2", "list element", "[3]", "[3]"),
 				diffFactory.missing("E", "list element", "[4]")
 			);
 	}
@@ -185,7 +185,7 @@ public class ArrayComparatorTest {
 	// private helpers -------------------------------------------------------------------------------------------------
 	
 	private void check(String[] list1, String[] list2, DiffDetail... expectedDiffs) {
-		ArrayComparisonResult result = ArrayComparator.compare(list1, list2, new StringComparisonModel(), "", diffFactory);
+		ArrayComparisonResult result = ArrayComparator.compare(list1, list2, new StringComparisonModel(), "", "", diffFactory);
 		if (expectedDiffs.length > 0)
 			assertFalse(result.identical());
 		else

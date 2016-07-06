@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.databene.formats.compare;
 
 import org.databene.commons.Converter;
@@ -76,6 +77,9 @@ public class DiffDetail {
 		return formatter;
 	}
 	
+	
+	// java.lang.Object overrides --------------------------------------------------------------------------------------
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,15 +110,43 @@ public class DiffDetail {
 	@Override
 	public String toString() {
 		switch (type) {
-			case DIFFERENT :  return "Different " + objectClassifier + ": expected " + format(expected) + " but found " + format(actual) + (locatorOfActual != null ? " at " + locatorOfActual : "");
-			case MISSING :    return "Missing " + objectClassifier + " " + format(expected) + " at " + locatorOfExpected;
-			case UNEXPECTED : return "Unexpected " + objectClassifier + " " + format(actual) + " found at " + locatorOfActual;
-			case MOVED :      return "Moved " + objectClassifier + " " + format(expected) + " from " + locatorOfExpected + " to " + locatorOfActual;
-			default :         return type + " " + objectClassifier + ", expected " + format(expected) + ", found " + actual + " " + locatorOfExpected + " " + locatorOfActual;
+			case DIFFERENT :  return formatDifferent();
+			case MISSING :    return formatMissing();
+			case UNEXPECTED : return formatUnexpected();
+			case MOVED :      return formatMoved();
+			default :         return formatGenericDiff();
 		}
 	}
+	
+	
+	// private helpers -------------------------------------------------------------------------------------------------
 
-	protected String format(Object value) {
+	private String formatDifferent() {
+		if (NullSafeComparator.equals(locatorOfExpected, locatorOfActual))
+			return "Different " + objectClassifier + ": expected " + formatObject(expected) + 
+					" but found " + formatObject(actual) + (locatorOfActual != null ? " at " + locatorOfActual : "");
+		else
+			return "Different " + objectClassifier + ": expected " + formatObject(expected) + (locatorOfExpected != null ? " at " + locatorOfExpected : "") + 
+					" but found " + formatObject(actual) + (locatorOfActual != null ? " at " + locatorOfActual : "");
+	}
+
+	private String formatMissing() {
+		return "Missing " + objectClassifier + " " + formatObject(expected) + " at " + locatorOfExpected;
+	}
+
+	private String formatUnexpected() {
+		return "Unexpected " + objectClassifier + " " + formatObject(actual) + " found at " + locatorOfActual;
+	}
+
+	private String formatMoved() {
+		return "Moved " + objectClassifier + " " + formatObject(expected) + " from " + locatorOfExpected + " to " + locatorOfActual;
+	}
+
+	private String formatGenericDiff() {
+		return type + " " + objectClassifier + ", expected " + formatObject(expected) + ", found " + actual + " " + locatorOfExpected + " " + locatorOfActual;
+	}
+	
+	private String formatObject(Object value) {
 		return formatter.convert(value);
 	}
 	

@@ -31,11 +31,13 @@ public class ArrayComparator {
 	private static final int REMOVED   = 2;
 	private static final int ADDED     = 3;
 	
-	public static ArrayComparisonResult compare(Object[] array1, Object[] array2, ComparisonModel model, String parentLocator, DiffFactory diffFactory) {
-		return new ArrayComparator(array1, array2, model, parentLocator, diffFactory).compare();
+	public static ArrayComparisonResult compare(Object[] array1, Object[] array2, ComparisonModel model, 
+			String parentLocator1, String parentLocator2, DiffFactory diffFactory) {
+		return new ArrayComparator(array1, array2, model, parentLocator1, parentLocator2, diffFactory).compare();
 	}
 	
-	private String parentLocator;
+	private String parentLocator1;
+	private String parentLocator2;
 	private Object[] array1;
 	private Object[] array2;
 	private ComparisonModel model;
@@ -43,11 +45,12 @@ public class ArrayComparator {
 	private Match[] matches2;
 	private DiffFactory diffFactory;
 		
-	private ArrayComparator(Object[] array1, Object[] array2, ComparisonModel model, String parentLocator, DiffFactory diffFactory) {
+	private ArrayComparator(Object[] array1, Object[] array2, ComparisonModel model, String parentLocator1, String parentLocator2, DiffFactory diffFactory) {
 		this.array1 = array1;
 		this.array2 = array2;
 		this.model = model;
-		this.parentLocator = parentLocator;
+		this.parentLocator1 = parentLocator1;
+		this.parentLocator2 = parentLocator2;
 		this.matches1 = new Match[array1.length];
 		this.matches2 = new Match[array2.length];
 		this.diffFactory = diffFactory;
@@ -102,12 +105,12 @@ public class ArrayComparator {
 			Match match2 = (i2 < matches2.length ? matches2[i2] : null);
 			if (match1 != null && match1.type == REMOVED) {
 				Object missingObject = array1[match1.i1];
-				result.add(diffFactory.missing(missingObject, model.classifierOf(missingObject), locator(array1, match1.i1)));
+				result.add(diffFactory.missing(missingObject, model.classifierOf(missingObject), locator1(array1, match1.i1)));
 				match1.consume();
 				i1 = nextUnconsumed(matches1, i1); 
 			} else if (match2 != null && match2.type == ADDED) {
 				Object newObject = array2[match2.i2];
-				result.add(diffFactory.unexpected(newObject, model.classifierOf(newObject), locator(array2, match2.i2)));
+				result.add(diffFactory.unexpected(newObject, model.classifierOf(newObject), locator2(array2, match2.i2)));
 				match2.consume();
 				i2 = nextUnconsumed(matches2, i2);
 			} else {
@@ -117,12 +120,12 @@ public class ArrayComparator {
 					case CHANGED: 	Object changedObject = array1[match1.i1];
 									String classifier = model.classifierOf(changedObject);
 									if (match1.i1 != i1 || match1.i2 != i2)
-										result.add(diffFactory.moved(array1[match1.i1], classifier, locator(array1, match1.i1), locator(array1, match1.i2)));
-									result.add(diffFactory.different(array1[match1.i1], array2[match1.i2], classifier, locator(array1, match1.i1))); 
+										result.add(diffFactory.moved(array1[match1.i1], classifier, locator1(array1, match1.i1), locator2(array2, match1.i2)));
+									result.add(diffFactory.different(array1[match1.i1], array2[match1.i2], classifier, locator1(array1, match1.i1), locator2(array2, match1.i2))); 
 									break;
 					case IDENTICAL:	if ((match1.i1 != match1.i2) && (match1.i1 != i1 || match1.i2 != i2)) {
 										Object movedObject = array1[match1.i1];
-										result.add(diffFactory.moved(movedObject, model.classifierOf(movedObject), locator(array1, match1.i1), locator(array1, match1.i2)));
+										result.add(diffFactory.moved(movedObject, model.classifierOf(movedObject), locator1(array1, match1.i1), locator2(array1, match1.i2)));
 									}
 									break;
 					default: 		throw new ProgrammerError();
@@ -158,8 +161,12 @@ public class ArrayComparator {
 		return -1;
 	}
 	
-	private String locator(Object[] array, int index) {
-		return parentLocator + model.subPath(array, index);
+	private String locator1(Object[] array, int index) {
+		return parentLocator1 + model.subPath(array, index);
+	}
+	
+	private String locator2(Object[] array, int index) {
+		return parentLocator2 + model.subPath(array, index);
 	}
 	
 	

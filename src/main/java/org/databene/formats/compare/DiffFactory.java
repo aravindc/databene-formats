@@ -48,8 +48,8 @@ public class DiffFactory {
 		return genericDiff(object, object, objectClassifier, DiffDetailType.MOVED, locatorOfExpected, locatorOfActual);
 	}
 
-	public DiffDetail different(Object expected, Object actual, String objectClassifier, String locatorOfActual) {
-		return genericDiff(expected, actual, objectClassifier, DiffDetailType.DIFFERENT, locatorOfActual, locatorOfActual);
+	public DiffDetail different(Object expected, Object actual, String objectClassifier, String locatorOfExpected, String locatorOfActual) {
+		return genericDiff(expected, actual, objectClassifier, DiffDetailType.DIFFERENT, locatorOfExpected, locatorOfActual);
 	}
 
 	public DiffDetail genericDiff(Object expected, Object actual, String objectClassifier,
