@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.databene.commons.Assert;
+import org.databene.commons.Consumer;
 import org.databene.commons.IOUtil;
 import org.databene.formats.DataContainer;
 import org.slf4j.Logger;
@@ -78,10 +79,6 @@ public class XLSBeanPersistor<E> {
 		} finally {
 			IOUtil.close(out);
 		}
-	}
-	
-	protected static interface Consumer<T> {
-		void consume(T bean);
 	}
 	
 }
