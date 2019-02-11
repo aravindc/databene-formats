@@ -23,7 +23,8 @@ import org.databene.formats.DataContainer;
 import org.databene.formats.DataIterator;
 import org.databene.formats.util.ThreadLocalDataContainer;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
 
 /**
  * Reads a CSV file and maps its columns to JavaBeans.
@@ -102,6 +103,8 @@ public class CSVToJavaBeanMapper<E> implements DataIterator<E> {
     }
 
     public DataContainer<String[]> nextRaw(DataContainer<String[]> wrapper) {
+		if (iterator == null)
+			return null;     // the file was empty and thus the iterator not initialized in init()
     	return iterator.next(wrapper);
     }
 
