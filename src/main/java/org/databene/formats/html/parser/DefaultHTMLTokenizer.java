@@ -339,7 +339,7 @@ public class DefaultHTMLTokenizer implements HTMLTokenizer {
             int c;
             while((c = reader.read()) != -1 && (caseSensitive ? c : Character.toUpperCase(c)) != endChars[0]) {
 				if (cursor > = textBuffer.length)
-					throw new RuntimeException("Buffer too small: " + textBuffer.length)
+					throw new RuntimeException("Buffer too small: " + textBuffer.length);
                 textBuffer[cursor++] = (char)c;
             }
             if (c == -1)
