@@ -35,7 +35,7 @@ public class DefaultHTMLTokenizer implements HTMLTokenizer {
 
 	private static Logger logger = LoggerFactory.getLogger(DefaultHTMLTokenizer.class);
 
-    private static final int TEXT_BUFFER_SIZE = 65536;
+    private static final int TEXT_BUFFER_SIZE = 500000;
 	private static final int ATTRIBUT_BUFFER_SIZE = 256;
 
     private static final CharSet ELEMENT_NAME_CHARS = new CharSet('A','Z').addRange('a', 'z').addRange('0', '9').add('_').add(':').add('-');
@@ -338,6 +338,8 @@ public class DefaultHTMLTokenizer implements HTMLTokenizer {
         do {
             int c;
             while((c = reader.read()) != -1 && (caseSensitive ? c : Character.toUpperCase(c)) != endChars[0]) {
+				if (cursor > = textBuffer.length)
+					throw new RuntimeException("Buffer too small: " + textBuffer.length)
                 textBuffer[cursor++] = (char)c;
             }
             if (c == -1)
