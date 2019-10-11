@@ -38,6 +38,7 @@ public class OrthogonalArrayIteratorTest {
 		assertArrayEquals(new Integer[] { 1,    3 }, iterator.next(container).getData());
 		assertArrayEquals(new Integer[] { 2, null }, iterator.next(container).getData());
 		assertNull(iterator.next(container));
+		iterator.close();
 	}
 	
 }

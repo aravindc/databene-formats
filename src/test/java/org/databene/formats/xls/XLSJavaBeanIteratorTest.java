@@ -36,6 +36,7 @@ import org.junit.Test;
 
 public class XLSJavaBeanIteratorTest {
 
+	@SuppressWarnings("rawtypes")
 	@Test
 	public void testFlat() throws InvalidFormatException, IOException {
 		XLSJavaBeanIterator iterator = new XLSJavaBeanIterator("org/databene/formats/xls/person_lines.xls", "persons", true, PersonWithAddress.class);
@@ -45,6 +46,7 @@ public class XLSJavaBeanIteratorTest {
 		assertNotNull(iterator.next(wrapper));
 		assertContent("Bob", 34, TimeUtil.date(2011, 0, 2), wrapper);
 		assertNull(iterator.next(wrapper));
+		iterator.close();
 	}
 
 	@Test
@@ -56,6 +58,7 @@ public class XLSJavaBeanIteratorTest {
 		assertNotNull(iterator.next(wrapper));
 		assertContent("Bob", 34, TimeUtil.date(2011, 0, 2), wrapper);
 		assertNull(iterator.next(wrapper));
+		iterator.close();
 	}
 
 	@Test
@@ -67,6 +70,7 @@ public class XLSJavaBeanIteratorTest {
 		assertNotNull(iterator.next(wrapper));
 		assertContent("Bob", 34, "New York", wrapper);
 		assertNull(iterator.next(wrapper));
+		iterator.close();
 	}
 
 	@Test
@@ -78,6 +82,7 @@ public class XLSJavaBeanIteratorTest {
 		assertNotNull(iterator.next(wrapper));
 		assertContent("Bob", 34, "New York", "Hauppauge", wrapper);
 		assertNull(iterator.next(wrapper));
+		iterator.close();
 	}
 
 

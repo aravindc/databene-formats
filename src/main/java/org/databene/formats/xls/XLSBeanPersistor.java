@@ -63,6 +63,7 @@ public class XLSBeanPersistor<E> {
 		while (mapper.next(wrapper) != null) 
 			if (wrapper.getData() != null)
 				consumer.consume(wrapper.getData());
+		mapper.close();
 	}
 	
 	protected void save(File file, String sheetName, Iterator<E> beanIterator) throws IOException {

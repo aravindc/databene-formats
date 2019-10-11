@@ -79,6 +79,7 @@ public class DelocalizingConverter extends ThreadSafeConverter<String, String> {
         DataContainer<String[]> tokens = new DataContainer<String[]>();
         while ((tokens = iterator.next(tokens)) != null)
             addReplacements(tokens.getData());
+        iterator.close();
     }
 
     /**

@@ -34,6 +34,7 @@ public class ListDataIterator<E> implements DataIterator<E> {
 	private List<E> data;
 	private int cursor;
 
+	@SafeVarargs
 	public ListDataIterator(Class<E> type, E... data) {
 		this(type, CollectionUtil.toList(data));
 	}

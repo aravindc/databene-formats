@@ -34,6 +34,7 @@ public class ListDataIteratorTest {
 		assertEquals(3, iterator.next(container).getData().intValue());
 		assertEquals(5, iterator.next(container).getData().intValue());
 		assertNull(iterator.next(container));
+		iterator.close();
 	}
 	
 }

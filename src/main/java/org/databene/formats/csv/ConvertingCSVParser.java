@@ -64,11 +64,12 @@ public class ConvertingCSVParser<E> implements DataIterator<E>{
 	}
 	
 	public static <T> List<T> parse(String uri, Converter<String[], T> rowConverter, List<T> list) throws IOException {
-		ConvertingCSVParser<T> parser = new ConvertingCSVParser<T>(uri, rowConverter);
+		try (ConvertingCSVParser<T> parser = new ConvertingCSVParser<T>(uri, rowConverter)){
 		DataContainer<T> container = new DataContainer<T>();
 		while ((container = parser.next(container)) != null)
 			list.add(container.getData());
 		return list;
+		}
 	}
 
 }

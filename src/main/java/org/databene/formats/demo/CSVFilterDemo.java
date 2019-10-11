@@ -58,8 +58,10 @@ public class CSVFilterDemo {
             csvWriter.writeElement(cells.getData());
             matchCount++;
         }
-
+        
+        csvWriter.close();
         out.close();
+        iterator.close();
         reader.close();
 
         // output counter and timer values

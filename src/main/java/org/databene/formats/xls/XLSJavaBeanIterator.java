@@ -78,6 +78,7 @@ public class XLSJavaBeanIterator<E> extends ConvertingDataIterator<Object[], E> 
 		DataContainer<T> container = new DataContainer<T>();
 		while (iterator.next(container) != null)
 			result.add(container.getData());
+		iterator.close();
 		return result;
 	}
 

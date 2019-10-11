@@ -48,6 +48,7 @@ public class CSVSingleColumnIteratorTest extends DataIteratorTestCase {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	@Test(expected = IllegalArgumentException.class)
 	public void testNegativeColumn() throws Exception {
 		new CSVSingleColumIterator(FILENAME, -1, ',', true, Encodings.UTF_8);
