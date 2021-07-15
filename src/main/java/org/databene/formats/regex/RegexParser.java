@@ -157,13 +157,14 @@ public class RegexParser {
 			case RegexLexer.PREDEFINEDCLASS: return convertPredefClass(node);
 			case RegexLexer.CLASS: return convertClass(node);
 			case RegexLexer.RANGE: return convertRange(node);
-			case RegexLexer.SPECIALCHARACTER: return convertAlphanum(node);
+			case RegexLexer.SPECIALCHARACTER:
+			case RegexLexer.ALPHANUM:
+				return convertAlphanum(node);
 			case RegexLexer.ESCAPEDCHARACTER: return convertEscaped(node);
 			case RegexLexer.NONTYPEABLECHARACTER: return convertNonTypeable(node);
 			case RegexLexer.OCTALCHAR: return convertOctal(node);
 			case RegexLexer.HEXCHAR: return convertHexChar(node);
 			case RegexLexer.CODEDCHAR: return convertCodedChar(node);
-			case RegexLexer.ALPHANUM: return convertAlphanum(node);
 			default: throw new SyntaxError("Not a supported token type: " + node.getToken(), node.toString(), node.getCharPositionInLine(), node.getLine());
     	}
     }
@@ -171,14 +172,14 @@ public class RegexParser {
 	
 	@SuppressWarnings("unchecked")
     private Group convertGroup(CommonTree node) throws SyntaxError {
-    	List<CommonTree> childNodes = node.getChildren();
+    	List<CommonTree> childNodes = (List<CommonTree>)node.getChildren();
     	Assert.equals(1, childNodes.size(), "Group is expected to have exactly one child node");
     	return new Group(convertRegexPart(childNodes.get(0)));
     }
 
 	@SuppressWarnings("unchecked")
     private Choice convertChoice(CommonTree node) throws SyntaxError {
-    	List<CommonTree> childNodes = node.getChildren();
+    	List<CommonTree> childNodes = (List<CommonTree>)node.getChildren();
     	List<RegexPart> childPatterns = new ArrayList<RegexPart>();
     	if (childNodes != null)
 	    	for (CommonTree childNode : childNodes)
@@ -188,7 +189,7 @@ public class RegexParser {
 
     @SuppressWarnings("unchecked")
     private Sequence convertSequence(CommonTree tree) throws SyntaxError {
-    	List<CommonTree> childNodes = tree.getChildren();
+    	List<CommonTree> childNodes = (List<CommonTree>)tree.getChildren();
     	List<RegexPart> children = new ArrayList<RegexPart>();
     	if (childNodes != null)
 	    	for (CommonTree child : childNodes)
@@ -198,7 +199,7 @@ public class RegexParser {
 
     @SuppressWarnings("unchecked")
     private Factor convertFactor(CommonTree tree) throws SyntaxError {
-    	List<CommonTree> children = tree.getChildren();
+    	List<CommonTree> children = (List<CommonTree>)tree.getChildren();
     	RegexPart subPattern = convertRegexPart(children.get(0));
     	Quantifier quantifier = null;
     	if (children.size() > 1)
@@ -211,16 +212,16 @@ public class RegexParser {
     @SuppressWarnings("unchecked")
     private CustomCharClass convertClass(CommonTree node) throws SyntaxError {
     	CustomCharClass result = new CustomCharClass();
-    	List<CommonTree> childNodes = node.getChildren();
+    	List<CommonTree> childNodes = (List<CommonTree>)node.getChildren();
     	if (childNodes != null)
 	    	for (CommonTree child : childNodes) {
 	    		if (child.getType() == RegexLexer.INCL) {
-	    	    	List<CommonTree> gdChildren = child.getChildren();
+	    	    	List<CommonTree> gdChildren = (List<CommonTree>)child.getChildren();
 	    	    	if (gdChildren != null)
 	    	    		for (CommonTree gdChild : gdChildren)
 	    	    			result.addInclusion((RegexCharClass) convertRegexPart(gdChild));
 	    		} else {
-	    	    	List<CommonTree> gdChildren = child.getChildren();
+	    	    	List<CommonTree> gdChildren = (List<CommonTree>)child.getChildren();
 	    	    	if (gdChildren != null)
 	    	    		for (CommonTree gdChild : gdChildren)
 	    	    			result.addExclusions((RegexCharClass) convertRegexPart(gdChild));
@@ -282,7 +283,7 @@ public class RegexParser {
 
     @SuppressWarnings("unchecked")
     private RegexCharClass convertRange(CommonTree node) throws SyntaxError {
-    	List<CommonTree> children = node.getChildren();
+    	List<CommonTree> children = (List<CommonTree>)node.getChildren();
     	CommonTree fromNode = children.get(0);
 		char from = ((RegexChar) convertRegexPart(fromNode)).getChar();
     	CommonTree toNode = children.get(1);
@@ -302,7 +303,7 @@ public class RegexParser {
     private static Quantifier convertExplicitQuantifier(CommonTree tree) {
     	int min = 0;
     	Integer max = null;
-    	List<CommonTree> children = tree.getChildren();
+    	List<CommonTree> children = (List<CommonTree>)tree.getChildren();
     	min = convertInt(children.get(0));
     	if (children.size() > 1)
     		max = convertInt(children.get(1));

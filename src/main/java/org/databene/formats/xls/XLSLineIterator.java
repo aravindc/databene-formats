@@ -173,7 +173,7 @@ public class XLSLineIterator implements DataIterator<Object[]> {
 			if (sheet == null)
 				throw new IllegalArgumentException("Sheet '" + sheetName + "' not found in file " + uri);
 			return sheet;
-		} catch (InvalidFormatException e) {
+		} catch (Exception e) {
 			throw new ParseException("Error parsing sheet '" + sheetName + "' of " + uri, null);
 		}
     }
@@ -183,7 +183,7 @@ public class XLSLineIterator implements DataIterator<Object[]> {
 		try {
 			workbook = WorkbookFactory.create(IOUtil.getInputStreamForURI(uri));
 			return workbook.getSheetAt(sheetIndex);
-		} catch (InvalidFormatException e) {
+		} catch (Exception e) {
 			throw new ParseException("Error parsing sheet " + sheetIndex + " of " + uri, e, null, -1, -1);
 		}
     }
